@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="calender"> </div>
+    <script>
+        function isLeapYear(year) {
+            return year % 4 == 0 && (year % 100 != 0 && year % 400 == 0);
+        }
+        let table = `<table border='1'>`;
+        const dayOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = now.getMonth();
+        const COL = 7;
+
+        // 월의 첫 번째 날 계산
+        const firstDay = new Date(year, month, 1);
+        let lastDay;
+
+        if (month == 1) {
+            if (isLeapYear(year)) {
+                lastDay = new Date(year, month, 29);
+            } else {
+                lastDay = new Date(year, month, 28);
+            }
+        } else if (month == 4 || month == 6 || month == 10) {
+            lastDay = new Date(year, month, 30);
+        } else {
+            lastDay = new Date(year, month, 31);
+        }
+
+        const firstWeekDay = COL - firstDay.getDay();
+        const fullDays = lastDay.getDate();
+        const remainingDay = fullDays - firstWeekDay;
+
+        table += "<tr>";
+        for (let i = 0; i < COL; i++) {
+            table += `<th>` + dayOfWeek[i] + `</th>`;
+        }
+        table += "</tr>";
+
+    </script>
+</body>
+
+</html>

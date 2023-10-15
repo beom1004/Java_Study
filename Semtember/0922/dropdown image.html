@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body>img {
+            width: 100px;
+            height: 50px;
+        }
+
+        .dropdown {
+            display: none;
+        }
+
+        .content {
+            max-width: 600px;
+            box-shadow: 8px 8px 8px 8px lightgray;
+            text-align: center;
+        }
+
+        .content img {
+            max-width: 600px;
+        }
+
+        .content p {
+            display: inline-block;
+            font-size: 20px;
+        }
+
+        body>img:hover+.dropdown {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Dropdown Image</h2>
+    <p>Move the mouse over the image below to open the dropdown content.</p>
+    <img src="img_5terre.jpg">
+    <div class="dropdown">
+        <div class="content">
+            <img src="img_5terre.jpg">
+            <p>Beautiful Cinque Terre</p>
+        </div>
+    </div>
+</body>
+
+</html>

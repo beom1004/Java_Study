@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript Array</title>
+</head>
+
+<body>
+    <div id="demo"></div>
+    <script>
+        const fruits = ["Apple", "Orange", "Apple", "Mango"];
+        const num = fruits.map(findFunc());
+        function findFunc(value) {
+            return value >= 18 ? value
+        }
+        document.getElementById("demo").innerHTML = num;
+    </script>
+
+</body>
+
+</html>

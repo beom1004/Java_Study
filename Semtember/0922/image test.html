@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        #leftBtn {
+            background-color: #35c452;
+            padding: 15px;
+            color: white;
+            font-size: 20px;
+            border-style: none;
+            cursor: pointer;
+        }
+
+        #leftBtn:hover {
+            background-color: #30b84b;
+        }
+
+        #rightBtn {
+            background-color: #35c452;
+            padding: 15px;
+            color: white;
+            font-size: 20px;
+            border-style: none;
+            cursor: pointer;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .contents {
+            position: absolute;
+        }
+
+        #leftList,
+        #rightList {
+            display: none;
+            background-color: #f2f2f2;
+            padding: 0px;
+            width: 180px;
+            margin: 0px;
+            box-shadow: 5px 5px 5px 5px #d4d4d4;
+        }
+
+        .right {
+            float: right;
+        }
+
+        li {
+            list-style: none;
+            font-size: 18px;
+            padding: 10px;
+        }
+
+        li:hover {
+            background-color: #e0e0e0;
+        }
+
+        .left:hover #leftList {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Aligned Dropdown Content</h1>
+    <p>Determine whether the dropdown content
+        should go from left to right to left
+        with the left and right properties.</p>
+    <div class="left dropdown">
+        <button id="leftBtn"> Left </button>
+        <div class="contents">
+            <ul id="leftList">
+                <li>Link 1</li>
+                <li>Link 2</li>
+                <li>Link 3</li>
+            </ul>
+        </div>
+        <div class="right dropdown">
+            <button id="rightBtn"> Right </button>
+            <div class="contents">
+                <ul id="rightList">
+                    <li>Link 1</li>
+                    <li>Link 2</li>
+                    <li>Link 3</li>
+                </ul>
+            </div>
+</body>
+
+</html>
