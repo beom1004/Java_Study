@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="user">
+	<insert id="registerUser">
+		<![CDATA[
+			INSERT INTO USER(id, password, email)
+			VALUES(#{id}, #{password}, #{email})
+		]]>
+	</insert>
+	<select id="emailCheck" resultType="String">
+		SELECT EMAIL FROM USER WHERE EMAIL = #{email}
+	</select>
+	
+	<select id="getUser" resultType="user">
+		<![CDATA[
+			SELECT * FROM USER WHERE ID=#{id} AND PASSWORD=#{password}
+		]]>	
+	</select>
+
+</mapper>

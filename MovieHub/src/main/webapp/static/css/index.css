@@ -1,0 +1,161 @@
+.header_inner {
+    background-color: white;
+}
+.wrap {
+    align-items: center;
+    margin: 0 auto;
+}
+section {
+    position: relative;
+    top: 63px;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+    height: 400px;
+}
+.gradient {
+    background-color: #0b0e3d4d;
+    background-image: linear-gradient(to right, rgba(106, 30, 96, 0.281), rgba(15, 147, 94, 0.245));
+}
+#title_img {
+    position: relative;
+    min-width: 100%;
+    min-height: 410px;
+    overflow: hidden;
+    z-index: -3;
+}
+#title_img > img {
+    position: absolute;
+    z-index: -2;
+    width: 100%;
+    height: auto;
+    top: -50%;
+    bottom: -60%;
+}
+.search_outer {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+.search_inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.search_contents {
+    position: relative;
+    width: 800px;
+    height: 80px;
+}
+#search_input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    padding: 20px;
+    font-size: 18px;
+    border-radius: 10px;
+}
+#search_btn {
+    background-color: black;
+    color: white;
+    position: absolute;
+    right: 0;
+    width: 100px;
+    height: 80px;
+    border: none;
+    font-size: 18px;
+    border-radius: 0 10px 10px 0;
+}
+#search_btn:hover {
+    cursor: pointer;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    width: 100%;
+    margin: 7% auto;
+}
+.items {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0 5%;
+}
+.item_title {
+    width: 100%;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+.contents {
+    display: flex;
+    padding: 10px;
+    width: 100%;
+    overflow: hidden;
+}
+.lists {
+    position: relative;
+    display: flex;
+    width: 100%;
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    margin: 15px;
+    width: 100%;
+}
+.content:hover {
+    cursor: pointer;
+}
+.poster {
+    border-radius: 7px;
+    background-color: #ccc;
+    width: 240px;
+    height: 360px;
+}
+.poster > img {
+    border-radius: 7px;
+    width: 100%;
+    height: 100%;
+}
+.movieInfo {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px;
+}
+.movieInfo > .title {
+	word-break: keep-all;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+.buttons {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    font-size: 2.5rem;
+    width: 90%;
+}
+.leftBtns,
+.rightBtns {
+    display: none;
+}
+.leftBtns:hover,
+.rightBtns:hover {
+    cursor: pointer;
+}
+.boxofficeBtns {
+    top: 725px;
+}
+.netflixBtns {
+    top: 1260px;
+}
+.watchaBtns {
+    top: 1820px;
+}
+
+

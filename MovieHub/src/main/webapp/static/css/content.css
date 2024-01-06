@@ -1,0 +1,372 @@
+.header_container {
+    position: fixed;
+}
+
+.header_inner {
+    background-color: transparent;
+}
+
+.footer_inner {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    word-wrap: break-word;
+    background-color: rgb(113, 113, 113);
+    color: white;
+    width: 100%;
+    height: 130px;
+}
+.footer_items {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    width: 80%;
+}
+.footer_item {
+    font-weight: bold;
+    padding: 20px;
+    font-size: 1rem;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.wrap {
+    /* display: flex; */
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.movie_info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+.movie_info > .backdrop_path {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    min-width: 100%;
+    min-height: 550px;
+    overflow: hidden;
+}
+.backdrop_path > #gradient {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to top, black, 30%, transparent);
+}
+.backdrop_path > div > img {
+    z-index: -3;
+    position: absolute;
+    max-width: 100%;
+    height: auto;
+    top: -40%;
+    bottom: -40%;
+}
+.movie_info > .movie_desc {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 40px;
+    padding-left: 150px;
+}
+.movie_desc > div,
+.desc_detail > div,
+#release_date,
+.genres > div,
+#original_language {
+    color: white;
+}
+.movie_desc > #title {
+    font-size: 50px;
+    font-weight: 600;
+}
+.desc_detail {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.desc_detail > .spans_div {
+    display: flex;
+}
+.spans_div > .genres {
+    display: flex;
+}
+section {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 90%;
+    padding: 10px;
+}
+.section_1 {
+    width: 100%;
+    padding-bottom: 70px;
+    background-color: rgb(246, 246, 246);
+}
+.box {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 10px;
+}
+.box > .box_left {
+    overflow: hidden;
+    display: flex;
+    width: 30%;
+    height: 100%;
+    padding: 10px;
+}
+.box_left > .poster {
+    width: 100%;
+    height: 400px;
+}
+.poster > img {
+    width: 100%;
+    height: 100%;
+}
+.box > .box_right {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 0 40px;
+}
+.box_right > .user_rate {
+    display: flex;
+    width: 100%;
+    height: 170px;
+    font-size: 18px;
+}
+.user_rate > .vote_divs {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    justify-content: space-around;
+    width: 100%;
+}
+/* 별점 시스템 */
+.rate_star_div {
+    display: flex;
+    flex-direction: column;
+}
+.rate_star {
+    font-size: 30px;
+    padding-bottom: 15px;
+}
+.rate_star_div:nth-child(1) {
+    font-size: 17px;
+}
+.starR {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    color: transparent;
+    text-shadow: 0 0 0 #ffbb002e;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.starR:hover,
+.starR.on {
+    text-shadow: 0 0 0 #ffbc00;
+}
+.vote_count {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.vote_count > div:nth-child(1) {
+    font-size: 2rem;
+    font-weight: 700;
+    padding-bottom: 15px;
+}
+.user_rate > .rate_btns {
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 50%;
+    padding: 20px;
+}
+.box_right > .comment_divs {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    width: 100%;
+    padding: 30px 0;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+}
+.comment_divs > #comment_title {
+    padding-bottom: 20px;
+}
+.my_comment {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    display: flex;
+    background-color: white;
+    width: 100%;
+    height: 100px;
+    padding: 20px;
+    align-items: center;
+    justify-content: space-between;
+}
+.my_comment > .comment_btns {
+    display: flex;
+}
+.comment_btns > div:hover {
+    cursor: pointer;
+}
+.comment_btns > div {
+    text-align: center;
+    width: 80px;
+    padding: 10px;
+}
+.comment,
+.wishList {
+    background-color: rgb(246, 78, 106);
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    padding: 15px 25px;
+}
+.comment:hover,
+.wishList:hover {
+    cursor: pointer;
+}
+.storyline {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.storyline > #tagline {
+    overflow: hidden;
+    width: 100%;
+    height: 30px;
+    padding: 30px 0;
+    font-size: 1.2rem;
+}
+.storyline > #overview {
+    word-break: keep-all;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+.review_div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.review_info {
+    display: flex;
+    justify-content: space-between;
+}
+#review_title {
+    padding: 20px;
+    font-weight: 800;
+    font-size: 1.3rem;
+}
+#review_title > span {
+    color: rgb(255, 0, 43);
+}
+#review_btn {
+    display: flex;
+    padding: 10px;
+}
+#review_btn > button:hover {
+    cursor: pointer;
+}
+#review_btn > button {
+    border: none;
+    background-color: transparent;
+    width: 120px;
+    height: 50px;
+    font-size: 16px;
+}
+.review_list {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    width: 100%;
+}
+.review_list > .review_item {
+    display: flex;
+    flex-direction: column;
+    word-break: keep-all;
+    width: 300px;
+    height: 320px;
+    background-color: #eeeeee;
+    border-radius: 5px;
+    list-style: none;
+    padding: 10px;
+    margin: 10px;
+}
+.review_item:hover {
+    cursor: pointer;
+}
+.review_item > .review_header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-bottom: 5px;
+    border-bottom: 1px solid lightgray;
+}
+.pic_div {
+    display: flex;
+    width: 45%;
+    justify-content: space-between;
+    align-items: center;
+}
+.pic_div > #user_pic {
+    background-color: gray;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+#user_pic > img {
+    width: 100%;
+    height: 100%;
+}
+.star_div {
+    display: flex;
+    align-items: center;
+}
+.star_div > #user_star {
+    width: 100%;
+    background-color: white;
+    border-radius: 20px;
+    padding: 5px;
+}
+.review_item > .review_content {
+    padding: 20px;
+    height: 100%;
+    width: 100%;
+}
+.review_item > .likes {
+    display: flex;
+    padding: 10px;
+    justify-content: space-evenly;
+    width: 100%;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+}
+.bi-heart {
+    color: black;
+}
+.like_btn {
+    padding: 10px;
+}

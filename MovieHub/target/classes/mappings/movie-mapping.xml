@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="movieDAO">
+	<insert id="insertMovie">
+		<![CDATA[
+			INSERT IGNORE INTO MOVIE(movie_id, title, backdrop_path, genre_ids, original_title,
+			release_year, production_countries, original_language, runtime, poster_path, vote_average, vote_count,
+			tagline, overview, popularity, groupNum)
+			VALUES(#{movie_id}, #{title}, #{backdrop_path}, #{genre_ids}, #{original_title},
+			#{release_year}, #{production_countries}, #{original_language}, #{runtime}, #{poster_path}, #{vote_average}, 
+			#{vote_count}, #{tagline}, #{overview}, #{popularity}, #{groupNum})
+		]]>
+	</insert>
+	<insert id="insertGenre">
+		<![CDATA[
+			INSERT IGNORE INTO GENRE(genre_id, genre_name)
+			VALUES(#{genre_id}, #{genre_name})
+		]]>
+	</insert>
+	<select id="getMovieList" resultType="movie">
+		<![CDATA[
+			SELECT * FROM MOVIE ORDER BY GROUPNUM, POPULARITY DESC
+		]]>	
+	</select>
+
+</mapper>

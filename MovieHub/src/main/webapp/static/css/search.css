@@ -1,0 +1,202 @@
+/* a 링크 잠시 무효화 */
+a {
+    pointer-events: none;
+}
+.header_inner {
+    background-color: white;
+}
+.footer_inner {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    word-wrap: break-word;
+    background-color: rgb(113, 113, 113);
+    color: white;
+    width: 100%;
+    height: 130px;
+}
+.footer_items {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    width: 80%;
+}
+.footer_item {
+    font-weight: bold;
+    padding: 20px;
+    font-size: 1rem;
+}
+.footer_item:hover {
+    cursor: pointer;
+}
+.wrap {
+    margin: 7% auto;
+}
+.search,
+.movie_wrapper,
+.desc_wrapper {
+    margin: 0 auto;
+    width: 90%;
+}
+.search_result {
+    width: 100%;
+    padding: 1%;
+    font-weight: bold;
+    color: rgb(88, 87, 87);
+    background-color: #eeeeee;
+    font-size: 20px;
+}
+.search_box {
+    width: 100%;
+}
+input[type='text'] {
+    width: 100%;
+    padding: 1.5%;
+    border: 1px solid rgb(220, 220, 220);
+    outline: none;
+    font-size: 1rem;
+}
+.search_trend {
+    position: absolute;
+    display: none;
+    width: 90%;
+}
+#trending {
+    width: 100%;
+    padding-left: 20px;
+    font-weight: bold;
+    font-size: 20px;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    color: white;
+    background-image: linear-gradient(to right, rgb(77, 204, 158), rgb(160, 153, 241));
+}
+#close {
+    font-weight: bold;
+    position: absolute;
+    right: 2%;
+}
+#close:hover {
+    color: red;
+    cursor: pointer;
+}
+.search_ul {
+    width: 100%;
+}
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+li {
+    border: 1px solid lightgray;
+    width: 100%;
+    font-size: 1.1rem;
+    padding: 0.5%;
+    padding-left: 1.5%;
+    background-color: white;
+}
+.search_ul > ul > li:hover {
+    cursor: pointer;
+    background-color: rgb(195, 206, 225);
+}
+.movie_box {
+    width: 98%;
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    margin: 4% auto;
+}
+.movie_box > .movie_list {
+    display: flex;
+    width: 18%;
+    flex-direction: column;
+}
+.movie_list:hover {
+    cursor: pointer;
+}
+img {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+.movie_image > img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+.movie_info {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 12%;
+    padding-left: 3%;
+}
+.movie_info > .movie_title {
+    font-size: 19px;
+}
+.movie_info > .movie_year {
+    color: gray;
+    padding-top: 1%;
+    font-size: 16px;
+}
+.description {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin-bottom: 10%;
+}
+.description > .description_list {
+    display: flex;
+    height: 100%;
+    margin: 1.5% 0;
+    box-shadow: 1px 2px 3px 3px rgba(195, 195, 195, 0.314);
+    border-radius: 10px;
+}
+.description_list:hover {
+    cursor: pointer;
+}
+.description > p {
+    width: 100%;
+    font-size: 20px;
+    padding-left: 1%;
+    padding-bottom: 1%;
+    border-bottom: 1px solid rgb(222, 222, 222);
+}
+.left_side {
+    width: 20%;
+    height: 100%;
+    padding: 1% 2%;
+}
+.left_side > a > img {
+    width: 100%;
+    height: 100%;
+}
+.right_side {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+.right_side > .title_year {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 50%;
+    padding: 2%;
+}
+.description_title {
+    font-weight: bold;
+    font-size: 20px;
+}
+.description_year {
+    color: rgb(88, 88, 88);
+}
+.plot {
+    font-size: 20px;
+}
+.right_side > .plot {
+    width: 100%;
+    height: 100%;
+    padding: 0 2%;
+}
