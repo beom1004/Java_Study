@@ -44,7 +44,7 @@
                         <div class="lists">
                         	<c:forEach var="movie" items="${boxofficeList }">
                         		<li class="content">
-	                                <a class="image" href="content.do">
+	                                <a class="image" href="content.do?movie_id=${movie.movie_id }">
 	                                    <div class="poster">
 	                                        <img src="${movie.poster_path }" alt="poster">
 	                                    </div>
@@ -76,7 +76,7 @@
                         <div class="lists">
                             <c:forEach var="movie" items="${netflixList }">
                         		<li class="content">
-	                                <a class="image" href="content.do">
+	                                <a class="image" href="content.do?movie_id=${movie.movie_id }">
 	                                    <div class="poster">
 	                                        <img src="${movie.poster_path }" alt="poster">
 	                                    </div>
@@ -108,7 +108,7 @@
                         <div class="lists">
                             <c:forEach var="movie" items="${watchaList }">
                         		<li class="content">
-	                                <a class="image" href="content.do">
+	                                <a class="image" href="content.do?movie_id=${movie.movie_id }">
 	                                    <div class="poster">
 	                                        <img src="${movie.poster_path }" alt="poster">
 	                                    </div>

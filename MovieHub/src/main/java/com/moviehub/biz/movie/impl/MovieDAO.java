@@ -20,6 +20,9 @@ public class MovieDAO {
 	public void insertGenre(MovieGenreVO genre) {
 		sqlSessionTemplate.insert("movieDAO.insertGenre", genre);
 	}
+	public MovieVO getMovie(MovieVO movie) {
+		return sqlSessionTemplate.selectOne("movieDAO.getMovie", movie);
+	}
 	public List<MovieVO> getMovieList(){
 		return sqlSessionTemplate.selectList("movieDAO.getMovieList");
 	}

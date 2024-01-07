@@ -7,7 +7,8 @@
 	<typeAliases>
 		<typeAlias type="com.moviehub.biz.movie.MovieVO" alias="movie"/>
 		<typeAlias type="com.moviehub.biz.user.UserVO" alias="user"/>
-	</typeAliases>
+		<typeAlias type="com.moviehub.biz.user.UserDetailVO" alias="detail" />
+ 	</typeAliases>
 
 	<!-- Sql Mapper 설정  -->
 	<mappers>

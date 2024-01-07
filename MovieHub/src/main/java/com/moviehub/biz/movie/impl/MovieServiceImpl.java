@@ -21,6 +21,10 @@ public class MovieServiceImpl implements MovieService {
 	private MovieDAO movieDAO;
 	
 	@Override
+	public MovieVO getMovie(MovieVO movie) {
+		return movieDAO.getMovie(movie);
+	}
+	@Override
 	public List<MovieVO> getMovieList(String type){
 		final String API_KEY = "729201bdf1f62b5e99c9816a70e5d445";
 		List<String> apiURL_list = new ArrayList<String>();

@@ -1,14 +1,12 @@
-window.addEventListener('scroll', function () {
-    const headerInner = document.querySelector('.header_inner');
-    const title = this.document.querySelector('.header_title');
-
-    if (window.scrollY >= 99) {
-        headerInner.style.backgroundColor = 'white';
-        title.style.borderBottom = '1px solid gray';
-    } else {
-        headerInner.style.backgroundColor = 'transparent';
-        title.style.borderBottom = 'none';
-    }
-
-    headerInner.style.transition = 'all 1s ease';
+function commentFunc(){
+	document.querySelector('.commentModal').classList.remove('comment_hide');
+}
+document.querySelector('#comment_close').addEventListener('click', function () {
+    document.querySelector('.commentModal').classList.add('comment_hide');
+});
+document.querySelector('.comment_white-bg').addEventListener('click', function (event) {
+    event.stopPropagation();
+});
+document.querySelector('.comment_black-bg').addEventListener('click', function () {
+    document.querySelector('.commentModal').classList.add('comment_hide');
 });

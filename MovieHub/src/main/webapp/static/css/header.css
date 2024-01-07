@@ -1,4 +1,3 @@
-
 .header_icon:hover,
 #login:hover,
 #register:hover {
@@ -110,7 +109,8 @@
 
 .login_black-bg,
 .register_black-bg,
-.setting_black-bg {
+.setting_black-bg,
+.comment_black-bg {
     width: 100%;
     height: 100%;
     position: fixed;
@@ -119,7 +119,9 @@
     padding: 30px;
 }
 .login_white-bg,
-.register_white-bg {
+.register_white-bg,
+.setting_white-bg,
+.comment_white-bg {
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -194,6 +196,14 @@
     padding: 10px;
     font-weight: 600;
     font-size: 1.3rem;
+}
+.header_icon > a{
+	text_decoration : none;
+	color: black;
+}
+.header_icon > a:visited{
+	text-decoration: none;
+    color: black;
 }
 #login {
 	border: none;
@@ -340,4 +350,8 @@
 }
 .pw_btn:hover {
     cursor: pointer;
+}
+#comment_close:hover {
+    cursor: pointer;
+    color: red;
 }

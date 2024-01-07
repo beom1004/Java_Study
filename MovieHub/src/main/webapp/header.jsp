@@ -16,7 +16,7 @@
         <div class="header_container">
             <div class="header_inner">
                 <div class="header_left">
-                    <div class="header_icon">MovieHub</div>
+                    <div class="header_icon"><a href="index.do">MovieHub</a></div>
                 </div>
                 <div class="header_right">
                 	<c:if test="${user == null}" >
@@ -25,7 +25,7 @@
 	                </c:if>
                 	<c:if test="${user != null}">
 	                    <div class="profile_img">
-	                        <img src="static/images/profile.jpg">
+	                        <img src="static/images/profile/${detail.profile_img }">
 	                    </div>
                     </c:if>
                 </div>
@@ -33,7 +33,7 @@
         </div>
         <div class="profile_menu profile_hide">
             <div class="menu_top">
-                <div class="nickname">nickname</div>
+                <div class="nickname">${user.id }</div>
                 <div class="profile_link">프로필 보기</div>
             </div>
             <div class="menu_bottom">
@@ -100,55 +100,59 @@
             <div class="setting_contents">
                 <div id="setting_close">X</div>
                 <div class="setting_info">
-                    <div class="info_top">정보 변경</div>
-                    <div class="info_middle">
-                        <div class="profile_img info_img">
-                            <img src="static/images/profile.jpg">
-                        </div>
-                        <div class="info_btns">
-                            <input type="file" class="form-control info_btn" accept=".jpg, .gif, .png">
-                            <!-- 사진 있으면 Change 버튼으로 바뀜 -->
-                            <div class="pic_desc">
-                                JPG, GIF or PNG 최대 사이즈 500K
-                            </div>
-                        </div>
-                    </div>
-                    <div class="info_bottom">
-                        <div class="info_nickname">
-                            <div class="nickname">닉네임</div>
-                            <input type="text" value="&nbsp;nickname" required>
-                        </div>
-                        <div class="info_email">
-                            <div class="email">이메일 주소</div>
-                            <input type="email" value="&nbsp;User@google.com" required>
-                        </div>
-                        <div class="info_intro">
-                            <div class="introduce">자기소개</div>
-                            <textarea placeholder="&nbsp;소개를 적어보세요."></textarea>
-                        </div>
-                    </div>
-                    <div>
-                        <input type="submit" class="btn btn-primary" value="저장"></input>
-                    </div>
+                    <form action="detailModify.do" method="post" enctype="multipart/form-data">
+                    	<div class="info_top">정보 변경</div>
+	                    <div class="info_middle">
+	                        <div class="profile_img info_img">
+	                            <img src="static/images/profile/${detail.profile_img }">
+	                        </div>
+	                        <div class="info_btns">
+	                            <input type="file" name="file" class="form-control info_btn" accept=".jpg, .gif, .png">
+	                            <div class="pic_desc">
+	                                JPG, GIF or PNG 최대 사이즈 500K
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <div class="info_bottom">
+	                        <div class="info_nickname">
+	                            <div class="nickname">아이디</div>
+	                            <input type="text" name="id" value="${user.id }" readonly required>
+	                        </div>
+	                        <div class="info_email">
+	                            <div class="email">이메일 주소</div>
+	                            <input type="email" name="email" value="${user.email }" required>
+	                            <div id="emailCheck"></div>
+	                        </div>
+	                        <div class="info_intro">
+	                            <div class="introduce">자기소개</div>
+	                            <textarea name="profile_msg" placeholder="&nbsp;소개를 적어보세요.">${detail.profile_msg }</textarea>
+	                        </div>
+	                    </div>
+	                    <div>
+	                        <input type="submit" class="btn btn-primary" value="저장"></input>
+	                    </div>
+                    </form>
                 </div>
                 <div class="password_info hide">
-                    <div>
-                        <div>현재 비밀번호</div>
-                        <div class="password_wrapper">
-                            <input type="password" name="password" class="password" required>
-                            <span class="pw_btn">보기</span>
-                        </div>
-                    </div>
-                    <div>
-                        <div>새 비밀번호</div>
-                        <div class="password_wrapper">
-                            <input type="password" name="checkedPw" class="password" required>
-                            <span class="pw_btn">보기</span>
-                        </div>
-                    </div>
-                    <div>
-                        <input type="submit" class="btn btn-primary" value="저장">
-                    </div>
+                    <form action="changePw.do" method="post">
+                    	<div>
+	                        <div>현재 비밀번호</div>
+	                        <div class="password_wrapper">
+	                            <input type="password" name="password" class="password" required>
+	                            <span class="pw_btn">보기</span>
+	                        </div>
+	                    </div>
+	                    <div>
+	                        <div>새 비밀번호</div>
+	                        <div class="password_wrapper">
+	                            <input type="password" name="checkedPw" class="password" required>
+	                            <span class="pw_btn">보기</span>
+	                        </div>
+	                    </div>
+	                    <div>
+	                        <input type="submit" class="btn btn-primary" value="저장">
+	                    </div>
+                    </form>
                 </div>
                 <div class="withdrawl_info hide">
                     <div>회원 탈퇴를 진행하시겠습니까?</div>
@@ -158,15 +162,18 @@
                     <p>
                     <p>회원 탈퇴를 하게 되면</p>
                     <ul>
-                        <li>지금까지 평가한 별점이 사라집니다.</li>
-                        <li>좋아요와 댓글이 모두 지워집니다.</li>
-                        <li><strong>회원 탈퇴는 영구적으로, 되돌릴 수 없습니다.</strong></li>
+                        <li>✅ 지금까지 평가한 별점이 사라집니다.</li>
+                        <li>✅ 좋아요와 댓글이 모두 지워집니다.</li>
+                        <li><strong>✅ 회원 탈퇴는 영구적으로, 되돌릴 수 없습니다.</strong></li>
                     </ul>
-                    <input type="submit" class="btn btn-primary" value="회원 탈퇴">
+                    <form action="widthrawl.do" method="post">
+                    	<input type="submit" class="btn btn-primary" value="회원 탈퇴">
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>

@@ -5,10 +5,26 @@
 <mapper namespace="user">
 	<insert id="registerUser">
 		<![CDATA[
-			INSERT INTO USER(id, password, email)
+			INSERT INTO USER(ID, PASSWORD, EMAIL)
 			VALUES(#{id}, #{password}, #{email})
 		]]>
 	</insert>
+	<insert id="detailInsert">
+		<![CDATA[
+			INSERT INTO USER_DETAIL(USER_ID) VALUES(#{id})
+		]]>
+	</insert>
+	<update id="userModify">
+		<![CDATA[
+			UPDATE USER SET EMAIL=#{email} WHERE ID=#{id}
+		]]>
+	</update>
+	<update id="detailModify">
+		<![CDATA[
+			UPDATE USER_DETAIL SET PROFILE_IMG=#{profile_img},
+			PROFILE_MSG=#{profile_msg} WHERE USER_ID=#{id}
+		]]>
+	</update>
 	<select id="emailCheck" resultType="String">
 		SELECT EMAIL FROM USER WHERE EMAIL = #{email}
 	</select>
@@ -16,7 +32,17 @@
 	<select id="getUser" resultType="user">
 		<![CDATA[
 			SELECT * FROM USER WHERE ID=#{id} AND PASSWORD=#{password}
+		]]>
+	</select>
+	<select id="getDetail" resultType="detail">
+		<![CDATA[
+			SELECT * FROM USER_DETAIL WHERE USER_ID=#{id}
 		]]>	
 	</select>
-
+	<delete id="widthdrawlUser">
+		<![CDATA[
+			DELETE FROM USER WHERE ID=#{id}
+		]]>
+	</delete>
+	
 </mapper>

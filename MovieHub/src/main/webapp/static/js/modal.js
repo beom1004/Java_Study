@@ -5,9 +5,7 @@ function loginFunc(){
 function registerFunc(){
 	document.querySelector('.registerModal').classList.remove('register_hide');
 }
-document.querySelector('.logout').addEventListener('click', function() {
-	console.log('logout 클릭');
-});
+
 document.querySelector('.profile_img').addEventListener('click', function() {
     document.querySelector('.profile_menu').classList.toggle('profile_hide');
 });

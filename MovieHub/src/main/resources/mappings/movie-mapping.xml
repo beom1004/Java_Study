@@ -19,6 +19,11 @@
 			VALUES(#{genre_id}, #{genre_name})
 		]]>
 	</insert>
+	<select id="getMovie" resultType="movie">
+		<![CDATA[
+			SELECT * FROM MOVIE WHERE movie_id=#{movie_id}
+		]]>	
+	</select>
 	<select id="getMovieList" resultType="movie">
 		<![CDATA[
 			SELECT * FROM MOVIE ORDER BY GROUPNUM, POPULARITY DESC

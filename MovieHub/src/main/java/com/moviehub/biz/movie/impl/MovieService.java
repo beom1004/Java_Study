@@ -6,5 +6,6 @@ import com.moviehub.biz.movie.MovieVO;
 
 public interface MovieService {
 	void saveMovie();
+	MovieVO getMovie(MovieVO movie);
 	List<MovieVO> getMovieList(String type);
 }
