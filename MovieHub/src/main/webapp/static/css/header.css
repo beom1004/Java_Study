@@ -120,7 +120,6 @@
 }
 .login_white-bg,
 .register_white-bg,
-.setting_white-bg,
 .comment_white-bg {
     margin: auto;
     display: flex;
@@ -129,6 +128,9 @@
     background: white;
     border-radius: 5px;
     padding: 20px;
+}
+.setting_white-bg{
+	padding: 0;
 }
 .profile_hide,
 .login_hide,
@@ -226,7 +228,6 @@
     display: none !important;
 }
 .setting_menu {
-    border-right: 2px solid rgb(195, 195, 195);
     width: 180px;
     display: flex;
     flex-direction: column;
@@ -258,6 +259,7 @@
     flex-direction: column;
     padding: 30px 20px;
     overflow: hidden;
+    border-left: 2px solid rgb(195, 195, 195);
 }
 #setting_close {
     text-align: right;

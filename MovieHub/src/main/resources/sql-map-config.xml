@@ -6,13 +6,16 @@
 	<!-- Alias 설정 -->
 	<typeAliases>
 		<typeAlias type="com.moviehub.biz.movie.MovieVO" alias="movie"/>
+		<typeAlias type="com.moviehub.biz.movie.MovieGenreVO" alias="genre"/>
 		<typeAlias type="com.moviehub.biz.user.UserVO" alias="user"/>
-		<typeAlias type="com.moviehub.biz.user.UserDetailVO" alias="detail" />
+		<typeAlias type="com.moviehub.biz.user.UserDetailVO" alias="detail"/>
+		<typeAlias type="com.moviehub.biz.comment.CommentVO" alias="comment"/>
  	</typeAliases>
 
 	<!-- Sql Mapper 설정  -->
 	<mappers>
 		<mapper resource="mappings/user-mapping.xml" />
 		<mapper resource="mappings/movie-mapping.xml" />
+		<mapper resource="mappings/comment-mapping.xml" />
 	</mappers>
 </configuration>

@@ -11,7 +11,7 @@ import com.moviehub.biz.user.UserVO;
 public class UserDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
-	
+
 	public void registerUser(UserVO user, UserDetailVO detail) {
 		sqlSessionTemplate.insert("user.registerUser", user);
 		sqlSessionTemplate.insert("user.detailInsert", detail);

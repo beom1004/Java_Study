@@ -8,7 +8,7 @@ public class MovieVO {
 	private int release_year;
 	private String production_countries;
 	private String original_language;
-	private int runtime;
+	private String runtime;
 	private String poster_path;
 	private double vote_average;
 	private int vote_count;
@@ -61,10 +61,10 @@ public class MovieVO {
 	public void setOriginal_language(String original_language) {
 		this.original_language = original_language;
 	}
-	public int getRuntime() {
+	public String getRuntime() {
 		return runtime;
 	}
-	public void setRuntime(int runtime) {
+	public void setRuntime(String runtime) {
 		this.runtime = runtime;
 	}
 	public String getPoster_path() {

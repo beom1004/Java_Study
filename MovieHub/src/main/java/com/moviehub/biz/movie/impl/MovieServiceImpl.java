@@ -19,11 +19,12 @@ import com.moviehub.biz.movie.MovieVO;
 public class MovieServiceImpl implements MovieService {
 	@Autowired
 	private MovieDAO movieDAO;
-	
+
 	@Override
 	public MovieVO getMovie(MovieVO movie) {
 		return movieDAO.getMovie(movie);
 	}
+
 	@Override
 	public List<MovieVO> getMovieList(String type){
 		final String API_KEY = "729201bdf1f62b5e99c9816a70e5d445";
@@ -183,13 +184,23 @@ public class MovieServiceImpl implements MovieService {
 				movie.setOriginal_title(detailObject.getString("original_title"));
 				movie.setRelease_year(Integer.parseInt(detailObject.getString("release_date").substring(0, 4)));
 				movie.setOriginal_language(detailObject.getString("original_language"));
-				movie.setRuntime(detailObject.getInt("runtime"));
 				movie.setPoster_path(prefix_url+detailObject.getString("poster_path"));
 				movie.setVote_count(detailObject.getInt("vote_count"));
 				movie.setTagline(detailObject.getString("tagline"));
 				movie.setOverview(detailObject.getString("overview"));
 				movie.setPopularity(detailObject.getDouble("popularity"));
 				movie.setGroupNum((j / 20) + 1);
+				
+				int runtime = detailObject.getInt("runtime");
+				int runtime_hour = runtime / 60;
+				int runtime_minute = runtime % 60;
+				
+				if(runtime_minute != 0) {
+					movie.setRuntime(runtime_hour+"시간 "+runtime_minute+"분");
+				}else {
+					movie.setRuntime(runtime_hour+"시간");
+				}
+				
 				
 				double num = detailObject.getDouble("vote_average") / 2;
 				movie.setVote_average(Math.floor(num * 10) / 10);

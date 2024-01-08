@@ -3,6 +3,11 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="movieDAO">
+	<insert id="insertComment">
+		<![CDATA[
+			INSERT INTO COMMENT(movie_id) VALUES(#{movie_id})
+		]]>
+	</insert>
 	<insert id="insertMovie">
 		<![CDATA[
 			INSERT IGNORE INTO MOVIE(movie_id, title, backdrop_path, genre_ids, original_title,

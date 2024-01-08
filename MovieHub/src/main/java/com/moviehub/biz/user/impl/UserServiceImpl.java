@@ -14,7 +14,7 @@ import com.moviehub.biz.user.UserVO;
 public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDAO userDAO;
-	
+
 	@Override
 	public void registerUser(UserVO user, UserDetailVO detail) {
 		userDAO.registerUser(user, detail);

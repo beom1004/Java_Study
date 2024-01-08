@@ -23,13 +23,36 @@
                 <div id="comment_close">X</div>
             </div>
             <div>
-                <form action="comment.do" method="post">
+                <form action="commentInsert.do" method="post">
+                	<input type="hidden" name="id" value="${user.id }">
+                	<input type="hidden" name="movie_id" value="${movie.movie_id }">
                     <textarea name="comment" placeholder="이 작품에 대한 리뷰를 남겨주세요."></textarea>
                     <div>
                         <div class="textCnt">
                             <span>0</span>/10000
                         </div>
-                        <input type="submit" class="btn" id="commentSave" value="저장">
+                        <input type="submit" class="btn" class="commentSave" value="저장">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="commentModifyModal commentModify_black-bg commentModify_hide">
+        <div class="commentModify_white-bg">
+            <div>
+                <div>${movie.title }</div>
+                <div id="commentModify_close">X</div>
+            </div>
+            <div>
+                <form action="commentModify.do" method="post">
+                	<input type="hidden" name="id" value="${user.id }">
+                	<input type="hidden" name="movie_id" value="${movie.movie_id }">
+                    <textarea name="comment" >${comment.comment }</textarea>
+                    <div>
+                        <div class="textCnt">
+                            <span>0</span>/10000
+                        </div>
+                        <input type="submit" class="btn" class="commentSave" value="수정">
                     </div>
                 </form>
             </div>
@@ -56,7 +79,7 @@
                             <div id="original_language">&nbsp;<span class="middle_dot">·</span>&nbsp;${original_language }
                             </div>
                         </div>
-                        <div id="runtime">${movie.runtime } (hh시간 mm분)</div>
+                        <div id="runtime">${movie.runtime }</div>
                     </div>
                 </div>
             </div>
@@ -89,24 +112,36 @@
                                 </div>
                             </div>
                             <div class="rate_btns">
-                                <!-- comment, wishlist : 로그인 안 하면 기록 불가능 -->
-                                <button class="comment" onclick="commentFunc()">comment</button>
-                                <div class="wishList">wishList</div>
+                                <c:if test="${user != null }">
+                                	<c:if test="${comment == null and empty comment.comment}">
+		                                <button class="comment" onclick="commentFunc()">comment</button>
+		                                <div class="wishList">wishList</div>
+	                                </c:if>
+	                                <c:if test="${comment != null and not empty comment.comment}">
+           								 <button class="comment" onclick="commentModify()">comment</button>
+           								 <div class="wishList">wishList</div>
+        							</c:if>
+                                </c:if>
+                                <c:if test="${user == null }">
+	                                <button class="comment" onclick="loginRequire()">comment</button>
+	                                <div class="wishList" onclick="loginRequire()">wishList</div>
+	                            </c:if>
                             </div>
                         </div>
-                        <!-- 코멘트를 등록하면 표시되는 div -->
+                        <c:if test="${comment != null }">
                         <div class="comment_divs">
                             <div id="comment_title">
                                 내가 남긴 코멘트
                             </div>
                             <div class="my_comment">
-                                코멘트 내용
+                                ${comment.comment }
                                 <div class="comment_btns">
-                                    <div id="comment_remove">삭제</div>
-                                    <div id="comment_modify">수정</div>
+                                    <div id="comment_remove" onclick="commentDelete()">삭제</div>
+                                    <div id="comment_modify" onclick="commentModify()">수정</div>
                                 </div>
                             </div>
                         </div>
+                        </c:if>
                         <div class="storyline">
                             <div id="tagline">
                                 ${movie.tagline }
