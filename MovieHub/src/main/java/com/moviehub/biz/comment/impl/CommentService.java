@@ -8,6 +8,6 @@ import com.moviehub.biz.comment.CurCommentVO;
 public interface CommentService {
 	void insertComment(CommentVO comment);
 	CommentVO getComment(CommentVO comment);
-	CommentVO getCurComment(CommentVO curComment);
+	CurCommentVO getCurComment(CurCommentVO curComment);
 	List<CurCommentVO> getCommentList(CurCommentVO curComment);
 }

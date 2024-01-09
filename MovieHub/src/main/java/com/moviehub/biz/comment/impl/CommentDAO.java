@@ -23,7 +23,7 @@ public class CommentDAO {
 	public List<CurCommentVO> getCommentList(CurCommentVO curComment) {
 		return sqlSessionTemplate.selectList("comment.getCommentList", curComment);
 	}
-	public CommentVO getCurComment(CommentVO curComment) {
+	public CurCommentVO getCurComment(CurCommentVO curComment) {
 		return sqlSessionTemplate.selectOne("comment.getCurComment", curComment);
 	}
 }

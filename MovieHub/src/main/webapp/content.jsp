@@ -168,7 +168,7 @@
                             코멘트&nbsp;<span class="review_tot">${commentCnt }</span><span>+</span>
                         </div>
                         <div id="review_btn">
-                            <button type="button">더보기</button>
+                            <a href="review.do?movie_id=${movie.movie_id }">더보기</a>
                         </div>
                     </div>
                     <div class="review_list">
@@ -176,14 +176,14 @@
                     		아직 등록된 코멘트가 없습니다.
                     	</c:if>
                     	<c:if test="${commentCnt != 0 }">
-	                        <c:forEach var="commentList" items="${commentList }">
+	                        <c:forEach var="commentList" items="${commentLists }">
 		                        <div class="review_item">
 		                            <div class="review_header">
 		                                <div class="pic_div">
 		                                    <div id="user_pic">
 		                                        <img src="static/images/profile/${commentList.profile_img }" alt="pic">
 		                                    </div>
-		                                    <div id="nickname">${commmentList.nickname }</div>
+		                                    <div id="nickname">${commentList.nickname }</div>
 		                                </div>
 		                                <div class="star_div">
 		                                    <div id="user_star">
@@ -193,7 +193,7 @@
 		                                </div>
 		                            </div>
 		                            <div class="review_content">
-		                                <div id="movie_comment"><a href="review.do">${commentList.comment }</a></div>
+		                                <div id="movie_comment"><a href="movieComment.do?movie_id=${movie.movie_id }">${commentList.comment }</a></div>
 		                            </div>
 		                            <div class="likes">
 		                                <div id="like_count">

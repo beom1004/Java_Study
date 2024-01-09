@@ -46,45 +46,44 @@
                 <section>
                     <div class="review_wrapper">
                         <ul class="reviewList">
-                            <li class="reviewItem">
-                                <!-- a태그에 get방식으로 파라미터 전송 -> 리뷰 상세 페이지로 이동 -->
-                                <a class="item" href="#">
-                                    <div class="review_header">
-                                        <div class="pic_div">
-                                            <!-- 프로필 이미지 용량 제한 : 50MB, 500x500 -->
-                                            <div id="user_pic">
-                                                <img src="../images/profile.jpg" alt="pic">
-                                            </div>
-                                            <!-- 닉네임 누르면 해당 유저의 마이 페이지로 이동 -->
-                                            <div id="nickname">이동진 평론가</div>
-                                        </div>
-                                        <div class="star_div">
-                                            <div id="user_star">
-                                                <span>★</span>
-                                                <span>3.5</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="review_content">
-                                        <div id="movie_comment">
-                                            야만과 무능의 그 겨울밤에 대한 분노가 시종 팽팽한 긴장감 속에서 펄펄 끓는다.
-                                        </div>
-                                    </div>
-                                    <div class="likes">
-                                        <div id="likeNum">
-                                            <span>좋아요</span>&nbsp;<span>929</span>
-                                        </div>
-                                        <!-- 누르면 replyLists 나타남 -->
-                                        <div id="review_comment">
-                                            <span>댓글</span>&nbsp; <span>24</span>
-                                        </div>
-                                    </div>
-                                    <div class="block">
-                                        <div class="like_btn"><i class="bi bi-hand-thumbs-up"></i>&nbsp;좋아요</div>
-                                        <div class="comment_btn"><i class="bi bi-chat"></i>&nbsp;댓글</div>
-                                    </div>
-                                </a>
-                            </li>
+                        	<c:forEach var="commentList" items="${commentLists }">
+	                            <li class="reviewItem">
+	                                <div class="item">
+	                                    <div class="review_header">
+	                                        <div class="pic_div">
+	                                            <div id="user_pic">
+	                                                <img src="static/images/profile/${commentList.profile_img }" alt="pic">
+	                                            </div>
+	                                            <div id="nickname">${commentList.nickname }</div>
+	                                        </div>
+	                                        <div class="star_div">
+	                                            <div id="user_star">
+	                                                <span>★</span>
+	                                                <span>3.5</span>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                    <div class="review_content">
+	                                        <div id="movie_comment">
+	                                            ${commentList.comment }
+	                                        </div>
+	                                    </div>
+	                                    <div class="likes">
+	                                        <div id="likeNum">
+	                                            <span>좋아요</span>&nbsp;<span>${commentList.like_cnt }</span>
+	                                        </div>
+	                                        <!-- 누르면 replyLists 나타남 -->
+	                                        <div id="review_comment">
+	                                            <span>댓글</span>&nbsp; <span>${commentList.comment_cnt }</span>
+	                                        </div>
+	                                    </div>
+	                                    <div class="block">
+	                                        <div class="like_btn"><i class="bi bi-hand-thumbs-up"></i>&nbsp;좋아요</div>
+	                                        <div class="comment_btn"><i class="bi bi-chat"></i>&nbsp;댓글</div>
+	                                    </div>
+	                                </div>
+	                            </li>
+	                        </c:forEach>
                         </ul>
                         <ul class="replyLists hide">
                             <li class="replyList">

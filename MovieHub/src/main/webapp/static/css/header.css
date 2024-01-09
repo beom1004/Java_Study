@@ -1,3 +1,6 @@
+a{
+	text-decoration: none;
+}
 .header_icon:hover,
 #login:hover,
 #register:hover {
@@ -22,7 +25,12 @@
     z-index: 1;
 }
 .profile_link a{
-	text_decoration: none;
+	text-decoration: none;
+	color: black;
+}
+.profile_link a:visited{
+	text-decoration: none;
+	color: black;
 }
 .header_inner {
     display: flex;
@@ -204,7 +212,7 @@
     font-size: 1.3rem;
 }
 .header_icon a{
-	text_decoration : none;
+	text-decoration : none;
 	color: black;
 }
 .header_icon a:visited{

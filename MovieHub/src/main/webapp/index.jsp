@@ -29,6 +29,15 @@
                             <input type="text" id="search_input" placeholder="영화, 유저를 검색해보세요">
                             <button type="button" id="search_btn">Search</button>
                         </div>
+                        <div class="search_wrap">
+                            <ul class="search_ul search_hide">
+                                <li>1</li>
+                                <li>2</li>
+                                <li>3</li>
+                                <li>4</li>
+                                <li>5</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div class="gradient">

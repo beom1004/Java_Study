@@ -6,10 +6,11 @@
     background-color: transparent;
 }
 #movie_comment a{
-	text_decoration: none;
+	text-decoration: none;
 	color: black;
 }
 #movie_comment a:visited{
+	text-decoration: none;
 	color: black;
 }
 .box {
@@ -275,15 +276,16 @@ section {
     display: flex;
     padding: 10px;
 }
-#review_btn > button:hover {
-    cursor: pointer;
+#review_btn > a {
+	text-decoration: none;
+	color: black;
 }
-#review_btn > button {
-    border: none;
-    background-color: transparent;
-    width: 120px;
-    height: 50px;
-    font-size: 16px;
+#review_btn > a:visited {
+	text-decoration: none;
+	color: black;
+}
+#review_btn > a:hover {
+    cursor: pointer;
 }
 .review_list {
     display: flex;
@@ -315,7 +317,7 @@ section {
 }
 .pic_div {
     display: flex;
-    width: 45%;
+    width: 32%;
     justify-content: space-between;
     align-items: center;
 }

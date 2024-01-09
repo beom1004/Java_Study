@@ -1,3 +1,11 @@
+document.querySelector('#search_input').addEventListener('click', function (event) {
+    event.stopPropagation();
+    document.querySelector('.search_ul').classList.toggle('search_hide');
+});
+document.addEventListener('click', function () {
+    document.querySelector('.search_ul').classList.add('search_hide');
+});
+
 const lists = document.querySelectorAll('.lists');
 const leftBtns = document.querySelectorAll('.leftBtns');
 const rightBtns = document.querySelectorAll('.rightBtns');

@@ -64,7 +64,7 @@ public class MovieController {
 		curComment.setMovie_id(movieService.getMovie(movie).getMovie_id());
 		List<CurCommentVO> commentLists = commentService.getCommentList(curComment);
 		model.addAttribute("commentCnt", commentLists.size());
-		model.addAttribute("commentList", commentLists);
+		model.addAttribute("commentLists", commentLists);
 		
 		return "content.jsp";
 	}

@@ -30,7 +30,7 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	@Override
-	public CommentVO getCurComment(CommentVO curComment) {
+	public CurCommentVO getCurComment(CurCommentVO curComment) {
 		return commentDAO.getCurComment(curComment);
 	}
 	
