@@ -1,11 +1,7 @@
 package com.moviehub.biz.user.impl;
 
-import java.io.File;
-import java.io.IOException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.moviehub.biz.user.UserDetailVO;
 import com.moviehub.biz.user.UserVO;
@@ -41,23 +37,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void detailModify(UserVO user, UserDetailVO detail) {
-		String folder = "C:/Users/hello/git/MovieHub/MovieHub/src/main/webapp/static/images/profile/";
-		MultipartFile uploadFile = detail.getFile()	;
-		String profile_img = "";
-		
-		if(!uploadFile.isEmpty()) {
-			profile_img = uploadFile.getOriginalFilename();
-			try {
-				uploadFile.transferTo(new File(folder+profile_img));
-			} catch (IllegalStateException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		detail.setProfile_img(profile_img);
-		userDAO.detailModify(user, detail);
+	public void userModify(UserVO user) {
+		userDAO.modifyUser(user);
 	}
 	
 }

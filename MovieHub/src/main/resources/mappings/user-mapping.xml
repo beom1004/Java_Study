@@ -10,24 +10,29 @@
 	</insert>
 	<insert id="registerUser">
 		<![CDATA[
-			INSERT INTO USER(ID, PASSWORD, EMAIL)
-			VALUES(#{id}, #{password}, #{email})
+			INSERT INTO USER(ID, NICKNAME, PASSWORD, EMAIL)
+			VALUES(#{id}, #{id}, #{password}, #{email}) 
 		]]>
 	</insert>
 	<insert id="detailInsert">
 		<![CDATA[
-			INSERT INTO USER_DETAIL(USER_ID) VALUES(#{id})
+			INSERT INTO USER_DETAIL(USER_ID) VALUES(#{user_id})
 		]]>
 	</insert>
-	<update id="userModify">
+	<update id="modifyUser">
 		<![CDATA[
-			UPDATE USER SET EMAIL=#{email} WHERE ID=#{id}
+			UPDATE USER SET NICKNAME=#{nickname}, EMAIL=#{email} WHERE ID=#{id}
 		]]>
 	</update>
 	<update id="detailModify">
 		<![CDATA[
 			UPDATE USER_DETAIL SET PROFILE_IMG=#{profile_img},
-			PROFILE_MSG=#{profile_msg} WHERE USER_ID=#{id}
+			PROFILE_MSG=#{profile_msg} WHERE USER_ID=#{user_id}
+		]]>
+	</update>
+	<update id="modifyProfileMsg">
+		<![CDATA[
+			UPDATE USER_DETAIL SET PROFILE_MSG=#{profile_msg} WHERE USER_ID=#{user_id}
 		]]>
 	</update>
 	<select id="emailCheck" resultType="String">
@@ -41,7 +46,7 @@
 	</select>
 	<select id="getDetail" resultType="detail">
 		<![CDATA[
-			SELECT * FROM USER_DETAIL WHERE USER_ID=#{id}
+			SELECT * FROM USER_DETAIL WHERE USER_ID=#{user_id}
 		]]>	
 	</select>
 	<delete id="widthdrawlUser">

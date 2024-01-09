@@ -129,18 +129,23 @@
                             </div>
                         </div>
                         <c:if test="${comment != null }">
-                        <div class="comment_divs">
-                            <div id="comment_title">
-                                내가 남긴 코멘트
-                            </div>
-                            <div class="my_comment">
-                                ${comment.comment }
-                                <div class="comment_btns">
-                                    <div id="comment_remove" onclick="commentDelete()">삭제</div>
-                                    <div id="comment_modify" onclick="commentModify()">수정</div>
-                                </div>
-                            </div>
-                        </div>
+	                        <div class="comment_divs">
+	                            <div id="comment_title">
+	                                내가 남긴 코멘트
+	                            </div>
+	                            <div class="my_comment">
+	                                ${comment.comment }
+	                                <div class="comment_btns">
+	                                    <div id="comment_remove" onclick="commentDelete()">삭제</div>
+	                                    <div id="comment_modify" onclick="commentModify()">수정</div>
+	                                </div>
+	                            </div>
+	                        </div>
+                        </c:if>
+                        <c:if test="${comment == null }">
+                        	<div class="comment_divs">
+                        		<div class="my_comment">${comment_null }</div>
+                        	</div>
                         </c:if>
                         <div class="storyline">
                             <div id="tagline">
@@ -160,49 +165,52 @@
                 <div class="review_div">
                     <div class="review_info">
                         <div id="review_title">
-                            리뷰&nbsp;<span class="review_tot">10</span><span>+</span>
+                            코멘트&nbsp;<span class="review_tot">${commentCnt }</span><span>+</span>
                         </div>
                         <div id="review_btn">
                             <button type="button">더보기</button>
                         </div>
                     </div>
                     <div class="review_list">
-                        <!-- 좋아요 많이 받은 상위 리뷰 4개 (for문으로 4개 생성) -->
-                        <div class="review_item">
-                            <div class="review_header">
-                                <div class="pic_div">
-                                    <div id="user_pic">
-                                        <img src="" alt="pic">
-                                    </div>
-                                    <div id="nickname">닉네임</div>
-                                </div>
-                                <div class="star_div">
-                                    <div id="user_star">
-                                        <span>★</span>
-                                        <span>2.0</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="review_content">
-                                <div id="movie_comment">movie comment</div>
-                            </div>
-                            <div class="likes">
-                                <div id="like_count">
-                                    <!-- 좋아요 누르면 heart-fill로 바뀜 -->
-                                    <!-- <i class="bi bi-heart-fill"></i> -->
-                                    <i class="bi bi-heart"></i>
-                                    <span>0</span>
-                                </div>
-                                <div id="review_comment">
-                                    <i class="bi bi-chat-fill"></i>
-                                    <span>0</span>
-                                </div>
-                            </div>
-                            <div class="like_btn">좋아요</div>
-                        </div>
-                        <div class="review_item">Review</div>
-                        <div class="review_item">Review</div>
-                        <div class="review_item">Review</div>
+                    	<c:if test="${commentCnt == 0 }">
+                    		아직 등록된 코멘트가 없습니다.
+                    	</c:if>
+                    	<c:if test="${commentCnt != 0 }">
+	                        <c:forEach var="commentList" items="${commentList }">
+		                        <div class="review_item">
+		                            <div class="review_header">
+		                                <div class="pic_div">
+		                                    <div id="user_pic">
+		                                        <img src="static/images/profile/${commentList.profile_img }" alt="pic">
+		                                    </div>
+		                                    <div id="nickname">${commmentList.nickname }</div>
+		                                </div>
+		                                <div class="star_div">
+		                                    <div id="user_star">
+		                                        <span>★</span>
+		                                        <span>2.0</span>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                            <div class="review_content">
+		                                <div id="movie_comment"><a href="review.do">${commentList.comment }</a></div>
+		                            </div>
+		                            <div class="likes">
+		                                <div id="like_count">
+		                                    <!-- 좋아요 누르면 heart-fill로 바뀜 -->
+		                                    <!-- <i class="bi bi-heart-fill"></i> -->
+		                                    <i class="bi bi-heart"></i>
+		                                    <span>${commentList.like_cnt }</span>
+		                                </div>
+		                                <div id="review_comment">
+		                                    <i class="bi bi-chat-fill"></i>
+		                                    <span>${commentList.comment_cnt }</span>
+		                                </div>
+		                            </div>
+		                            <div class="like_btn">좋아요</div>
+		                        </div>
+	                        </c:forEach>
+	                    </c:if>
                     </div>
                 </div>
             </section>

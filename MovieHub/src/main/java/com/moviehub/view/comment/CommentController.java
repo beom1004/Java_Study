@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.moviehub.biz.comment.CommentVO;
 import com.moviehub.biz.comment.impl.CommentService;
@@ -24,5 +25,9 @@ public class CommentController {
 	    comment.setMovie_id(movieId);
 	    commentService.insertComment(comment);
 	    return "content.do";
+	}
+	@RequestMapping(value="/review.do", method = RequestMethod.GET)
+	public String movieReview() {
+		return "review.jsp";
 	}
 }

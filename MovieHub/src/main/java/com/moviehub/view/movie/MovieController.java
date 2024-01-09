@@ -1,5 +1,7 @@
 package com.moviehub.view.movie;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.moviehub.biz.comment.CommentVO;
+import com.moviehub.biz.comment.CurCommentVO;
 import com.moviehub.biz.comment.impl.CommentService;
 import com.moviehub.biz.movie.MovieVO;
 import com.moviehub.biz.movie.impl.MovieService;
@@ -36,7 +39,7 @@ public class MovieController {
 	
 	@RequestMapping(value="/content.do")
 	public String getContentView(HttpSession session, UserVO user, Model model, 
-			MovieVO movie, CommentVO comment) {
+			MovieVO movie, CommentVO comment, CommentVO commentList, CurCommentVO curComment) {
 		
 		user = (UserVO) session.getAttribute("user");
 		if(user != null) {
@@ -48,14 +51,20 @@ public class MovieController {
 		    comment.setMovie_id(movie_id);
 		    
 		    if(commentService.getComment(comment) != null) {
-		    	session.setAttribute("comment", commentService.getComment(comment));
+		    	model.addAttribute("comment", commentService.getComment(comment));
 		    }else {
+		    	model.addAttribute("comment_null", "이 작품에 대한 코멘트를 남겨주세요.");
 		    	System.out.println("comment null 발생");
 		    }
 		}else {
 			model.addAttribute("movie", movieService.getMovie(movie));
+			model.addAttribute("comment_null", "이 작품에 대한 코멘트를 남겨주세요.");
 		}
 		
+		curComment.setMovie_id(movieService.getMovie(movie).getMovie_id());
+		List<CurCommentVO> commentLists = commentService.getCommentList(curComment);
+		model.addAttribute("commentCnt", commentLists.size());
+		model.addAttribute("commentList", commentLists);
 		
 		return "content.jsp";
 	}

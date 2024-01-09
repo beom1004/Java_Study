@@ -2,6 +2,7 @@ package com.moviehub.biz.user;
 
 public class UserVO {
 	private String id;
+	private String nickname;
 	private String password;
 	private String email;
 	private String auth;
@@ -12,6 +13,14 @@ public class UserVO {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+	
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 
 	public String getPassword() {

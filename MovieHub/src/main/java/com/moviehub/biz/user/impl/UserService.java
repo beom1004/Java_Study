@@ -9,5 +9,5 @@ public interface UserService {
 	UserVO getUser(UserVO vo);
 	UserDetailVO getDetail(UserDetailVO detail);
 	void widthdrawlUser(String id);
-	void detailModify(UserVO user, UserDetailVO detail);
+	void userModify(UserVO user);
 }

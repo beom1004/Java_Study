@@ -33,8 +33,8 @@
         </div>
         <div class="profile_menu profile_hide">
             <div class="menu_top">
-                <div class="nickname">${user.id }</div>
-                <div class="profile_link">프로필 보기</div>
+                <div class="nickname">${user.nickname }</div>
+                <div class="profile_link"><a href="myProfile.do">프로필 보기</a></div>
             </div>
             <div class="menu_bottom">
                 <div class="settings"><i class="bi bi-gear-wide-connected"></i><span>설정</span></div>
@@ -69,7 +69,7 @@
         <div class="register_white-bg">
             <div class="logo">MovieHub</div>
             <div>회원가입</div>
-            <form action="register.do" method="post">
+            <form id="registerForm" action="register.do" method="post">
                 <div>
                     <input type="text" name="id" placeholder="아이디" required>
                 </div>
@@ -98,10 +98,12 @@
                 </div>
             </div>
             <div class="setting_contents">
-                <div id="setting_close">X</div>
                 <div class="setting_info">
                     <form action="detailModify.do" method="post" enctype="multipart/form-data">
-                    	<div class="info_top">정보 변경</div>
+                    	<div class="info_top">
+                    		<div>정보 변경</div>
+                    		<div id="setting_close">X</div>
+                    	</div>
 	                    <div class="info_middle">
 	                        <div class="profile_img info_img">
 	                            <img src="static/images/profile/${detail.profile_img }">
@@ -114,21 +116,27 @@
 	                        </div>
 	                    </div>
 	                    <div class="info_bottom">
-	                        <div class="info_nickname">
-	                            <div class="nickname">아이디</div>
-	                            <input type="text" name="id" value="${user.id }" readonly required>
+	                        <div class="info_id_nickname">
+	                        	<div>
+	                        		<div class="user_id">아이디</div>
+	                            	<input type="text" name="id" value="${user.id }" readonly required>
+	                        	</div>
+	                            <div>
+	                        		<div class="nickname">닉네임</div>
+	                            	<input type="text" name="nickname" value="${user.nickname }" required>
+	                        	</div>
 	                        </div>
 	                        <div class="info_email">
 	                            <div class="email">이메일 주소</div>
 	                            <input type="email" name="email" value="${user.email }" required>
-	                            <div id="emailCheck"></div>
+	                            <div class="emailCheck"></div>
 	                        </div>
 	                        <div class="info_intro">
 	                            <div class="introduce">자기소개</div>
 	                            <textarea name="profile_msg" placeholder="&nbsp;소개를 적어보세요.">${detail.profile_msg }</textarea>
 	                        </div>
 	                    </div>
-	                    <div>
+	                    <div class="info_save">
 	                        <input type="submit" class="btn btn-primary" value="저장"></input>
 	                    </div>
                     </form>
@@ -149,7 +157,7 @@
 	                            <span class="pw_btn">보기</span>
 	                        </div>
 	                    </div>
-	                    <div>
+	                    <div class="password_save">
 	                        <input type="submit" class="btn btn-primary" value="저장">
 	                    </div>
                     </form>

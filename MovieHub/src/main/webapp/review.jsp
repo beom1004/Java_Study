@@ -1,39 +1,25 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
-<html lang="ko">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>title(release_date)</title>
-    <link rel="styleSheet" href="../styles/common.css">
-    <link rel="styleSheet" href="../header/header.html">
-    <link rel="styleSheet" href="../header/header.css">
-    <link rel="styleSheet" href="review.css">
-    <link rel="styleSheet" href="mediaQuery.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>${movie.title }(${movie.release_year })</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+	 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+	<link rel="styleSheet" href="static/css/styles/common.css">
+    <link rel="styleSheet" href="static/css/header.css">
+    <link rel="styleSheet" href="static/css/footer.css">
+    <link rel="styleSheet" href="static/css/review.css">
 </head>
-
 <body>
-    <!-- header include -->
-    <div class="header">
-        <div class="header_container">
-            <div class="header_inner">
-                <div class="header_left">
-                    <div class="header_icon">Untitled</div>
-                </div>
-                <div class="header_right">
-                    <!-- 로그인 성공 시 setting 아이콘과 프로필 사진 뜨게 하기 -->
-                    <button id="login">로그인</button>
-                    <input type="submit" value="회원가입" id="register">
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="root">
+	<jsp:include page="header.jsp" />
+	<div class="root">
         <div class="wrap">
             <div class="wrap_inner">
                 <aside class="left_side">
@@ -168,7 +154,10 @@
         </div>
         <!-- 페이징 -->
     </div>
-    <script src="review.js"></script>
+	<jsp:include page="footer.jsp"/>
+    <script src="static/js/header.js"></script>
+    <script src="static/js/modal.js"></script>
+    <script src="static/js/jQuery.js"></script>
+    <script src="static/js/content.js"></script>
 </body>
-
 </html>

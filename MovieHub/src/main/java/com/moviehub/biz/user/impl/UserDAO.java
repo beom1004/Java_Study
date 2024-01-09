@@ -31,8 +31,13 @@ public class UserDAO {
 	public void widthdrawl(String id) {
 		sqlSessionTemplate.delete("user.widthdrawlUser", id);
 	}
-	public void detailModify(UserVO user, UserDetailVO detail) {
-		sqlSessionTemplate.update("user.userModify", user);
+	public void modifyUser(UserVO user) {
+		sqlSessionTemplate.update("user.modifyUser", user);	
+	}
+	public void detailModify(UserDetailVO detail) {
 		sqlSessionTemplate.update("user.detailModify", detail);
+	}
+	public void modifyProfileMsg(UserDetailVO detail) {
+		sqlSessionTemplate.update("user.modifyProfileMsg", detail);
 	}
 }

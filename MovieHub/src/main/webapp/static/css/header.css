@@ -21,7 +21,9 @@
     border-bottom: 1px solid #ccc;
     z-index: 1;
 }
-
+.profile_link a{
+	text_decoration: none;
+}
 .header_inner {
     display: flex;
     word-wrap: break-word;
@@ -43,8 +45,8 @@
 }
 .profile_img {
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
 }
 .profile_img > img {
     border-radius: 50%;
@@ -74,8 +76,10 @@
     cursor: pointer;
 }
 .nickname {
-    font-weight: 700;
-    font-size: 1.2rem;
+    font-size: 1rem;
+}
+.emailCheck{
+	padding: 0;
 }
 .menu_bottom {
     padding: 10px;
@@ -199,11 +203,11 @@
     font-weight: 600;
     font-size: 1.3rem;
 }
-.header_icon > a{
+.header_icon a{
 	text_decoration : none;
 	color: black;
 }
-.header_icon > a:visited{
+.header_icon a:visited{
 	text-decoration: none;
     color: black;
 }
@@ -237,7 +241,20 @@
 .info_top {
     font-weight: 600;
 }
+.introduce{
+	padding: 0;
+}
+.info_id_nickname{
+	display; flex;
+}
+.info_id_nickname > div > input{
+	width: 150px;
+	border: 2px solid #ccc;
+    border-radius: 5px;
+}
 .info_top {
+	display: flex;
+	justify-content: space-between;
     font-size: 1.3rem;
 }
 .menu_list {
@@ -254,15 +271,12 @@
 }
 .setting_contents {
     width: 420px;
-    height: 570px;
+    height: 560px;
     display: flex;
     flex-direction: column;
     padding: 30px 20px;
     overflow: hidden;
     border-left: 2px solid rgb(195, 195, 195);
-}
-#setting_close {
-    text-align: right;
 }
 #setting_close:hover {
     color: red;
@@ -283,9 +297,15 @@
     padding: 10px;
     width: 400px;
 }
+.info_save{
+	display: flex;
+	justify-content: flex-end;
+	width: 100%;
+	padding: 10px;
+}
 .info_img {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
 }
 .info_btns {
     display: flex;
@@ -310,7 +330,10 @@
 }
 .info_bottom > div {
     display: flex;
-    flex-direction: column;
+}
+.info_email,
+.info_intro{
+	flex-direction: column;
 }
 .info_bottom > div > div {
     padding: 10px;
@@ -331,8 +354,11 @@
     width: 100%;
     flex-direction: column;
 }
-.password_info > div:last-child {
-    margin-top: 10px;
+.password_save{
+	display: flex;
+    width: 100%;
+    padding: 10px;
+    justify-content: flex-end;
 }
 .password_wrapper {
     position: relative;

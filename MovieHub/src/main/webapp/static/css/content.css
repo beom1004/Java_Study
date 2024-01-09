@@ -5,7 +5,13 @@
 .header_inner {
     background-color: transparent;
 }
-
+#movie_comment a{
+	text_decoration: none;
+	color: black;
+}
+#movie_comment a:visited{
+	color: black;
+}
 .box {
     display: flex;
     flex-direction: column;
@@ -92,6 +98,9 @@ section {
     width: 100%;
     padding-bottom: 70px;
     background-color: rgb(246, 246, 246);
+}
+.section_2{
+	height: 450px;
 }
 .box {
     flex: 1 1 0;
@@ -278,7 +287,7 @@ section {
 }
 .review_list {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     overflow: hidden;
     width: 100%;
 }

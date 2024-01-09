@@ -10,26 +10,29 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.moviehub.biz.user.UserDetailVO;
 import com.moviehub.biz.user.UserVO;
+import com.moviehub.biz.user.impl.UserDetailService;
 import com.moviehub.biz.user.impl.UserService;
 
 @Controller
 public class UserController {
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private UserDetailService detailService;
+	
+	@RequestMapping(value="/myProfile.do", method=RequestMethod.GET)
+	public String viewProfile() {
+		return "myPage.jsp";
+	}
 	
 	@RequestMapping("/detailModify.do")
 	public String detailModify(HttpSession session, UserVO user, UserDetailVO detail) {
 		user = (UserVO) session.getAttribute("user");
-		UserDetailVO sessionDetail = (UserDetailVO) session.getAttribute("detail");
+		user.setId(user.getId());
+		userService.userModify(user);
 		
-		if(sessionDetail.getProfile_img().isEmpty() == false) {
-			detail.setProfile_img(sessionDetail.getProfile_img());
-		}
-		detail.setId(user.getId());
-		
-		userService.detailModify(user, detail);
-		login(user, detail, session); // 업데이트 정보 세션에 다시 저장
-
+		detail.setUser_id(user.getId());
+		detailService.detailModify(detail);
 		return "index.do";
 	}
 	
@@ -43,7 +46,7 @@ public class UserController {
 
 	@RequestMapping(value="/register.do", method=RequestMethod.POST)
 	public String registerUser(UserVO user, UserDetailVO detail) {
-		detail.setId(user.getId());
+		detail.setUser_id(user.getId());
 		userService.registerUser(user, detail);
 		return "index.do";
 	}
@@ -61,7 +64,7 @@ public class UserController {
 	@RequestMapping(value="/login.do", method=RequestMethod.POST)
 	public String login(UserVO vo, UserDetailVO vd, HttpSession session) {
 		UserVO user = userService.getUser(vo);
-		vd.setId(user.getId());
+		vd.setUser_id(user.getId());
 		UserDetailVO detail = userService.getDetail(vd);
 		
 		if(user != null) {

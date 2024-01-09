@@ -9,6 +9,7 @@ function registerFunc(){
 document.querySelector('.profile_img').addEventListener('click', function() {
     document.querySelector('.profile_menu').classList.toggle('profile_hide');
 });
+
 document.querySelector('#login_btn').addEventListener('click', function () {
     document.querySelector('.loginModal').classList.remove('login_hide');
     document.querySelector('.registerModal').classList.add('register_hide');

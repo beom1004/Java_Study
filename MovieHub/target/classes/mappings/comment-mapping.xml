@@ -14,4 +14,19 @@
 	        SELECT * FROM COMMENT WHERE MOVIE_ID=#{movie_id} AND USER_ID=#{user_id}
 	    ]]>
 	</select>
+	<select id="getCommentList" resultType="curComment">
+		<![CDATA[
+	        SELECT b.profile_img, a.nickname, c.comment, c.write_time, c.modify_time, 
+	        c.views, c.like_cnt, c.comment_cnt, c.user_id, c.movie_id
+			FROM user a
+			JOIN user_detail b ON a.id = b.user_id
+			JOIN comment c ON c.user_id = a.id
+			where movie_id = #{movie_id} order by c.like_cnt desc;
+	    ]]>
+	</select>
+	<select id="getCurComment" resultType="comment">
+		<![CDATA[
+	        SELECT * FROM COMMENT WHERE MOVIE_ID=#{movie_id}
+	    ]]>
+	</select>
 </mapper>
