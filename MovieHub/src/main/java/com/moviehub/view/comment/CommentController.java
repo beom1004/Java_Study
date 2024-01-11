@@ -14,6 +14,8 @@ import com.moviehub.biz.comment.CurCommentVO;
 import com.moviehub.biz.comment.impl.CommentService;
 import com.moviehub.biz.movie.MovieVO;
 import com.moviehub.biz.movie.impl.MovieService;
+import com.moviehub.biz.reply.CurReplyVO;
+import com.moviehub.biz.reply.Impl.ReplyService;
 import com.moviehub.biz.user.UserVO;
 
 @Controller
@@ -22,6 +24,8 @@ public class CommentController {
 	private CommentService commentService;
 	@Autowired
 	private MovieService movieService;
+	@Autowired
+	private ReplyService replyService;
 	
 	@RequestMapping("/deleteComment.do")
 	public String deleteComment(@RequestParam String user_id, @RequestParam int movie_id, CommentVO comment) {
@@ -33,7 +37,12 @@ public class CommentController {
 		commentService.modifyComment(comment);
 		return "content.do";
 	}
-	
+	@RequestMapping("/insertLike.do")
+	public String insertLike(@RequestParam String user_id, CurCommentVO curComment) {
+		curComment.setUser_id(user_id);
+		commentService.updateLike(curComment);
+		return "content.do";
+	}
 	@RequestMapping("/commentInsert.do")
 	public String insertComment(Model model, CommentVO comment, UserVO user, MovieVO movie) {
 		String userId = user.getId();
@@ -56,13 +65,14 @@ public class CommentController {
 	}
 	@RequestMapping(value="/movieComment.do", method = RequestMethod.GET)
 	public String movieCommentView(Model model, MovieVO movie, CommentVO comment, 
-			CurCommentVO curComment, @RequestParam String nickname) {
+			CurCommentVO curComment, @RequestParam String nickname, CurReplyVO curReply) {
 		model.addAttribute("movie", movieService.getMovie(movie));
-		
 		curComment.setNickname(nickname);
 		curComment.setMovie_id(movieService.getMovie(movie).getMovie_id());
-		
 		model.addAttribute("curComment", commentService.getCurComment(curComment));
+		
+		curReply.setComment_id(commentService.getCurComment(curComment).getComment_id());
+		model.addAttribute("curReply", replyService.getCurReply(curReply));
 		return "movieComment.jsp";
 	}
 }

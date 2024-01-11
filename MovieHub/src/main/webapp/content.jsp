@@ -98,21 +98,21 @@
                                 <div class="rate_star_div">
                                     <c:if test="${user != null }">
 	                                    <div class="rate_star">
-	                                    	<input type="hidden" name="rating" value="${rating }">
+	                                    	<input type="hidden" name="rating" value="${rating.rating }">
 	                                    	<input type="hidden" name="movie_id" value="${movie.movie_id }">
 	                                        <div class="half-star-ratings" data-rateyo-half-star="true"></div>
 	                                    </div>
 	                                </c:if>
 	                                <c:if test="${user == null }">
 	                                    <div class="rate_star">
-	                                        <div class="half-star-ratings" data-rateyo-half-star="true" onclick="loginRequire()"></div>
+	                                        <div class="half-star-ratings" data-rateyo-half-star="true" id="starRating"></div>
 	                                    </div>
 	                                </c:if>
                                     <div>평가하세요!</div>
                                 </div>
                                 <div class="vote_count">
                                     <div>${movie.vote_average }</div>
-                                    <div>평균 별점(${movie.vote_count} ratings)</div>
+                                    <div>평균 평점(${movie.vote_count}명)</div>
                                 </div>
                             </div>
                             <div class="rate_btns">
@@ -127,8 +127,8 @@
         							</c:if>
                                 </c:if>
                                 <c:if test="${user == null }">
-	                                <button class="comment" onclick="loginRequire()">comment</button>
-	                                <div class="wishList" onclick="loginRequire()">wishList</div>
+	                                <button class="comment" onclick="return loginRequire()">comment</button>
+	                                <div class="wishList" onclick="return loginRequire()">wishList</div>
 	                            </c:if>
                             </div>
                         </div>
@@ -150,7 +150,12 @@
                         </c:if>
                         <c:if test="${comment == null }">
                         	<div class="comment_divs">
-                        		<div class="my_comment">${comment_null } <button onclick="commentFunc()">코멘트 남기기</button></div>
+                        		<c:if test="${user == null }">	
+                        			<div class="my_comment">${comment_null } <button onclick="return loginRequire()">코멘트 남기기</button></div>
+                        		</c:if>
+                        		<c:if test="${user != null }">	
+                        			<div class="my_comment">${comment_null } <button onclick="commentFunc()">코멘트 남기기</button></div>
+                        		</c:if>
                         	</div>
                         </c:if>
                         <div class="storyline">
@@ -194,26 +199,22 @@
 		                                <div class="star_div">
 		                                    <div id="user_star">
 		                                        <span>★</span>
-		                                        <span>2.0</span>
+		                                        <span>${commentList.rating }</span>
 		                                    </div>
 		                                </div>
 		                            </div>
 		                            <div class="review_content">
 		                                <div id="movie_comment"><a href="movieComment.do?nickname=${commentList.nickname }&movie_id=${movie.movie_id }">${commentList.comment }</a></div>
 		                            </div>
-		                            <div class="likes">
-		                                <div id="like_count">
-		                                    <!-- 좋아요 누르면 heart-fill로 바뀜 -->
-		                                    <!-- <i class="bi bi-heart-fill"></i> -->
-		                                    <i class="bi bi-heart"></i>
-		                                    <span>${commentList.like_cnt }</span>
-		                                </div>
-		                                <div id="review_comment">
-		                                    <i class="bi bi-chat-fill"></i>
-		                                    <span>${commentList.comment_cnt }</span>
+		                            <div class="review">
+		                                <div>
+		                                	<i class="bi bi-chat-fill"></i>
+		                                	<span>${commentList.comment_cnt }</span>
 		                                </div>
 		                            </div>
-		                            <div class="like_btn">좋아요</div>
+		                            <div class="reply_btn">
+		                            	댓글 달기
+		                            </div>
 		                        </div>
 	                        </c:forEach>
 	                    </c:if>

@@ -9,6 +9,11 @@
 			VALUES(#{rating}, #{user_id}, #{movie_id})
 		]]>
 	</insert>
+	<update id="updateStar">
+		<![CDATA[
+			UPDATE RATING SET RATING=#{rating} WHERE USER_ID=#{user_id} and MOVIE_ID=#{movie_id}
+		]]>
+	</update>
 	<select id="getRating" resultType="rating">
 		<![CDATA[
 			SELECT RATING FROM RATING WHERE USER_ID=#{user_id} and MOVIE_ID=#{movie_id}

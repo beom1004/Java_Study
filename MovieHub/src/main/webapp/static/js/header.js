@@ -1,3 +1,19 @@
+window.addEventListener('scroll', function () {
+    const headerInner = document.querySelector('.header_inner');
+    const header_icon = document.querySelector('.header_icon');
+    const header_container = document.querySelector('.header_container');
+
+    if (window.scrollY >= 99) {
+        headerInner.style.backgroundColor = 'white';
+        header_container.style.borderBottom = '1px solid #ccc';
+    } else {
+        headerInner.style.backgroundColor = 'transparent';
+        header_container.style.borderBottom = 'none';
+    }
+
+    headerInner.style.transition = 'all 1s ease';
+});
+
 const menuList = document.querySelector('.menu_list');
 const initialMenu = document.querySelector('.information');
 let curMenu = null;

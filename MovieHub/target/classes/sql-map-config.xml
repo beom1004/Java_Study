@@ -12,6 +12,8 @@
 		<typeAlias type="com.moviehub.biz.comment.CommentVO" alias="comment"/>
 		<typeAlias type="com.moviehub.biz.comment.CurCommentVO" alias="curComment" />
 		<typeAlias type="com.moviehub.biz.rating.RatingVO" alias="rating" />
+		<typeAlias type="com.moviehub.biz.reply.ReplyVO" alias="reply"/>
+		<typeAlias type="com.moviehub.biz.reply.CurReplyVO" alias="curReply"/>
  	</typeAliases>
 
 	<!-- Sql Mapper 설정  -->
@@ -20,5 +22,6 @@
 		<mapper resource="mappings/movie-mapping.xml" />
 		<mapper resource="mappings/comment-mapping.xml" />
 		<mapper resource="mappings/rating-mapping.xml" />
+		<mapper resource="mappings/reply-mapping.xml" />
 	</mappers>
 </configuration>

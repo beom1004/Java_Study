@@ -62,9 +62,7 @@ public class MovieController {
 		    	System.out.println("comment null 발생");
 		    }
 			rating.setUser_id(user_id);
-			System.out.println(user_id);
 			rating.setMovie_id(movie_id);
-			System.out.println(movie_id);
 			model.addAttribute("rating", ratingService.getRating(rating));
 		}else {
 			model.addAttribute("movie", movieService.getMovie(movie));

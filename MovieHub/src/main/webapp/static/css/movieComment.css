@@ -1,3 +1,78 @@
+/* modal */
+.replyModal,
+.replyModifyModal {
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+}
+.replyModal_black-bg,
+.replyModifyModal_black-bg {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 30px;
+}
+.replyModal_white-bg,
+.replyModifyModal_white-bg {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+    border-radius: 5px;
+    padding: 20px;
+}
+.replyModal_hide,
+.replyModifyModal_hide {
+    display: none !important;
+}
+.replyModal_close:hover{
+	color: red;
+	cursor: pointer;
+}
+.replyModal,
+.replyModifyModal {
+    display: flex;
+    flex-direction: column;
+}
+.replyModal_white-bg > div:first-child,
+.replyModifyModal_white-bg > div:first-child {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.replyModal_white-bg > div:last-child > form > textarea,
+.replyModifyModal_white-bg > div:last-child > form > textarea {
+    border: none;
+    resize: none;
+    padding: 10px;
+    width: 400px;
+    height: 300px;
+    outline: none;
+}
+.replyModal_white-bg > div:last-child > form > div,
+.replyModifyModal_white-bg > div:last-child > form > div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.replySave {
+    border: none;
+    background-color: rgb(246, 78, 106);
+    color: white;
+    padding: 10px 30px;
+    border-radius: 5px;
+}
+.replySave:hover {
+    cursor: pointer;
+}
+#comment_close:hover,
+#commentModify_close:hover {
+    cursor: pointer;
+    color: red;
+}
+
 .wrap {
     margin: 5% auto;
 }
@@ -21,9 +96,13 @@
     justify-content: space-between;
     width: 100%;
 }
+.commentCnt {
+    padding-left: 15px;
+    font-size: 0.9rem;
+    color: gray;
+}
 .review_header,
 .review_content,
-.likes,
 .block {
     margin: 8px 0;
     font-size: 1rem;
@@ -31,25 +110,21 @@
 .block {
     border-top: 1px solid #dedede;
     border-bottom: 1px solid #dedede;
-    display: flex;
-    justify-content: space-around;
     padding: 0.3rem 0;
-}
-.like_btn,
-.comment_btn {
-    width: 100%;
     text-align: center;
+}
+.reply_btn {
+    margin: 5px;
+    width: 100%;
     padding: 8px;
+    border-radius: 5px;
 }
-.like_btn {
-    border-right: 1px solid #ccc;
+.reply_btn:hover {
+    cursor: pointer;
+    background-color: #eeeeee;
 }
-.like_btn:hover,
-.comment_btn:hover {
-    background-color: #ccc;
-}
-.review_content {
-    padding: 2rem;
+#movie_comment {
+    padding: 1rem;
 }
 .review_header {
     display: flex;
@@ -59,20 +134,28 @@
     width: 100px;
     height: 150px;
 }
-.poster_path > img{
-	width: 100%;
-	height: 100%;
+.poster_path > img {
+    width: 100%;
+    height: 100%;
 }
 .pic_div {
     display: flex;
     flex-direction: column;
-    width: 100px;
+    width: 200px;
     justify-content: space-around;
-    align-items: center;
     font-size: 1rem;
+    padding-left: 15px;
+}
+.pic_div > div:first-child {
+    display: flex;
+    width: 100px;
+    align-items: center;
 }
 .pic_div > div {
     margin: 5px 0;
+}
+.movieTitle {
+    font-size: 1rem;
 }
 #user_pic {
     width: 50px;
@@ -85,16 +168,8 @@
     width: 100%;
     height: 100%;
 }
-.likes {
-    display: flex;
-    margin: 10px;
-    font-size: 0.8rem;
-    color: gray;
-}
-#likeNum {
-    padding-right: 15px;
-}
 .star_div {
+    width: 70px;
     border: 1px solid #ccc;
     background-color: white;
     border-radius: 10px;
@@ -106,7 +181,7 @@
     width: 100%;
 }
 /* reply */
-.hide {
+.replyList_hide {
     /* display: none !important; */
 }
 .replyLists {
@@ -123,8 +198,8 @@
 .reply_wrap {
     display: flex;
     padding: 20px 0;
-    border-top: 1px solid #dedede;
-    border-bottom: 1px solid #dedede;
+    border: 1px solid #dedede;
+    border-radius : 5px;
 }
 .img_wrap {
     padding: 5px 20px;

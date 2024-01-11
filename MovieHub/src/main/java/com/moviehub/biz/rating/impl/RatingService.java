@@ -4,5 +4,6 @@ import com.moviehub.biz.rating.RatingVO;
 
 public interface RatingService {
 	public void insertStar(RatingVO rating);
+	public void updateStar(RatingVO rating);
 	public RatingVO getRating(RatingVO rating);
 }

@@ -16,6 +16,28 @@
 </head>
 <body>
 	<jsp:include page="header.jsp" />
+	<div class="replyModal replyModal_black-bg replyModal_hide">
+        <div class="replyModal_white-bg">
+            <div>
+                <div>댓글</div>
+                <div id="replyModal_close">X</div>
+            </div>
+            <div>
+                <form action="insertReply.do" method="get">
+                	<input type="hidden" name="comment_id" value="${curComment.comment_id }">
+                    <input type="hidden" name="user_id" value="${user.id }">
+                    <input type="hidden" name="movie_id" value="${movie.movie_id }">
+                    <textarea name="content" id="text_1"></textarea>
+                    <div>
+                        <div class="textCnt">
+                            <span class="charCount_1">0</span>/10000
+                        </div>
+                        <input type="submit" class="btn" class="replySave" value="저장">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <div class="root">
         <div class="wrap">
             <div class="review_wrapper">
@@ -24,14 +46,17 @@
                         <div class="item">
                             <div class="review_header">
                                 <div class="pic_div">
-                                    <div id="user_pic">
-                                        <img src="static/images/profile/${curComment.profile_img }" alt="pic">
+                                    <div>
+                                    	<div id="user_pic">
+	                                        <img src="static/images/profile/${curComment.profile_img }" alt="pic">
+	                                    </div>
+	                                    <div id="nickname">${curComment.nickname }</div>
                                     </div>
-                                    <div id="nickname">${curComment.nickname }</div>
+                                    <div class="movieTitle">${movie.title }</div>
                                     <div class="star_div">
                                         <div id="user_star">
                                             <span>★</span>
-                                            <span>3.5</span>
+                                            <span>${curComment.rating }</span>
                                         </div>
                                     </div>
                                 </div>
@@ -43,48 +68,57 @@
                                 <div id="movie_comment">
                                     ${curComment.comment }
                                 </div>
-                            </div>
-                            <div class="likes">
-                                <div id="likeNum">
-                                    <span>좋아요</span>&nbsp;<span>${curComment.like_cnt }</span>
-                                </div>
-                                <!-- 누르면 replyLists 나타남 -->
-                                <div id="review_comment">
-                                    <span>댓글</span>&nbsp; <span>${curComment.comment_cnt }</span>
+                                <div class="commentCnt">
+                                	<div>댓글</div>
+                                	<span>${curComment.comment_cnt }</span>
                                 </div>
                             </div>
                             <div class="block">
-                                <div class="like_btn"><i class="bi bi-hand-thumbs-up"></i>&nbsp;좋아요</div>
-                                <div class="comment_btn"><i class="bi bi-chat"></i>&nbsp;댓글</div>
+                            	<div class="reply_btn">
+                            		<i class="bi bi-chat-fill"></i>
+                                	<span>댓글 달기</span>
+                            	</div>
                             </div>
                         </div>
                     </li>
                 </ul>
-                <ul class="replyLists hide">
+                <ul class="replyLists replyList_hide">
                     <li class="replyList">
-                        <div class="reply_wrap">
-                            <div class="img_wrap">
-                                <div class="profile_img">
-                                    <img src="" alt="pic">
-                                </div>
-                            </div>
-                            <div class="reply_wrap_right">
-                                <div class="user_nickname">nickname</div>
-                                <div class="reply_content">
-                                    야만과 무능의 분노...정말 인상적이네요
-                                </div>
-                                <div class="reply_likes">
-                                    <div class="reply_thumb">
-                                        <i class="bi bi-hand-thumbs-up">&nbsp;</i>
-                                        <div class="like">6</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    	<c:if test="${user != null }">
+                    		<c:if test="${curReply == null }">
+                    			<div class="reply_wrap" style="display: none;">
+		                            <div class="img_wrap">
+		                                <div class="profile_img">
+		                                    <img src="static/images/profile/${curReply.profile_img }" alt="pic">
+		                                </div>
+		                            </div>
+		                            <div class="reply_wrap_right">
+		                                <div class="user_nickname">${curReply.nickname }</div>
+		                                <div class="reply_content">
+		                                    ${curReply.content }
+		                                </div>
+		                            </div>
+		                        </div>
+                    		</c:if>
+                    		<c:if test="${curReply != null }">
+                    			<div class="reply_wrap">
+		                            <div class="img_wrap">
+		                                <div class="profile_img">
+		                                    <img src="static/images/profile/${curReply.profile_img }" alt="pic">
+		                                </div>
+		                            </div>
+		                            <div class="reply_wrap_right">
+		                                <div class="user_nickname">${curReply.nickname }</div>
+		                                <div class="reply_content">
+		                                    ${curReply.content }
+		                                </div>
+		                            </div>
+		                        </div>
+                    		</c:if>
+	                    </c:if>
                         <div>
-                            <div class="write_time">yyyy년mm월dd일</div>
-                            <!-- 클릭 시 답글 취소로 변경 -->
-                            <div class="re_reply">답글 달기</div>
+                            <div class="write_time">${curReply.write_time }</div>
+                            <div class="re_reply">답글 보기</div>
                         </div>
                         <div class="re_reply_container">
                             <div class="re_reply_block">
@@ -116,8 +150,10 @@
         </div>
     </div>
     <jsp:include page="footer.jsp"/>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="static/js/header.js"></script>
     <script src="static/js/modal.js"></script>
     <script src="static/js/jQuery.js"></script>
+    <script src="static/js/reply.js"></script>
 </body>
 </html>

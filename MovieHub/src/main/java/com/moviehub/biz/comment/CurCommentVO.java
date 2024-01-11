@@ -5,15 +5,22 @@ import java.util.Date;
 public class CurCommentVO {
 	private String profile_img;
 	private String nickname;
+	private int comment_id;
 	private String comment;
 	private Date write_time;
 	private Date modify_time;
 	private int views;
-	private int like_cnt;
 	private int comment_cnt;
 	private String user_id;
 	private int movie_id;
+	private String rating;
 	
+	public int getComment_id() {
+		return comment_id;
+	}
+	public void setComment_id(int comment_id) {
+		this.comment_id = comment_id;
+	}
 	public String getProfile_img() {
 		return profile_img;
 	}
@@ -50,12 +57,6 @@ public class CurCommentVO {
 	public void setViews(int views) {
 		this.views = views;
 	}
-	public int getLike_cnt() {
-		return like_cnt;
-	}
-	public void setLike_cnt(int like_cnt) {
-		this.like_cnt = like_cnt;
-	}
 	public int getComment_cnt() {
 		return comment_cnt;
 	}
@@ -73,5 +74,11 @@ public class CurCommentVO {
 	}
 	public void setMovie_id(int movie_id) {
 		this.movie_id = movie_id;
+	}
+	public String getRating() {
+		return rating;
+	}
+	public void setRating(String rating) {
+		this.rating = rating;
 	}
 }

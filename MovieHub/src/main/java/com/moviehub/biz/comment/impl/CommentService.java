@@ -7,6 +7,7 @@ import com.moviehub.biz.comment.CurCommentVO;
 
 public interface CommentService {
 	void insertComment(CommentVO comment);
+	void updateLike(CurCommentVO curComment);
 	CommentVO getComment(CommentVO comment);
 	CurCommentVO getCurComment(CurCommentVO curComment);
 	List<CurCommentVO> getCommentList(CurCommentVO curComment);

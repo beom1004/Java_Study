@@ -14,6 +14,11 @@ public class RatingServiceImpl implements RatingService {
 	public void insertStar(RatingVO rating) {
 		ratingDAO.insertStar(rating);
 	}
+	
+	@Override
+	public void updateStar(RatingVO rating) {
+		ratingDAO.updateStar(rating);
+	}
 
 	@Override
 	public RatingVO getRating(RatingVO rating) {

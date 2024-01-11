@@ -59,7 +59,7 @@
 	                                        <div class="star_div">
 	                                            <div id="user_star">
 	                                                <span>★</span>
-	                                                <span>3.5</span>
+	                                                <span>${commentList.rating }</span>
 	                                            </div>
 	                                        </div>
 	                                    </div>

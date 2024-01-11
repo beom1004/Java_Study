@@ -14,6 +14,9 @@ public class RatingDAO {
 	public void insertStar(RatingVO rating) {
 		sqlSessionTemplate.insert("rating.insertStar", rating);
 	}
+	public void updateStar(RatingVO rating) {
+		sqlSessionTemplate.update("rating.updateStar", rating);
+	}
 	public RatingVO getRating(RatingVO rating) {
 		return sqlSessionTemplate.selectOne("rating.getRating", rating);
 	}

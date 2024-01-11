@@ -23,6 +23,9 @@ public class CommentDAO {
 	public void insertComment(CommentVO comment) {
 		sqlSessionTemplate.insert("comment.insertComment", comment);
 	}
+	public void updateLike(CurCommentVO curComment) {
+		sqlSessionTemplate.update("comment.updateLike", curComment);
+	}
 	public CommentVO getComment(CommentVO comment) {
 		return sqlSessionTemplate.selectOne("comment.getComment", comment);
 	}

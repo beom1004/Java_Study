@@ -19,6 +19,11 @@
 			VALUES(#{comment}, #{user_id}, #{movie_id})
 		]]>
 	</insert>
+	<update id="updateLike">
+		<![CDATA[
+			UPDATE COMMENT SET LIKE_CNT=#{like_cnt+1} WHERE USER_ID=#{user_id}
+		]]>
+	</update>
 	<select id="getComment" resultType="comment">
 		<![CDATA[
 	        SELECT * FROM COMMENT WHERE MOVIE_ID=#{movie_id} AND USER_ID=#{user_id}
@@ -27,21 +32,23 @@
 	<select id="getCommentList" resultType="curComment">
 		<![CDATA[
 	        SELECT b.profile_img, a.nickname, c.comment, c.write_time, c.modify_time, 
-	        c.views, c.like_cnt, c.comment_cnt, c.user_id, c.movie_id
+	        c.views, c.comment_cnt, c.user_id, c.movie_id, COALESCE(d.rating, 0.0) AS rating
 			FROM user a
 			JOIN user_detail b ON a.id = b.user_id
 			JOIN comment c ON c.user_id = a.id
-			where movie_id = #{movie_id} order by c.like_cnt desc;
+            LEFT JOIN rating d ON d.user_id = a.id
+			where c.movie_id = #{movie_id} order by c.comment_cnt desc;
 	    ]]>
 	</select>
 	<select id="getCurComment" resultType="curComment">
 		<![CDATA[
-	        SELECT b.profile_img, a.nickname, c.comment, c.write_time, c.modify_time,
-	        c.views, c.like_cnt, c.comment_cnt, c.user_id, c.movie_id
+	        SELECT b.profile_img, a.nickname, c.comment_id, c.comment, c.write_time, c.modify_time,
+	        c.views, c.comment_cnt, c.user_id, c.movie_id, COALESCE(d.rating, 0.0) AS rating
 			FROM user a
 			JOIN user_detail b ON a.id = b.user_id
 			JOIN comment c ON c.user_id = a.id
-			where a.nickname=#{nickname} and movie_id=#{movie_id};
+			LEFT JOIN rating d ON d.user_id = a.id
+			where a.nickname=#{nickname} and c.movie_id=#{movie_id};
 	    ]]>
 	</select>
 </mapper>

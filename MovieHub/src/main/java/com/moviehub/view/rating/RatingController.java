@@ -25,4 +25,13 @@ public class RatingController {
 		ratingService.insertStar(rating);
 		return "content.do";
 	}
+	
+	@RequestMapping("/updateStar.do")
+	public String updateStar(HttpSession session, Model model, RatingVO rating, UserVO user, @RequestParam int movie_id) {
+		user = (UserVO) session.getAttribute("user");
+		rating.setUser_id(user.getId());
+		rating.setMovie_id(movie_id);
+		ratingService.updateStar(rating);
+		return "content.do";
+	}
 }
