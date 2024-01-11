@@ -25,7 +25,7 @@
                             <div class="review_header">
                                 <div class="pic_div">
                                     <div id="user_pic">
-                                        <img src="static/images/profile/${commentList.profile_img }" alt="pic">
+                                        <img src="static/images/profile/${curComment.profile_img }" alt="pic">
                                     </div>
                                     <div id="nickname">${curComment.nickname }</div>
                                     <div class="star_div">
@@ -41,7 +41,7 @@
                             </div>
                             <div class="review_content">
                                 <div id="movie_comment">
-                                    ${commentList.comment }
+                                    ${curComment.comment }
                                 </div>
                             </div>
                             <div class="likes">

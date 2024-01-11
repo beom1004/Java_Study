@@ -155,21 +155,8 @@ section {
     font-size: 30px;
     padding-bottom: 15px;
 }
-.rate_star_div:nth-child(1) {
-    font-size: 17px;
-}
-.starR {
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    color: transparent;
-    text-shadow: 0 0 0 #ffbb002e;
-    box-sizing: border-box;
-    cursor: pointer;
-}
-.starR:hover,
-.starR.on {
-    text-shadow: 0 0 0 #ffbc00;
+.half-star-ratings{
+	font-size: 2rem;
 }
 .vote_count {
     display: flex;
@@ -191,6 +178,7 @@ section {
 }
 .box_right > .comment_divs {
     display: flex;
+    justify-content: space-between;
     flex-direction: column;
     padding: 10px;
     width: 100%;
@@ -212,6 +200,20 @@ section {
     align-items: center;
     justify-content: space-between;
 }
+.my_comment > button{
+	border: 1px solid lightgray;
+    border-radius: 5px;
+    text-align: center;
+    padding: 5px 20px;
+    background-color: white;
+    font-weight: 700;
+}
+.comment_divs > button{
+	padding: 5px 20px;
+	border: 1px solid lightgray;
+	border-radius: 5px;
+	text-align: center;
+}
 .my_comment > .comment_btns {
     display: flex;
 }
@@ -222,6 +224,14 @@ section {
 }
 .comment_btns > div:hover{
 	cursor: pointer;
+}
+#comment_remove a{
+	text-decoration: none;
+	color: black;
+}
+#comment_remove a:visited{
+	text-decoration: none;
+	color: black;
 }
 .comment,
 .wishList {

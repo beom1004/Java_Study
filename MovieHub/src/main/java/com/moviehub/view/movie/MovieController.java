@@ -14,6 +14,8 @@ import com.moviehub.biz.comment.CurCommentVO;
 import com.moviehub.biz.comment.impl.CommentService;
 import com.moviehub.biz.movie.MovieVO;
 import com.moviehub.biz.movie.impl.MovieService;
+import com.moviehub.biz.rating.RatingVO;
+import com.moviehub.biz.rating.impl.RatingService;
 import com.moviehub.biz.user.UserVO;
 
 @Controller
@@ -22,6 +24,8 @@ public class MovieController {
 	private MovieService movieService;
 	@Autowired
 	private CommentService commentService;
+	@Autowired
+	private RatingService ratingService;
 	
 	@RequestMapping("/test.do")
 	public String saveMovie() {
@@ -39,7 +43,7 @@ public class MovieController {
 	
 	@RequestMapping(value="/content.do")
 	public String getContentView(HttpSession session, UserVO user, Model model, 
-			MovieVO movie, CommentVO comment, CommentVO commentList, CurCommentVO curComment) {
+			MovieVO movie, CommentVO comment, CommentVO commentList, CurCommentVO curComment, RatingVO rating) {
 		
 		user = (UserVO) session.getAttribute("user");
 		if(user != null) {
@@ -51,11 +55,17 @@ public class MovieController {
 		    comment.setMovie_id(movie_id);
 		    
 		    if(commentService.getComment(comment) != null) {
+		    	model.addAttribute("commentLength", commentService.getComment(comment).getComment().length());
 		    	model.addAttribute("comment", commentService.getComment(comment));
 		    }else {
 		    	model.addAttribute("comment_null", "이 작품에 대한 코멘트를 남겨주세요.");
 		    	System.out.println("comment null 발생");
 		    }
+			rating.setUser_id(user_id);
+			System.out.println(user_id);
+			rating.setMovie_id(movie_id);
+			System.out.println(movie_id);
+			model.addAttribute("rating", ratingService.getRating(rating));
 		}else {
 			model.addAttribute("movie", movieService.getMovie(movie));
 			model.addAttribute("comment_null", "이 작품에 대한 코멘트를 남겨주세요.");

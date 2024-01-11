@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.moviehub.biz.comment.CommentVO;
 import com.moviehub.biz.comment.CurCommentVO;
@@ -22,6 +23,17 @@ public class CommentController {
 	@Autowired
 	private MovieService movieService;
 	
+	@RequestMapping("/deleteComment.do")
+	public String deleteComment(@RequestParam String user_id, @RequestParam int movie_id, CommentVO comment) {
+		commentService.deleteComment(comment);
+		return "content.do";
+	}
+	@RequestMapping("/modifyComment.do")
+	public String modifyComment(@RequestParam String user_id, @RequestParam int movie_id, CommentVO comment) {
+		commentService.modifyComment(comment);
+		return "content.do";
+	}
+	
 	@RequestMapping("/commentInsert.do")
 	public String insertComment(Model model, CommentVO comment, UserVO user, MovieVO movie) {
 		String userId = user.getId();
@@ -33,7 +45,7 @@ public class CommentController {
 	    return "content.do";
 	}
 	@RequestMapping(value="/review.do", method = RequestMethod.GET)
-	public String movieReview(Model model, MovieVO movie, CommentVO commentList, CurCommentVO curComment) {
+	public String movieReview(Model model, MovieVO movie, CurCommentVO curComment) {
 		model.addAttribute("movie", movieService.getMovie(movie));
 		curComment.setMovie_id(movieService.getMovie(movie).getMovie_id());
 		List<CurCommentVO> commentLists = commentService.getCommentList(curComment);
@@ -43,8 +55,11 @@ public class CommentController {
 		return "review.jsp";
 	}
 	@RequestMapping(value="/movieComment.do", method = RequestMethod.GET)
-	public String movieCommentView(Model model, MovieVO movie, CurCommentVO curComment) {
+	public String movieCommentView(Model model, MovieVO movie, CommentVO comment, 
+			CurCommentVO curComment, @RequestParam String nickname) {
 		model.addAttribute("movie", movieService.getMovie(movie));
+		
+		curComment.setNickname(nickname);
 		curComment.setMovie_id(movieService.getMovie(movie).getMovie_id());
 		
 		model.addAttribute("curComment", commentService.getCurComment(curComment));

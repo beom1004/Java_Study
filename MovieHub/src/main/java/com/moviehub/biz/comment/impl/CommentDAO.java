@@ -14,6 +14,12 @@ public class CommentDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	
+	public void modifyComment(CommentVO comment) {
+		sqlSessionTemplate.update("comment.modifyComment", comment);
+	}
+	public void deleteComment(CommentVO comment) {
+		sqlSessionTemplate.delete("comment.deleteComment", comment);
+	}
 	public void insertComment(CommentVO comment) {
 		sqlSessionTemplate.insert("comment.insertComment", comment);
 	}

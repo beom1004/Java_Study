@@ -57,8 +57,7 @@
 }
 .poster_path {
     width: 100px;
-    height: 100px;
-    border: 1px solid blue;
+    height: 150px;
 }
 .poster_path > img{
 	width: 100%;
