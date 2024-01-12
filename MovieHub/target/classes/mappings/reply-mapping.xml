@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="reply">
+	<!-- 댓글일 때 re_reply_id는 null, 대댓글일 때는 comment_id -->
+	<insert id="insertReply">
+		<![CDATA[
+			INSERT INTO REPLY(CONTENT, COMMENT_ID, USER_ID, MOVIE_ID) 
+			VALUES(#{content}, #{comment_id}, #{user_id}, #{movie_id})
+		]]>
+	</insert>
+	<select id="getCurReply" resultType="curReply">
+		<![CDATA[
+			select a.nickname, b.profile_img, c.reply_id, c.content, c.reply_cnt,
+			c.write_time, c.modify_time, c.re_reply_id, c.comment_id, c.user_id, c.movie_id
+			from user a
+			join user_detail b on a.id=b.user_id
+			join reply c on c.user_id=a.id
+			where c.comment_id=#{comment_id} and c.user_id=#{user_id};
+		]]>
+	</select>
+	<select id="getReplyList" resultType="curReply">
+		<![CDATA[
+			select a.nickname, b.profile_img, c.reply_id, c.content, c.reply_cnt,
+			c.write_time, c.modify_time, c.re_reply_id, c.comment_id, c.user_id, c.movie_id
+			from user a
+			join user_detail b on a.id=b.user_id
+			join reply c on c.user_id=a.id
+			where c.comment_id=#{comment_id} and c.movie_id=#{movie_id}
+            order by write_time desc;
+		]]>
+	</select>
+</mapper>

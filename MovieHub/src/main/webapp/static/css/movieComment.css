@@ -27,9 +27,9 @@
 .replyModifyModal_hide {
     display: none !important;
 }
-.replyModal_close:hover{
-	color: red;
-	cursor: pointer;
+.replyModal_close:hover {
+    color: red;
+    cursor: pointer;
 }
 .replyModal,
 .replyModifyModal {
@@ -97,9 +97,12 @@
     width: 100%;
 }
 .commentCnt {
+    display: flex;
+    justify-content: space-between;
     padding-left: 15px;
     font-size: 0.9rem;
     color: gray;
+    width: 55px;
 }
 .review_header,
 .review_content,
@@ -141,7 +144,6 @@
 .pic_div {
     display: flex;
     flex-direction: column;
-    width: 200px;
     justify-content: space-around;
     font-size: 1rem;
     padding-left: 15px;
@@ -169,7 +171,7 @@
     height: 100%;
 }
 .star_div {
-    width: 70px;
+    width: 65px;
     border: 1px solid #ccc;
     background-color: white;
     border-radius: 10px;
@@ -181,7 +183,8 @@
     width: 100%;
 }
 /* reply */
-.replyList_hide {
+.replyList_hide,
+.re_reply_hide {
     /* display: none !important; */
 }
 .replyLists {
@@ -191,15 +194,33 @@
     flex-direction: column;
 }
 .replyList {
-    padding: 20px;
     display: flex;
     flex-direction: column;
 }
 .reply_wrap {
     display: flex;
+    justify-content: space-between;
+    width: 100%;
     padding: 20px 0;
-    border: 1px solid #dedede;
-    border-radius : 5px;
+    border-radius: 5px;
+}
+.reply_wrap > div:first-child {
+    display: flex;
+}
+.replyButtons {
+    display: flex;
+    align-items: center;
+    padding-right: 20px;
+}
+.replyButtons > div {
+    padding: 10px 30px;
+    margin: 5px;
+    color: white;
+    background-color: rgb(246, 78, 106);
+    border-radius: 5px;
+}
+.replyButtons > div:hover {
+    cursor: pointer;
 }
 .img_wrap {
     padding: 5px 20px;
@@ -208,7 +229,6 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    border: 1px solid red;
 }
 .user_nickname {
     font-weight: 700;
@@ -236,7 +256,6 @@
     text-align: right;
     color: #adadad;
 }
-.re_reply:hover,
 .reply_thumb:hover {
     cursor: pointer;
 }

@@ -1,6 +1,10 @@
 package com.moviehub.view.comment;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -64,16 +68,27 @@ public class CommentController {
 		return "review.jsp";
 	}
 	@RequestMapping(value="/movieComment.do", method = RequestMethod.GET)
-	public String movieCommentView(Model model, MovieVO movie, CommentVO comment, 
-			CurCommentVO curComment, @RequestParam String nickname, CurReplyVO curReply) {
+	public String movieCommentView(HttpSession session, Model model, MovieVO movie, CommentVO comment, 
+			CurCommentVO curComment, @RequestParam String nickname, CurReplyVO curReply, CurReplyVO replyList) {
 		model.addAttribute("movie", movieService.getMovie(movie));
 		curComment.setNickname(nickname);
-		curComment.setMovie_id(movieService.getMovie(movie).getMovie_id());
+		int movie_id = movieService.getMovie(movie).getMovie_id();
+		curComment.setMovie_id(movie_id);
 		model.addAttribute("curComment", commentService.getCurComment(curComment));
 		
-		curReply.setComment_id(commentService.getCurComment(curComment).getComment_id());
-		model.addAttribute("curReply", replyService.getCurReply(curReply));
+		UserVO user = (UserVO) session.getAttribute("user");
+		if(user != null) {
+			curReply.setUser_id(user.getId());
+			curReply.setComment_id(commentService.getCurComment(curComment).getComment_id());
+			
+			model.addAttribute("curReply", replyService.getCurReply(curReply));
+		}
+		replyList.setComment_id(commentService.getCurComment(curComment).getComment_id());
+		replyList.setMovie_id(movie_id);
+
+		model.addAttribute("replyLists", replyService.getReplyList(replyList));
 		return "movieComment.jsp";
+		
 	}
 }
 

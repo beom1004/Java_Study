@@ -70,7 +70,6 @@ public class UserController {
 		if(user != null) {
 			session.setAttribute("user", user);
 			session.setAttribute("detail", detail);
-			return "index.do";
 		}
 		return "index.do";
 	}

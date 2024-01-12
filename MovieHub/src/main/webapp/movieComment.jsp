@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -47,10 +48,10 @@
                             <div class="review_header">
                                 <div class="pic_div">
                                     <div>
-                                    	<div id="user_pic">
-	                                        <img src="static/images/profile/${curComment.profile_img }" alt="pic">
-	                                    </div>
-	                                    <div id="nickname">${curComment.nickname }</div>
+                                        <div id="user_pic">
+                                            <img src="static/images/profile/${curComment.profile_img }" alt="pic">
+                                        </div>
+                                        <div id="nickname">${curComment.nickname }</div>
                                     </div>
                                     <div class="movieTitle">${movie.title }</div>
                                     <div class="star_div">
@@ -69,82 +70,88 @@
                                     ${curComment.comment }
                                 </div>
                                 <div class="commentCnt">
-                                	<div>댓글</div>
-                                	<span>${curComment.comment_cnt }</span>
+                                    <div>댓글</div>
+                                    <span>${curComment.comment_cnt }</span>
                                 </div>
                             </div>
                             <div class="block">
-                            	<div class="reply_btn">
-                            		<i class="bi bi-chat-fill"></i>
-                                	<span>댓글 달기</span>
-                            	</div>
+                                <div class="reply_btn">
+                                    <i class="bi bi-chat-fill"></i>
+                                    <span>댓글 달기</span>
+                                </div>
                             </div>
                         </div>
                     </li>
                 </ul>
+                <!-- 내가 남긴 댓글은 상단에 계속 떠있게 -->
+                <c:if test="${user != null and user.id == curReply.user_id }">
+                    <div class="reply_wrap" style="border: 1px solid #dedede;">
+                    	<div>
+	                        <div class="img_wrap">
+	                            <div class="profile_img">
+	                                <img src="static/images/profile/${curReply.profile_img }" alt="pic">
+	                            </div>
+	                        </div>
+	                        <div class="reply_wrap_right">
+	                            <div class="user_nickname">${curReply.nickname }</div>
+	                            <div class="reply_content">
+	                                ${curReply.content }
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <div class="replyButtons">
+                            <div>수정</div>
+                            <div>삭제</div>
+                        </div>
+                    </div>
+                    <div>
+                        <c:if test="${curReply.write_time != null }">
+                            <div class="write_time"><fmt:formatDate value="${curReply.write_time}" pattern="yyyy년 MM월 dd일" /></div>
+                        </c:if>
+                    </div>
+                </c:if>
+                <!-- 모든 댓글 리스트 -->
                 <ul class="replyLists replyList_hide">
-                    <li class="replyList">
-                    	<c:if test="${user != null }">
-                    		<c:if test="${curReply == null }">
-                    			<div class="reply_wrap" style="display: none;">
-		                            <div class="img_wrap">
-		                                <div class="profile_img">
-		                                    <img src="static/images/profile/${curReply.profile_img }" alt="pic">
-		                                </div>
-		                            </div>
-		                            <div class="reply_wrap_right">
-		                                <div class="user_nickname">${curReply.nickname }</div>
-		                                <div class="reply_content">
-		                                    ${curReply.content }
-		                                </div>
-		                            </div>
-		                        </div>
-                    		</c:if>
-                    		<c:if test="${curReply != null }">
-                    			<div class="reply_wrap">
-		                            <div class="img_wrap">
-		                                <div class="profile_img">
-		                                    <img src="static/images/profile/${curReply.profile_img }" alt="pic">
-		                                </div>
-		                            </div>
-		                            <div class="reply_wrap_right">
-		                                <div class="user_nickname">${curReply.nickname }</div>
-		                                <div class="reply_content">
-		                                    ${curReply.content }
-		                                </div>
-		                            </div>
-		                        </div>
-                    		</c:if>
-	                    </c:if>
-                        <div>
-                            <div class="write_time">${curReply.write_time }</div>
-                            <div class="re_reply">답글 보기</div>
-                        </div>
-                        <div class="re_reply_container">
-                            <div class="re_reply_block">
-                                <!-- 답글 내용 -->
-                                <input type="text" placeholder="${nickname} (으)로 답글 달기">
-                                <input type="submit" value="게시">
-                            </div>
-                            <!-- 최신순 정렬 -->
-                            <div class="re_reply_section">
-                                <!-- 누르면 해당 유저 프로필로 이동 -->
-                                <div class="user_nickname">reply_nickname</div>
-                                <div class="re_reply_content">
-                                    <div>공감합니다.</div>
-                                    <div class="write_time">yyyy년mm월dd일</div>
-                                </div>
-                            </div>
-                            <div class="re_reply_section">
-                                <!-- 누르면 해당 유저 프로필로 이동 -->
-                                <div class="user_nickname">reply_nickname</div>
-                                <div class="re_reply_content">
-                                    <div>공감합니다.</div>
-                                    <div class="write_time">yyyy년mm월dd일</div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
+                	<c:forEach var="replyList" items="${replyLists }">
+                		<li class="replyList">
+	                        <div class="reply_wrap">
+	                            <div class="img_wrap">
+	                                <div class="profile_img">
+	                                    <img src="static/images/profile/${replyList.profile_img }" alt="pic">
+	                                </div>
+	                            </div>
+	                            <div class="reply_wrap_right">
+	                                <div class="user_nickname">${replyList.nickname }</div>
+	                                <div class="reply_content">
+	                                    ${replyList.content }
+	                                </div>
+	                                <div class="reply_writeTime">
+	                                	<div><fmt:formatDate value="${replyList.write_time}" pattern="yyyy년 MM월 dd일" /></div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <!-- <div class="re_reply_container re_reply_hidden">
+	                            <div class="re_reply_block">
+	                                <input type="text" placeholder="(으)로 답글 달기">
+	                                <input type="submit" value="게시">
+	                            </div>
+	                            <div class="re_reply_section">
+	                                <div class="user_nickname">reply_nickname</div>
+	                                <div class="re_reply_content">
+	                                    <div>공감합니다.</div>
+	                                    <div class="write_time">yyyy년mm월dd일</div>
+	                                </div>
+	                            </div>
+	                            <div class="re_reply_section">
+	                                <div class="user_nickname">reply_nickname</div>
+	                                <div class="re_reply_content">
+	                                    <div>공감합니다.</div>
+	                                    <div class="write_time">yyyy년mm월dd일</div>
+	                                </div>
+	                            </div>
+	                        </div> -->
+	                    </li>
+                	</c:forEach>
                 </ul>
             </div>
         </div>
