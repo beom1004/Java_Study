@@ -13,7 +13,7 @@ import com.moviehub.biz.comment.CurCommentVO;
 public class CommentDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
-	
+
 	public void modifyComment(CommentVO comment) {
 		sqlSessionTemplate.update("comment.modifyComment", comment);
 	}

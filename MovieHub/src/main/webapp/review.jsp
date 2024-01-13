@@ -69,72 +69,33 @@
 	                                        </div>
 	                                    </div>
 	                                    <div class="likes">
-	                                        <div id="likeNum">
-	                                            <span>좋아요</span>&nbsp;<span>${commentList.like_cnt }</span>
-	                                        </div>
-	                                        <!-- 누르면 replyLists 나타남 -->
 	                                        <div id="review_comment">
 	                                            <span>댓글</span>&nbsp; <span>${commentList.comment_cnt }</span>
-	                                        </div>
-	                                    </div>
-	                                    <div class="block">
-	                                        <div class="like_btn"><i class="bi bi-hand-thumbs-up"></i>&nbsp;좋아요</div>
-	                                        <div class="comment_btn"><i class="bi bi-chat"></i>&nbsp;댓글</div>
 	                                    </div>
 	                                </div>
 	                            </li>
 	                        </c:forEach>
                         </ul>
-                        <ul class="replyLists hide">
-                            <li class="replyList">
-                                <!-- 누르면 해당 유저 프로필로 이동 -->
-                                <div class="user_nickname">nickname</div>
-                                <div class="reply_content">
-                                    야만과 무능의 분노...정말 인상적이네요
-                                </div>
-                                <div class="reply_likes">
-                                    <div>
-                                        <div class="reply_like">좋아요</div>
-                                    </div>
-                                    <div class="reply_thumb">
-                                        <i class="bi bi-hand-thumbs-up">&nbsp;</i>
-                                        <div class="like">6</div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="write_time">yyyy년mm월dd일</div>
-                                    <!-- 클릭 시 답글 취소로 변경 -->
-                                    <div class="re_reply">답글 달기</div>
-                                </div>
-                                <div class="re_reply_container">
-                                    <div class="re_reply_block">
-                                        <!-- 답글 내용 -->
-                                        <input type="text" placeholder="${nickname} (으)로 답글 달기">
-                                        <input type="submit" value="게시">
-                                    </div>
-                                    <!-- 최신순 정렬 -->
-                                    <div class="re_reply_section">
-                                        <!-- 누르면 해당 유저 프로필로 이동 -->
-                                        <div class="user_nickname">reply_nickname</div>
-                                        <div class="re_reply_content">
-                                            <div>공감합니다.</div>
-                                            <div class="write_time">yyyy년mm월dd일</div>
-                                        </div>
-                                    </div>
-                                    <div class="re_reply_section">
-                                        <!-- 누르면 해당 유저 프로필로 이동 -->
-                                        <div class="user_nickname">reply_nickname</div>
-                                        <div class="re_reply_content">
-                                            <div>공감합니다.</div>
-                                            <div class="write_time">yyyy년mm월dd일</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
                     </div>
                 </section>
             </div>
+            <nav aria-label="Page navigation example">
+			  <ul class="pagination">
+			    <li class="page-item">
+			      <a class="page-link" href="#" aria-label="Previous">
+			        <span aria-hidden="true">&laquo;</span>
+			      </a>
+			    </li>
+			    <c:forEach var="page" begin="1" end="${commentCnt }">
+				    <li class="page-item"><a class="page-link" href="#">${page }</a></li>
+			    </c:forEach>
+			    <li class="page-item">
+			      <a class="page-link" href="#" aria-label="Next">
+			        <span aria-hidden="true">&raquo;</span>
+			      </a>
+			    </li>
+			  </ul>
+			</nav>
         </div>
         <div class="replyModal black-bg close noShow">
             <div class="white-bg">
@@ -151,7 +112,6 @@
                 </div>
             </div>
         </div>
-        <!-- 페이징 -->
     </div>
 	<jsp:include page="footer.jsp"/>
     <script src="static/js/header.js"></script>

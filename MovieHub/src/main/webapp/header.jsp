@@ -25,7 +25,7 @@
 	                </c:if>
                 	<c:if test="${user != null}">
 	                    <div class="profile_img">
-	                        <img src="static/images/profile/${detail.profile_img }">
+	                        <img src="static/images/profile/${user.profile_img }">
 	                    </div>
                     </c:if>
                 </div>
@@ -99,14 +99,14 @@
             </div>
             <div class="setting_contents">
                 <div class="setting_info">
-                    <form action="detailModify.do" method="post" enctype="multipart/form-data">
+                    <form action="modifyUser.do" method="post" enctype="multipart/form-data">
                     	<div class="info_top">
                     		<div>정보 변경</div>
                     		<div id="setting_close">X</div>
                     	</div>
 	                    <div class="info_middle">
 	                        <div class="profile_img info_img">
-	                            <img src="static/images/profile/${detail.profile_img }">
+	                            <img src="static/images/profile/${user.profile_img }">
 	                        </div>
 	                        <div class="info_btns">
 	                            <input type="file" name="file" class="form-control info_btn" accept=".jpg, .gif, .png">
@@ -133,7 +133,7 @@
 	                        </div>
 	                        <div class="info_intro">
 	                            <div class="introduce">자기소개</div>
-	                            <textarea name="profile_msg" placeholder="&nbsp;소개를 적어보세요.">${detail.profile_msg }</textarea>
+	                            <textarea name="profile_msg" placeholder="&nbsp;소개를 적어보세요.">${user.profile_msg }</textarea>
 	                        </div>
 	                    </div>
 	                    <div class="info_save">

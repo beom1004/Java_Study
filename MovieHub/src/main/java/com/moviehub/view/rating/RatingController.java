@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.moviehub.biz.rating.RatingVO;
 import com.moviehub.biz.rating.impl.RatingService;
-import com.moviehub.biz.user.UserVO;
+import com.moviehub.biz.user.LoginUserVO;
 
 @Controller
 public class RatingController {
@@ -18,17 +18,19 @@ public class RatingController {
 	private RatingService ratingService;
 	
 	@RequestMapping("/insertStar.do")
-	public String insertStar(HttpSession session, Model model, RatingVO rating, UserVO user, @RequestParam int movie_id) {
-		user = (UserVO) session.getAttribute("user");
-		rating.setUser_id(user.getId());
-		rating.setMovie_id(movie_id);
-		ratingService.insertStar(rating);
+	public String insertStar(HttpSession session, Model model, RatingVO rating, LoginUserVO user, @RequestParam int movie_id) {
+		user = (LoginUserVO) session.getAttribute("user");
+		if(user != null) {
+			rating.setUser_id(user.getId());
+			rating.setMovie_id(movie_id);
+			ratingService.insertStar(rating);
+		}
 		return "content.do";
 	}
 	
 	@RequestMapping("/updateStar.do")
-	public String updateStar(HttpSession session, Model model, RatingVO rating, UserVO user, @RequestParam int movie_id) {
-		user = (UserVO) session.getAttribute("user");
+	public String updateStar(HttpSession session, Model model, RatingVO rating, LoginUserVO user, @RequestParam int movie_id) {
+		user = (LoginUserVO) session.getAttribute("user");
 		rating.setUser_id(user.getId());
 		rating.setMovie_id(movie_id);
 		ratingService.updateStar(rating);

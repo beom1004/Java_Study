@@ -14,6 +14,10 @@ public class ReplyServiceImpl implements ReplyService {
 	@Autowired
 	private ReplyDAO replyDAO;
 	
+	@Override
+	public void deleteReply(CurReplyVO curReply) {
+		replyDAO.deleteReply(curReply);
+	}
 	public void insertReply(ReplyVO reply) {
 		replyDAO.insertReply(reply);
 	}

@@ -13,7 +13,10 @@ import com.moviehub.biz.reply.ReplyVO;
 public class ReplyDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
-	
+
+	public void deleteReply(CurReplyVO curReply) {
+		sqlSessionTemplate.delete("reply.deleteReply", curReply);
+	}
 	public void insertReply(ReplyVO reply) {
 		sqlSessionTemplate.insert("reply.insertReply", reply);
 	}

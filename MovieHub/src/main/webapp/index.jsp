@@ -26,16 +26,11 @@
                 <div class="search_outer">
                     <div class="search_inner">
                         <div class="search_contents">
-                            <input type="text" id="search_input" placeholder="영화, 유저를 검색해보세요">
+                            <input type="text" id="searchKeyword" placeholder="영화, 유저를 검색해보세요">
                             <button type="button" id="search_btn">Search</button>
                         </div>
                         <div class="search_wrap">
-                            <ul class="search_ul search_hide">
-                                <li>1</li>
-                                <li>2</li>
-                                <li>3</li>
-                                <li>4</li>
-                                <li>5</li>
+                            <ul class="search_ul">
                             </ul>
                         </div>
                     </div>
@@ -151,6 +146,7 @@
     <script src="static/js/modal.js"></script>
     <script src="static/js/jQuery.js"></script>
     <script src="static/js/index.js"></script>
+    <script src="static/js/indexSearch.js"></script>
 </body>
 
 </html>

@@ -1,13 +1,15 @@
 function modifyComment(){
 	document.querySelector('.commentModifyModal').classList.remove('commentModify_hide');
 }
-function deleteComment(){
+function deleteComment(event){
+	event.preventDefault();
 	if(confirm("정말 삭제하시겠습니까?")){
 		const url = document.querySelector("#comment_remove a").getAttribute("href");
-		console.log(url);
 		window.location.href=url;
 	}
 }
+document.querySelector('#comment_remove').addEventListener("click", deleteComment);
+
 function loginRequire(){
 	alert('로그인 후 이용해주세요');
 	return false;

@@ -17,6 +17,8 @@ public class MovieVO {
 	private double popularity;
 	private int groupNum;
 	private String genre_ids;
+	private String searchCondition;
+	private String searchKeyword;
 	
 	public int getMovie_id() {
 		return movie_id;
@@ -117,6 +119,18 @@ public class MovieVO {
 	}
 	public void setGenre_ids(String genre_ids) {
 		this.genre_ids = genre_ids;
+	}
+	public String getSearchCondition() {
+		return searchCondition;
+	}
+	public void setSearchCondition(String searchCondition) {
+		this.searchCondition = searchCondition;
+	}
+	public String getSearchKeyword() {
+		return searchKeyword;
+	}
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
 	}
 	@Override
 	public String toString() {

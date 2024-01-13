@@ -24,24 +24,26 @@
 			UPDATE USER SET NICKNAME=#{nickname}, EMAIL=#{email} WHERE ID=#{id}
 		]]>
 	</update>
+	<update id="modifyUserDetail">
+		<![CDATA[
+			UPDATE USER_DETAIL SET PROFILE_IMG=#{profile_img}, PROFILE_MSG=#{profile_msg} WHERE USER_ID=#{id}
+		]]>
+	</update>
 	<update id="detailModify">
 		<![CDATA[
 			UPDATE USER_DETAIL SET PROFILE_IMG=#{profile_img},
 			PROFILE_MSG=#{profile_msg} WHERE USER_ID=#{user_id}
 		]]>
 	</update>
-	<update id="modifyProfileMsg">
-		<![CDATA[
-			UPDATE USER_DETAIL SET PROFILE_MSG=#{profile_msg} WHERE USER_ID=#{user_id}
-		]]>
-	</update>
 	<select id="emailCheck" resultType="String">
 		SELECT EMAIL FROM USER WHERE EMAIL = #{email}
 	</select>
 	
-	<select id="getUser" resultType="user">
+	<select id="getUser" resultType="loginUser">
 		<![CDATA[
-			SELECT * FROM USER WHERE ID=#{id} AND PASSWORD=#{password}
+			select a.id, a.nickname, a.password, a.email, b.profile_img, b.profile_msg
+			from user a
+			join user_detail b on a.id=b.user_id where a.id=#{id} and a.password=#{password}
 		]]>
 	</select>
 	<select id="getDetail" resultType="detail">

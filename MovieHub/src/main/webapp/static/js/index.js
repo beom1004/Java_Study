@@ -1,4 +1,4 @@
-document.querySelector('#search_input').addEventListener('click', function (event) {
+document.querySelector('#searchKeyword').addEventListener('click', function (event) {
     event.stopPropagation();
     document.querySelector('.search_ul').classList.toggle('search_hide');
 });

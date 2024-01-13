@@ -328,14 +328,16 @@ section {
 }
 .pic_div {
     display: flex;
-    width: 30%;
-    justify-content: space-between;
     align-items: center;
 }
 .pic_div > #user_pic {
     background-color: gray;
     border-radius: 50%;
     width: 35px;
+    height: 35px;
+}
+#nickname{
+	padding-left: 10px;
 }
 #user_pic > img {
 	border-radius: 50%;

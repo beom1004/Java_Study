@@ -24,6 +24,11 @@ public class MovieServiceImpl implements MovieService {
 	public MovieVO getMovie(MovieVO movie) {
 		return movieDAO.getMovie(movie);
 	}
+	
+	@Override
+	public List<String> getSearchMovieTitle(String searchKeyword) {
+		return movieDAO.getSearchMovieTitle(searchKeyword);
+	}
 
 	@Override
 	public List<MovieVO> getMovieList(String type){

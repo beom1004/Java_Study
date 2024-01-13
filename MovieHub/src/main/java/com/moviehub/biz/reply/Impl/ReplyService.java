@@ -9,4 +9,5 @@ public interface ReplyService {
 	void insertReply(ReplyVO reply);
 	CurReplyVO getCurReply(CurReplyVO curReply);
 	List<CurReplyVO> getReplyList(CurReplyVO replyList);
+	void deleteReply(CurReplyVO curReply);
 }

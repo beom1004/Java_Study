@@ -1,7 +1,5 @@
 package com.moviehub.view.comment;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -20,6 +18,7 @@ import com.moviehub.biz.movie.MovieVO;
 import com.moviehub.biz.movie.impl.MovieService;
 import com.moviehub.biz.reply.CurReplyVO;
 import com.moviehub.biz.reply.Impl.ReplyService;
+import com.moviehub.biz.user.LoginUserVO;
 import com.moviehub.biz.user.UserVO;
 
 @Controller
@@ -69,26 +68,24 @@ public class CommentController {
 	}
 	@RequestMapping(value="/movieComment.do", method = RequestMethod.GET)
 	public String movieCommentView(HttpSession session, Model model, MovieVO movie, CommentVO comment, 
-			CurCommentVO curComment, @RequestParam String nickname, CurReplyVO curReply, CurReplyVO replyList) {
+			CurCommentVO curComment, CurReplyVO curReply, CurReplyVO replyList) {
 		model.addAttribute("movie", movieService.getMovie(movie));
-		curComment.setNickname(nickname);
 		int movie_id = movieService.getMovie(movie).getMovie_id();
 		curComment.setMovie_id(movie_id);
 		model.addAttribute("curComment", commentService.getCurComment(curComment));
 		
-		UserVO user = (UserVO) session.getAttribute("user");
+		LoginUserVO user = (LoginUserVO) session.getAttribute("user");
 		if(user != null) {
 			curReply.setUser_id(user.getId());
 			curReply.setComment_id(commentService.getCurComment(curComment).getComment_id());
-			
 			model.addAttribute("curReply", replyService.getCurReply(curReply));
+//			model.addAttribute("curReplyCnt", replyService.getCurReply(curReply).getContent().length());
 		}
 		replyList.setComment_id(commentService.getCurComment(curComment).getComment_id());
 		replyList.setMovie_id(movie_id);
 
 		model.addAttribute("replyLists", replyService.getReplyList(replyList));
 		return "movieComment.jsp";
-		
 	}
 }
 

@@ -39,3 +39,9 @@ textarea.addEventListener('keyup', function () {
 
     charCountSpan.textContent = charCount;
 });
+
+
+
+
+
+

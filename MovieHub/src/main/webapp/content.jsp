@@ -204,7 +204,7 @@
 		                                </div>
 		                            </div>
 		                            <div class="review_content">
-		                                <div id="movie_comment"><a href="movieComment.do?nickname=${commentList.nickname }&movie_id=${movie.movie_id }">${commentList.comment }</a></div>
+		                                <div id="movie_comment"><a href="movieComment.do?comment_id=${commentList.comment_id }&movie_id=${movie.movie_id }">${commentList.comment }</a></div>
 		                            </div>
 		                            <div class="review">
 		                                <div>

@@ -21,7 +21,6 @@ a{
     flex-direction: column;
     overflow: hidden;
     position: fixed;
-    border-bottom: 1px solid #ccc;
     z-index: 1;
 }
 .profile_link a{
@@ -256,7 +255,7 @@ a{
 	display; flex;
 }
 .info_id_nickname > div > input{
-	width: 150px;
+	width: 95%;
 	border: 2px solid #ccc;
     border-radius: 5px;
 }
@@ -344,13 +343,13 @@ a{
 	flex-direction: column;
 }
 .info_bottom > div > div {
-    padding: 10px;
+    padding: 5px;
 }
 .info_bottom > div > input,
 .info_bottom > div > textarea {
     border: 2px solid #ccc;
     border-radius: 5px;
-    width: 100%;
+    width: 98%;
     height: 30px;
 }
 .info_bottom > div > textarea {
@@ -362,10 +361,13 @@ a{
     width: 100%;
     flex-direction: column;
 }
+.password_info > form > div{
+	padding-bottom: 20px;
+}
 .password_save{
 	display: flex;
     width: 100%;
-    padding: 10px;
+    padding-right: 20px;
     justify-content: flex-end;
 }
 .password_wrapper {
@@ -375,14 +377,14 @@ a{
 .password {
     border-radius: 5px;
     border: 2px solid #ccc;
-    width: 100%;
+    width: 95%;
     padding: 5px;
 }
 .pw_btn {
     color: gray;
     position: absolute;
     top: 5px;
-    right: 10px;
+    right: 30px;
 }
 .pw_btn:hover {
     cursor: pointer;

@@ -31,7 +31,7 @@
 	</select>
 	<select id="getCommentList" resultType="curComment">
 		<![CDATA[
-	        SELECT b.profile_img, a.nickname, c.comment, c.write_time, c.modify_time, 
+	        SELECT b.profile_img, a.nickname, c.comment_id, c.comment, c.write_time, c.modify_time, 
 	        c.views, c.comment_cnt, c.user_id, c.movie_id, COALESCE(d.rating, 0.0) AS rating
 			FROM user a
 			JOIN user_detail b ON a.id = b.user_id
@@ -48,7 +48,7 @@
 			JOIN user_detail b ON a.id = b.user_id
 			JOIN comment c ON c.user_id = a.id
 			LEFT JOIN rating d ON d.user_id = a.id
-			where a.nickname=#{nickname} and c.movie_id=#{movie_id};
+			where c.comment_id=#{comment_id} and c.movie_id=#{movie_id};
 	    ]]>
 	</select>
 </mapper>

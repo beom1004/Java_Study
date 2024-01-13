@@ -3,13 +3,18 @@ ul > li > a {
 }
 .wrap {
     margin: 8% auto;
+    align-items: center;
+}
+.pagination{
+	margin-top: 50px;
 }
 .wrap_inner {
     display: flex;
+    justify-content: center;
     width: 100%;
     margin: 0 7%;
 }
-/* position: fixed 해서 고정해도 될듯? */
+
 .left_side {
     background-color: #fbfbfb;
     display: flex;
@@ -108,6 +113,7 @@ section {
 .reviewItem {
     width: 100%;
     padding: 15px;
+    border-bottom: 2px solid rgb(240, 240, 240);
 }
 
 .review_header {
@@ -116,31 +122,9 @@ section {
     width: 100%;
 }
 .review_header,
-.review_content,
-.likes,
-.block {
+.review_content {
     margin: 8px 0;
     font-size: 1rem;
-}
-.block {
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    display: flex;
-    justify-content: space-around;
-    padding: 0.3rem 0;
-}
-.like_btn,
-.comment_btn {
-    width: 100%;
-    text-align: center;
-    padding: 8px;
-}
-.like_btn {
-    border-right: 1px solid #ccc;
-}
-.like_btn:hover,
-.comment_btn:hover {
-    background-color: #ccc;
 }
 .review_content {
     padding: 5px;
@@ -170,9 +154,6 @@ section {
 .likes {
     display: flex;
     margin: 10px;
-}
-#likeNum {
-    padding-right: 15px;
 }
 .star_div {
     border: 1px solid #ccc;
@@ -209,60 +190,9 @@ section {
 .reply_content {
     padding: 10px;
 }
-.reply_likes {
-    display: flex;
-}
-.reply_like {
-    border-radius: 5px;
-    color: white;
-    padding: 3px 10px;
-}
-.reply_thumb {
-    padding-left: 10px;
-    display: flex;
-}
-.reply_like:hover {
-    cursor: pointer;
-}
 .write_time {
     text-align: right;
     color: #adadad;
-}
-.re_reply:hover,
-.reply_thumb:hover {
-    cursor: pointer;
-}
-.re_reply_container {
-    display: flex;
-    flex-direction: column;
-    padding: 10px 0;
-}
-.re_reply_block {
-    border: 2px solid #ccc;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    padding: 10px;
-    border-radius: 20px;
-}
-.re_reply_block > input:nth-child(1) {
-    width: 100%;
-    outline: none;
-    border: none;
-    font-size: 1rem;
-}
-.re_reply_block > input:nth-child(2) {
-    border: none;
-    background-color: transparent;
-    padding-right: 10px;
-    font-weight: 700;
-}
-.re_reply_section {
-    padding: 10px 30px;
-}
-.re_reply_content {
-    display: flex;
-    justify-content: space-between;
 }
 
 /* Modal */

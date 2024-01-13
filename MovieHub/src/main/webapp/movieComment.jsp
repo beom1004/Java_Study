@@ -39,6 +39,25 @@
             </div>
         </div>
     </div>
+    <div class="replyModifyModal replyModifyModal_black-bg replyModifyModal_hide">
+        <div class="replyModifyModal_white-bg">
+            <div>
+                <div>댓글</div>
+                <div id="replyModifyModal_close">X</div>
+            </div>
+            <div>
+                <form action="replyModify.do" method="get">
+                    <textarea name="content" id="text_2">${curReply.content }</textarea>
+                    <div>
+                        <div class="textCnt">
+                            <span class="charCount_2">0</span>/10000
+                        </div>
+                        <input type="submit" class="btn" class="replySave" value="수정">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <div class="root">
         <div class="wrap">
             <div class="review_wrapper">
@@ -74,17 +93,28 @@
                                     <span>${curComment.comment_cnt }</span>
                                 </div>
                             </div>
-                            <div class="block">
-                                <div class="reply_btn">
-                                    <i class="bi bi-chat-fill"></i>
-                                    <span>댓글 달기</span>
-                                </div>
-                            </div>
+                            <!-- 유저가 null이 아니고 로그인한 유저가 단 댓글이 없으면 -->
+                            <c:if test="${user != null and user.id != curReply.user_id }">
+	                            <div class="block">
+	                                <div class="reply_btn">
+	                                    <i class="bi bi-chat-fill"></i>
+	                                    <span>댓글 달기</span>
+	                                </div>
+	                            </div>
+                            </c:if>
+                            <c:if test="${user == null || (user != null and user.id == curReply.user_id)}">
+	                            <div class="block" style="display: none;">
+	                                <div class="reply_btn">
+	                                    <i class="bi bi-chat-fill"></i>
+	                                    <span>댓글 달기</span>
+	                                </div>
+	                            </div>
+                            </c:if>
                         </div>
                     </li>
                 </ul>
-                <!-- 내가 남긴 댓글은 상단에 계속 떠있게 -->
                 <c:if test="${user != null and user.id == curReply.user_id }">
+                	<div>내가 남긴 댓글</div>
                     <div class="reply_wrap" style="border: 1px solid #dedede;">
                     	<div>
 	                        <div class="img_wrap">
@@ -100,8 +130,10 @@
 	                        </div>
 	                    </div>
 	                    <div class="replyButtons">
-                            <div>수정</div>
-                            <div>삭제</div>
+                            <div id="replyModify">수정</div>
+                            <div id="replyRemove" onclick="deleteReply()">
+                            	<a href="deleteReply.do?comment_id=${curComment.comment_id }&movie_id=${curReply.movie_id}">삭제</a>
+                            </div>
                         </div>
                     </div>
                     <div>
@@ -110,11 +142,10 @@
                         </c:if>
                     </div>
                 </c:if>
-                <!-- 모든 댓글 리스트 -->
-                <ul class="replyLists replyList_hide">
+                <ul class="replyLists">
                 	<c:forEach var="replyList" items="${replyLists }">
                 		<li class="replyList">
-	                        <div class="reply_wrap">
+	                        <div class="replyList_wrap">
 	                            <div class="img_wrap">
 	                                <div class="profile_img">
 	                                    <img src="static/images/profile/${replyList.profile_img }" alt="pic">
@@ -126,30 +157,24 @@
 	                                    ${replyList.content }
 	                                </div>
 	                                <div class="reply_writeTime">
+	                                	<div id="viewReply" class="viewReply">댓글 보기</div>
 	                                	<div><fmt:formatDate value="${replyList.write_time}" pattern="yyyy년 MM월 dd일" /></div>
 	                                </div>
 	                            </div>
 	                        </div>
-	                        <!-- <div class="re_reply_container re_reply_hidden">
+	                        <div class="re_reply_container re_reply_hide">
 	                            <div class="re_reply_block">
-	                                <input type="text" placeholder="(으)로 답글 달기">
-	                                <input type="submit" value="게시">
+	                            	<input type="text" name="reReplyContent" placeholder="${replyList.nickname }(으)로 답글 달기">
+	                                <input type="submit" name="reReplySave" value="게시">
 	                            </div>
 	                            <div class="re_reply_section">
 	                                <div class="user_nickname">reply_nickname</div>
 	                                <div class="re_reply_content">
-	                                    <div>공감합니다.</div>
+	                                    <div class="">공감합니다.</div>
 	                                    <div class="write_time">yyyy년mm월dd일</div>
 	                                </div>
 	                            </div>
-	                            <div class="re_reply_section">
-	                                <div class="user_nickname">reply_nickname</div>
-	                                <div class="re_reply_content">
-	                                    <div>공감합니다.</div>
-	                                    <div class="write_time">yyyy년mm월dd일</div>
-	                                </div>
-	                            </div>
-	                        </div> -->
+	                        </div>
 	                    </li>
                 	</c:forEach>
                 </ul>
@@ -161,6 +186,7 @@
     <script src="static/js/header.js"></script>
     <script src="static/js/modal.js"></script>
     <script src="static/js/jQuery.js"></script>
-    <script src="static/js/reply.js"></script>
+    <script src="static/js/movieComment.js"></script>
+    <script src="static/js/reReply.js"></script>
 </body>
 </html>

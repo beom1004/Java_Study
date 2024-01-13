@@ -1,3 +1,17 @@
+.header_container{
+	border-bottom: 1px solid lightgray;
+}
+a{
+	text-decoration: none;
+	color: black;
+}
+a:visited{
+	color: black;
+}
+#replyRemove > a{
+	text-decoration: none;
+	color: white;
+}
 /* modal */
 .replyModal,
 .replyModifyModal {
@@ -27,7 +41,8 @@
 .replyModifyModal_hide {
     display: none !important;
 }
-.replyModal_close:hover {
+#replyModal_close:hover,
+#replyModifyModal_close:hover {
     color: red;
     cursor: pointer;
 }
@@ -161,7 +176,6 @@
 }
 #user_pic {
     width: 50px;
-    height: 50px;
     overflow: hidden;
     border-radius: 50%;
     margin-right: 10px;
@@ -183,9 +197,8 @@
     width: 100%;
 }
 /* reply */
-.replyList_hide,
 .re_reply_hide {
-    /* display: none !important; */
+    display: none !important;
 }
 .replyLists {
     margin: 0;
@@ -203,6 +216,26 @@
     width: 100%;
     padding: 20px 0;
     border-radius: 5px;
+}
+.re_reply_container{
+	width: 90%;
+	margin: 0 auto;
+}
+.replyList_wrap{
+	display: flex;
+    width: 100%;
+    padding: 20px 0;
+    border-radius: 5px;
+}
+.viewReply:hover{
+	cursor: pointer;
+}
+.reply_wrap_right{
+	width: 100%;
+}
+.reply_writeTime{
+	display: flex;
+	justify-content: space-between;
 }
 .reply_wrap > div:first-child {
     display: flex;

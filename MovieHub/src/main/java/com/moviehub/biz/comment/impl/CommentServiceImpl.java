@@ -13,7 +13,7 @@ import com.moviehub.biz.comment.CurCommentVO;
 public class CommentServiceImpl implements CommentService {
 	@Autowired
 	private CommentDAO commentDAO;
-	
+
 	@Override
 	public void updateLike(CurCommentVO curComment) {
 		commentDAO.updateLike(curComment);

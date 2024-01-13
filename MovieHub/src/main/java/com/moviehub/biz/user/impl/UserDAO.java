@@ -4,6 +4,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.moviehub.biz.user.LoginUserVO;
 import com.moviehub.biz.user.UserDetailVO;
 import com.moviehub.biz.user.UserVO;
 
@@ -16,13 +17,12 @@ public class UserDAO {
 		sqlSessionTemplate.insert("user.registerUser", user);
 		sqlSessionTemplate.insert("user.detailInsert", detail);
 	}
-	
 	public String emailCheck(String email) {
 		return sqlSessionTemplate.selectOne("user.emailCheck", email);
 	}
 	
-	public UserVO getUser(UserVO vo) {
-		return sqlSessionTemplate.selectOne("user.getUser", vo);
+	public LoginUserVO getUser(LoginUserVO user) {
+		return sqlSessionTemplate.selectOne("user.getUser", user);
 	}
 	
 	public UserDetailVO getDetail(UserDetailVO detail) {
@@ -31,13 +31,8 @@ public class UserDAO {
 	public void widthdrawl(String id) {
 		sqlSessionTemplate.delete("user.widthdrawlUser", id);
 	}
-	public void modifyUser(UserVO user) {
-		sqlSessionTemplate.update("user.modifyUser", user);	
-	}
-	public void detailModify(UserDetailVO detail) {
-		sqlSessionTemplate.update("user.detailModify", detail);
-	}
-	public void modifyProfileMsg(UserDetailVO detail) {
-		sqlSessionTemplate.update("user.modifyProfileMsg", detail);
+	public void modifyUser(LoginUserVO user) {
+		sqlSessionTemplate.update("user.modifyUser", user);
+		sqlSessionTemplate.update("user.modifyUserDetail", user);
 	}
 }
