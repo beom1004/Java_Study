@@ -15,11 +15,19 @@ public class ReplyServiceImpl implements ReplyService {
 	private ReplyDAO replyDAO;
 	
 	@Override
+	public void modifyReply(ReplyVO reply) {
+		replyDAO.modifyReply(reply);
+	}
+	@Override
 	public void deleteReply(CurReplyVO curReply) {
 		replyDAO.deleteReply(curReply);
 	}
 	public void insertReply(ReplyVO reply) {
 		replyDAO.insertReply(reply);
+	}
+	@Override
+	public void insertReReply(ReplyVO reply) {
+		replyDAO.insertReReply(reply);
 	}
 	public CurReplyVO getCurReply(CurReplyVO curReply) {
 		return replyDAO.getCurReply(curReply);
@@ -28,4 +36,9 @@ public class ReplyServiceImpl implements ReplyService {
 	public List<CurReplyVO> getReplyList(CurReplyVO replyList) {
 		return replyDAO.getReplyList(replyList);
 	}
+	@Override
+	public List<CurReplyVO> getReReplyList(CurReplyVO reReplyList) {
+		return replyDAO.getReReplyList(reReplyList);
+	}
+	
 }

@@ -34,9 +34,9 @@
 			SELECT * FROM MOVIE ORDER BY GROUPNUM, POPULARITY DESC
 		]]>	
 	</select>
-	<select id="getSearchMovieTitle" resultType="java.lang.String">
+	<select id="getSearchMovieTitle" resultType="movie">
 		<![CDATA[
-			SELECT title FROM MOVIE WHERE TITLE LIKE CONCAT('%', #{searchKeyword}, '%') ORDER BY POPULARITY DESC
+			SELECT * FROM MOVIE WHERE TITLE LIKE CONCAT('%', #{searchKeyword}, '%') ORDER BY POPULARITY DESC
 		]]>	
 	</select>
 </mapper>

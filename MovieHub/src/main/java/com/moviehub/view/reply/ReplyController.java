@@ -17,6 +17,12 @@ public class ReplyController {
 	@Autowired
 	ReplyService replyService;
 	
+	@RequestMapping("/modifyReply.do")
+	public String modifyReply(ReplyVO reply) {
+		// 수정한 댓글 내용, comment_id, user_id 넘어감
+		replyService.modifyReply(reply);
+		return "movieComment.do";
+	}
 	@RequestMapping("/deleteReply.do")
 	public String deleteReply(HttpSession session, LoginUserVO user, CurReplyVO curReply) {
 		user = (LoginUserVO) session.getAttribute("user");
@@ -24,7 +30,6 @@ public class ReplyController {
 		replyService.deleteReply(curReply);
 		return "movieComment.do";
 	}
-	
 	@RequestMapping("/insertReply.do")
 	public String insertReply(ReplyVO reply, @RequestParam String user_id, @RequestParam int movie_id, @RequestParam int comment_id) {
 		reply.setComment_id(comment_id);
@@ -38,6 +43,14 @@ public class ReplyController {
 	
 		return "movieComment.do";
 	}
+	@RequestMapping("/reReplyInsert.do")
+	public String insertReReply(HttpSession session, LoginUserVO user, ReplyVO reply) {
+		user = (LoginUserVO) session.getAttribute("user");
+		reply.setUser_id(user.getId());
+		replyService.insertReReply(reply);
+		return "movieComment.do";
+	}
+	
 }
 
 

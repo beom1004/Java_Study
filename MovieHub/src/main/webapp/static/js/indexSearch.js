@@ -9,10 +9,13 @@ $('#searchKeyword').on("keyup", function (){
         type: "get",
         url: "getSearchMovieTitle.do",
         data: {"searchKeyword": searchKeyword},
+        dataType: "json",
         success: function(data) {
             let html = '';
-            $.each(data, function (index, movie) {
-                html += '<li>' + movie + '</li>';
+            let movies = Array.isArray(data) ? data : [data];
+            
+            $.each(movies, function (index, movie) {
+            	html += '<li class="search-movie" data-movie-id="' + movie.movie_id + '">' + movie.title + '</li>';
             });
 
             $('.search_ul').html(html);
@@ -23,8 +26,11 @@ $('#searchKeyword').on("keyup", function (){
     });
 });
 
+$('.search_ul').on("click", ".search-movie", function () {
+    let selectedMovieId = $(this).data('movie-id');
+    window.location.href = 'content.do?movie_id=' + selectedMovieId;
+});
+
 $('#searchKeyword').on("change", function (){
     $('.ajaxData').html('');
 });
-
-// $('#search_btn').on("click", searchFunc);

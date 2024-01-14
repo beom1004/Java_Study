@@ -19,7 +19,6 @@ import com.moviehub.biz.movie.impl.MovieService;
 import com.moviehub.biz.reply.CurReplyVO;
 import com.moviehub.biz.reply.Impl.ReplyService;
 import com.moviehub.biz.user.LoginUserVO;
-import com.moviehub.biz.user.UserVO;
 
 @Controller
 public class CommentController {
@@ -46,13 +45,10 @@ public class CommentController {
 		commentService.updateLike(curComment);
 		return "content.do";
 	}
-	@RequestMapping("/commentInsert.do")
-	public String insertComment(Model model, CommentVO comment, UserVO user, MovieVO movie) {
-		String userId = user.getId();
-	    int movieId = movie.getMovie_id();
-		
-	    comment.setUser_id(userId);
-	    comment.setMovie_id(movieId);
+	@RequestMapping("/insertComment.do")
+	public String insertComment(HttpSession session, LoginUserVO user, CommentVO comment) {
+		user = (LoginUserVO) session.getAttribute("user");	
+	    comment.setUser_id(user.getId());
 	    commentService.insertComment(comment);
 	    return "content.do";
 	}
@@ -68,23 +64,28 @@ public class CommentController {
 	}
 	@RequestMapping(value="/movieComment.do", method = RequestMethod.GET)
 	public String movieCommentView(HttpSession session, Model model, MovieVO movie, CommentVO comment, 
-			CurCommentVO curComment, CurReplyVO curReply, CurReplyVO replyList) {
+			CurCommentVO curComment, CurReplyVO curReply, CurReplyVO replyList, CurReplyVO reReplyList) {
 		model.addAttribute("movie", movieService.getMovie(movie));
 		int movie_id = movieService.getMovie(movie).getMovie_id();
 		curComment.setMovie_id(movie_id);
-		model.addAttribute("curComment", commentService.getCurComment(curComment));
+		curComment = commentService.getCurComment(curComment);
+		model.addAttribute("curComment", curComment);
 		
 		LoginUserVO user = (LoginUserVO) session.getAttribute("user");
 		if(user != null) {
 			curReply.setUser_id(user.getId());
-			curReply.setComment_id(commentService.getCurComment(curComment).getComment_id());
+			curReply.setComment_id(curComment.getComment_id());
 			model.addAttribute("curReply", replyService.getCurReply(curReply));
-//			model.addAttribute("curReplyCnt", replyService.getCurReply(curReply).getContent().length());
 		}
-		replyList.setComment_id(commentService.getCurComment(curComment).getComment_id());
+		replyList.setComment_id(curComment.getComment_id());
 		replyList.setMovie_id(movie_id);
-
+		model.addAttribute("replyCnt", replyService.getReplyList(replyList).size());
 		model.addAttribute("replyLists", replyService.getReplyList(replyList));
+		
+		// 대댓글 리스트
+		reReplyList.setComment_id(curComment.getComment_id());
+		reReplyList.setMovie_id(movie_id);
+		model.addAttribute("reReplyLists", replyService.getReReplyList(reReplyList));
 		return "movieComment.jsp";
 	}
 }

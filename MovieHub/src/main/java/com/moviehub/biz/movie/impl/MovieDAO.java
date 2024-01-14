@@ -14,7 +14,7 @@ public class MovieDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	
-	public List<String> getSearchMovieTitle(String searchKeyword) {
+	public List<MovieVO> getSearchMovieTitle(String searchKeyword) {
 		return sqlSessionTemplate.selectList("movieDAO.getSearchMovieTitle", searchKeyword);
 	}
 	public void insertMovie(MovieVO movie) {	

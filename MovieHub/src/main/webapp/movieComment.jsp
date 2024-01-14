@@ -46,7 +46,10 @@
                 <div id="replyModifyModal_close">X</div>
             </div>
             <div>
-                <form action="replyModify.do" method="get">
+                <form action="modifyReply.do" method="get">
+                	<input type="hidden" name="comment_id" value="${curComment.comment_id }">
+                	<input type="hidden" name="user_id" value="${user.id }">
+                    <input type="hidden" name="movie_id" value="${movie.movie_id }">
                     <textarea name="content" id="text_2">${curReply.content }</textarea>
                     <div>
                         <div class="textCnt">
@@ -90,7 +93,7 @@
                                 </div>
                                 <div class="commentCnt">
                                     <div>댓글</div>
-                                    <span>${curComment.comment_cnt }</span>
+                                    <span>${replyCnt }</span>
                                 </div>
                             </div>
                             <!-- 유저가 null이 아니고 로그인한 유저가 단 댓글이 없으면 -->
@@ -164,16 +167,30 @@
 	                        </div>
 	                        <div class="re_reply_container re_reply_hide">
 	                            <div class="re_reply_block">
-	                            	<input type="text" name="reReplyContent" placeholder="${replyList.nickname }(으)로 답글 달기">
-	                                <input type="submit" name="reReplySave" value="게시">
+	                            	<c:if test="${user == null }">
+	                            		<form>
+		                            		<input type="text" name="content" placeholder="${replyList.nickname }(으)로 답글 달기">
+		                                	<input type="submit" name="reReplySave" onclick="return loginRequire()" value="게시">
+		                            	</form>
+	                            	</c:if>
+	                            	<c:if test="${user != null }">
+		                            	<form action="reReplyInsert.do" method="get">
+		                            		<input type="hidden" name="comment_id" value="${curComment.comment_id }">
+						                    <input type="hidden" name="movie_id" value="${movie.movie_id }">
+		                            		<input type="text" name="content" placeholder="${replyList.nickname }(으)로 답글 달기">
+		                                	<input type="submit" name="reReplySave" value="게시">
+		                            	</form>
+	                            	</c:if>
 	                            </div>
-	                            <div class="re_reply_section">
-	                                <div class="user_nickname">reply_nickname</div>
-	                                <div class="re_reply_content">
-	                                    <div class="">공감합니다.</div>
-	                                    <div class="write_time">yyyy년mm월dd일</div>
-	                                </div>
-	                            </div>
+	                            <c:forEach var="reReplyList" items="${reReplyLists }">
+	                            	<div class="re_reply_section">
+		                                <div class="user_nickname">${reReplyList.nickname }</div>
+		                                <div class="re_reply_content">
+		                                    <div>${reReplyList.content }</div>
+		                                    <div class="write_time"><fmt:formatDate value="${reReplyList.write_time}" pattern="yyyy년 MM월 dd일" /></div>
+		                                </div>
+		                            </div>
+	                            </c:forEach>
 	                        </div>
 	                    </li>
                 	</c:forEach>

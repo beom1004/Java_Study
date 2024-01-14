@@ -8,5 +8,5 @@ public interface MovieService {
 	void saveMovie();
 	MovieVO getMovie(MovieVO movie);
 	List<MovieVO> getMovieList(String type);
-	List<String> getSearchMovieTitle(String searchKeyword);
+	List<MovieVO> getSearchMovieTitle(String searchKeyword);
 }

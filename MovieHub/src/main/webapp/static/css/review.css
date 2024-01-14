@@ -135,7 +135,6 @@ section {
 }
 .pic_div {
     display: flex;
-    width: 100px;
     justify-content: space-around;
     align-items: center;
     font-size: 16px;

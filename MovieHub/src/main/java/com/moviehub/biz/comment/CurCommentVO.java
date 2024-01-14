@@ -10,7 +10,7 @@ public class CurCommentVO {
 	private Date write_time;
 	private Date modify_time;
 	private int views;
-	private int comment_cnt;
+	private int reply_cnt;
 	private String user_id;
 	private int movie_id;
 	private String rating;
@@ -57,11 +57,11 @@ public class CurCommentVO {
 	public void setViews(int views) {
 		this.views = views;
 	}
-	public int getComment_cnt() {
-		return comment_cnt;
+	public int getReply_cnt() {
+		return reply_cnt;
 	}
-	public void setComment_cnt(int comment_cnt) {
-		this.comment_cnt = comment_cnt;
+	public void setReply_cnt(int reply_cnt) {
+		this.reply_cnt = reply_cnt;
 	}
 	public String getUser_id() {
 		return user_id;

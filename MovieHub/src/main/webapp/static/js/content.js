@@ -8,6 +8,7 @@ function deleteComment(event){
 		window.location.href=url;
 	}
 }
+
 document.querySelector('#comment_remove').addEventListener("click", deleteComment);
 
 function loginRequire(){
@@ -44,13 +45,14 @@ document.querySelector('.commentModify_white-bg').addEventListener('click', func
 document.querySelector('.comment_black-bg').addEventListener('click', function () {
     document.querySelector('.commentModal').classList.add('comment_hide');
 });
+document.querySelector('#comment_close').addEventListener('click', function () {
+    document.querySelector('.commentModal').classList.add('comment_hide');
+});
 document.querySelector('.commentModify_black-bg').addEventListener('click', function () {
     document.querySelector('.commentModifyModal').classList.add('commentModify_hide');
 });
 document.querySelector('#commentModify_close').addEventListener('click', function () {
     document.querySelector('.commentModifyModal').classList.add('commentModify_hide');
 });
-document.querySelector('#comment_close').addEventListener('click', function () {
-    document.querySelector('.commentModal').classList.add('comment_hide');
-});
+
 

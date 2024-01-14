@@ -15,7 +15,7 @@
 	</update>
 	<insert id="insertComment">
 		<![CDATA[
-			INSERT INTO COMMENT(COMMENT, user_id, movie_id) 
+			INSERT INTO comment(COMMENT, USER_ID, MOVIE_ID) 
 			VALUES(#{comment}, #{user_id}, #{movie_id})
 		]]>
 	</insert>
@@ -32,18 +32,22 @@
 	<select id="getCommentList" resultType="curComment">
 		<![CDATA[
 	        SELECT b.profile_img, a.nickname, c.comment_id, c.comment, c.write_time, c.modify_time, 
-	        c.views, c.comment_cnt, c.user_id, c.movie_id, COALESCE(d.rating, 0.0) AS rating
+	        c.views, count(r.comment_id) as reply_cnt, c.user_id, c.movie_id, COALESCE(d.rating, 0.0) AS rating
 			FROM user a
 			JOIN user_detail b ON a.id = b.user_id
 			JOIN comment c ON c.user_id = a.id
             LEFT JOIN rating d ON d.user_id = a.id
-			where c.movie_id = #{movie_id} order by c.comment_cnt desc;
+            JOIN reply r on r.comment_id = c.comment_id
+			where c.movie_id = #{movie_id} and r.re_reply_id IS NULL
+			group by b.profile_img, a.nickname, c.comment_id, c.comment, c.write_time,
+			c.modify_time, c.views, d.rating
+			order by c.reply_cnt desc;
 	    ]]>
 	</select>
 	<select id="getCurComment" resultType="curComment">
 		<![CDATA[
 	        SELECT b.profile_img, a.nickname, c.comment_id, c.comment, c.write_time, c.modify_time,
-	        c.views, c.comment_cnt, c.user_id, c.movie_id, COALESCE(d.rating, 0.0) AS rating
+	        c.views, c.reply_cnt, c.user_id, c.movie_id, COALESCE(d.rating, 0.0) AS rating
 			FROM user a
 			JOIN user_detail b ON a.id = b.user_id
 			JOIN comment c ON c.user_id = a.id
@@ -51,4 +55,9 @@
 			where c.comment_id=#{comment_id} and c.movie_id=#{movie_id};
 	    ]]>
 	</select>
+	<update id="curCommentView">
+	    <![CDATA[
+	        UPDATE COMMENT SET views=views+1 WHERE comment_id=#{comment_id} and movie_id=#{movie_id};
+	    ]]>
+	</update>
 </mapper>

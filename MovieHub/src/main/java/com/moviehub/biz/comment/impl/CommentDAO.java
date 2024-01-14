@@ -33,6 +33,7 @@ public class CommentDAO {
 		return sqlSessionTemplate.selectList("comment.getCommentList", curComment);
 	}
 	public CurCommentVO getCurComment(CurCommentVO curComment) {
+		sqlSessionTemplate.update("comment.curCommentView", curComment);
 		return sqlSessionTemplate.selectOne("comment.getCurComment", curComment);
 	}
 }

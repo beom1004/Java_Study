@@ -23,13 +23,12 @@
                 <div id="comment_close">X</div>
             </div>
             <div>
-                <form action="commentInsert.do" method="post">
-                	<input type="hidden" name="id" value="${user.id }">
+                <form action="insertComment.do" method="post">
                 	<input type="hidden" name="movie_id" value="${movie.movie_id }">
-                    <textarea name="comment" id="text_1" placeholder="이 작품에 대한 리뷰를 남겨주세요."></textarea>
+                    <textarea name="comment" id="text_1" placeholder="이 작품에 대한 코멘트를 남겨주세요."></textarea>
                     <div>
                         <div class="textCnt_1">
-                            <span class="charCount_1">${commentLength }</span>/10000
+                            <span class="charCount_1">0</span>/10000
                         </div>
                         <input type="submit" class="btn" class="commentSave" value="저장">
                     </div>
@@ -163,7 +162,6 @@
                                 ${movie.tagline }
                             </div>
                             <div id="overview">
-                                <!-- 마침표를 기준으로 잘라서 p태그로 묶어야 할 듯 -->
                                 ${movie.overview }
                             </div>
                         </div>
@@ -209,7 +207,7 @@
 		                            <div class="review">
 		                                <div>
 		                                	<i class="bi bi-chat-fill"></i>
-		                                	<span>${commentList.comment_cnt }</span>
+		                                	<span>${commentList.reply_cnt }</span>
 		                                </div>
 		                            </div>
 		                            <div class="reply_btn">

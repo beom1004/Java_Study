@@ -36,7 +36,7 @@
                         <!-- option에 name값 주고 체크된 정렬 기준으로 5개씩 페이징 -->
                         <div class="selectBox">
                             <select class="orderBy">
-                                <option>좋아요 순</option>
+                                <option>조회수 순</option>
                                 <option>댓글 순</option>
                                 <option>최신 순</option>
                             </select>
@@ -70,7 +70,7 @@
 	                                    </div>
 	                                    <div class="likes">
 	                                        <div id="review_comment">
-	                                            <span>댓글</span>&nbsp; <span>${commentList.comment_cnt }</span>
+	                                            <span>댓글</span>&nbsp; <span>${commentList.reply_cnt }</span>
 	                                    </div>
 	                                </div>
 	                            </li>

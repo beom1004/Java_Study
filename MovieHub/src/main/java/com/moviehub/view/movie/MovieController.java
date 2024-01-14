@@ -20,6 +20,7 @@ import com.moviehub.biz.movie.impl.MovieService;
 import com.moviehub.biz.rating.RatingVO;
 import com.moviehub.biz.rating.impl.RatingService;
 import com.moviehub.biz.user.LoginUserVO;
+import com.moviehub.biz.user.UserVO;
 
 @Controller
 public class MovieController {
@@ -37,7 +38,7 @@ public class MovieController {
 	}
 	@RequestMapping(value="/getSearchMovieTitle.do", method = RequestMethod.GET)
 	@ResponseBody
-	public List<String> getSearchMovieTitle(@RequestParam String searchKeyword) {
+	public List<MovieVO> getSearchMovieTitle(@RequestParam String searchKeyword) {
 		return movieService.getSearchMovieTitle(searchKeyword);
 	}
 	@RequestMapping("/index.do")
@@ -50,15 +51,16 @@ public class MovieController {
 	}
 	
 	@RequestMapping(value="/content.do")
-	public String getContentView(HttpSession session, LoginUserVO user, Model model, 
+	public String getContentView(HttpSession session, UserVO user, LoginUserVO loginUser, Model model, 
 			MovieVO movie, CommentVO comment, CommentVO commentList, CurCommentVO curComment, RatingVO rating) {
+		MovieVO resMovie = movieService.getMovie(movie);
+		model.addAttribute("movie", resMovie);
+		int movie_id = resMovie.getMovie_id();
+		loginUser = (LoginUserVO) session.getAttribute("user");
 		
-		user = (LoginUserVO) session.getAttribute("user");
-		if(user != null) {
-			model.addAttribute("movie", movieService.getMovie(movie));
-			String user_id = user.getId();
-		    int movie_id = movieService.getMovie(movie).getMovie_id();
-			
+		if(loginUser != null) {
+			String user_id = loginUser.getId();
+
 		    comment.setUser_id(user_id);
 		    comment.setMovie_id(movie_id);
 		    
@@ -73,11 +75,10 @@ public class MovieController {
 			rating.setMovie_id(movie_id);
 			model.addAttribute("rating", ratingService.getRating(rating));
 		}else {
-			model.addAttribute("movie", movieService.getMovie(movie));
 			model.addAttribute("comment_null", "이 작품에 대한 코멘트를 남겨주세요.");
 		}
 		
-		curComment.setMovie_id(movieService.getMovie(movie).getMovie_id());
+		curComment.setMovie_id(movie_id);
 		List<CurCommentVO> commentLists = commentService.getCommentList(curComment);
 		model.addAttribute("commentCnt", commentLists.size());
 		model.addAttribute("commentLists", commentLists);
