@@ -160,7 +160,10 @@
 	                                    ${replyList.content }
 	                                </div>
 	                                <div class="reply_writeTime">
-	                                	<div id="viewReply" class="viewReply">댓글 보기</div>
+	                                	<div id="viewReply" class="viewReply">
+	                                		<!-- <a href="getReReplyList.do?reply_id=${replyList.reply_id }">답글 보기</a> -->
+	                                		답글 보기
+	                                	</div>
 	                                	<div><fmt:formatDate value="${replyList.write_time}" pattern="yyyy년 MM월 dd일" /></div>
 	                                </div>
 	                            </div>
@@ -175,19 +178,26 @@
 	                            	</c:if>
 	                            	<c:if test="${user != null }">
 		                            	<form action="reReplyInsert.do" method="get">
-		                            		<input type="hidden" name="comment_id" value="${curComment.comment_id }">
-						                    <input type="hidden" name="movie_id" value="${movie.movie_id }">
 		                            		<input type="text" name="content" placeholder="${replyList.nickname }(으)로 답글 달기">
 		                                	<input type="submit" name="reReplySave" value="게시">
+						                    <input type="hidden" name="reply_id" value="${replyList.reply_id }">
+		                                	<input type="hidden" name="comment_id" value="${curComment.comment_id }">
+						                    <input type="hidden" name="movie_id" value="${movie.movie_id }">
 		                            	</form>
 	                            	</c:if>
 	                            </div>
 	                            <c:forEach var="reReplyList" items="${reReplyLists }">
 	                            	<div class="re_reply_section">
-		                                <div class="user_nickname">${reReplyList.nickname }</div>
-		                                <div class="re_reply_content">
-		                                    <div>${reReplyList.content }</div>
-		                                    <div class="write_time"><fmt:formatDate value="${reReplyList.write_time}" pattern="yyyy년 MM월 dd일" /></div>
+	                            		<div class="profile_img">
+		                                    <img src="static/images/profile/${reReplyList.profile_img }" alt="pic">
+		                                </div>
+		                                <div>
+		                                	<div class="user_nickname">${reReplyList.nickname }</div>
+			                                <div class="re_reply_content">
+			                                    <div>${reReplyList.content }</div>
+			                                    <div class="write_time"><fmt:formatDate value="${reReplyList.write_time}" pattern="yyyy년 MM월 dd일" /></div>
+			                                </div>
+			                                <div id="reReplyRemove">삭제하기</div>
 		                                </div>
 		                            </div>
 	                            </c:forEach>

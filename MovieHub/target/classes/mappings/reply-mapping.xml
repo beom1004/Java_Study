@@ -5,11 +5,9 @@
 <mapper namespace="reply">
 	<update id="modifyReply">
 		<![CDATA[
-			UPDATE _cnt
-			 SET CONTENT=#{content} WHERE COMMENT_ID=#{comment_id} and USER_ID=#{user_id}
+			UPDATE reply SET CONTENT=#{content} WHERE COMMENT_ID=#{comment_id} and USER_ID=#{user_id}
 		]]>
 	</update>
-	<!-- 댓글일 때 re_reply_id는 null, 대댓글일 때는 reply_id -->
 	<insert id="insertReply">
 		<![CDATA[
 			INSERT INTO REPLY(CONTENT, COMMENT_ID, USER_ID, MOVIE_ID) 
@@ -19,7 +17,7 @@
 	<insert id="insertReReply">
 		<![CDATA[
 			INSERT INTO REPLY(CONTENT, RE_REPLY_ID, COMMENT_ID, USER_ID, MOVIE_ID) 
-			VALUES(#{content}, #{comment_id}, #{comment_id}, #{user_id}, #{movie_id})
+			VALUES(#{content}, #{reply_id}, #{comment_id}, #{user_id}, #{movie_id})
 		]]>
 	</insert>
 	<delete id="deleteReply">
@@ -55,8 +53,7 @@
 			from user a
 			join user_detail b on a.id=b.user_id
 			join reply c on c.user_id=a.id
-			where c.comment_id=#{comment_id} and c.movie_id=#{movie_id} 
-			and c.re_reply_id IS NOT NULL
+			where c.re_reply_id=#{reply_id}
             order by write_time desc;
 		]]>
 	</select>

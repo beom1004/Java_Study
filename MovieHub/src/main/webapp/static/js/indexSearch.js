@@ -1,7 +1,9 @@
 $('#searchKeyword').on("keyup", function (){
 	let searchKeyword = $(this).val();
+	let searchUl = $('.search_ul');
+	
 	if (searchKeyword === '') {
-        $('.search_ul').html(''); 
+        searchUl.addClass('search_hide');
         return;
     }
 
@@ -11,6 +13,7 @@ $('#searchKeyword').on("keyup", function (){
         data: {"searchKeyword": searchKeyword},
         dataType: "json",
         success: function(data) {
+        	searchUl.removeClass('search_hide');
             let html = '';
             let movies = Array.isArray(data) ? data : [data];
             
@@ -18,10 +21,11 @@ $('#searchKeyword').on("keyup", function (){
             	html += '<li class="search-movie" data-movie-id="' + movie.movie_id + '">' + movie.title + '</li>';
             });
 
-            $('.search_ul').html(html);
+            searchUl.html(html);
         },
         error: function(error) {
             console.log(error);
+            searchUl.addClass('search_hide');
         }
     });
 });

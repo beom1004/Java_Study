@@ -8,8 +8,9 @@ function deleteComment(event){
 		window.location.href=url;
 	}
 }
-
-document.querySelector('#comment_remove').addEventListener("click", deleteComment);
+document.addEventListener("DOMContentLoaded", function() {
+	document.querySelector('#comment_remove').addEventListener("click", deleteComment);
+});
 
 function loginRequire(){
 	alert('로그인 후 이용해주세요');

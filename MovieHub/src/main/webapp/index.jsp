@@ -30,7 +30,7 @@
                             <button type="button" id="search_btn">Search</button>
                         </div>
                         <div class="search_wrap">
-                            <ul class="search_ul">
+                            <ul class="search_ul search_hide">
                             </ul>
                         </div>
                     </div>

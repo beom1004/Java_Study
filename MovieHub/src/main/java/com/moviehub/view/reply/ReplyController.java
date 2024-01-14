@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -19,7 +20,6 @@ public class ReplyController {
 	
 	@RequestMapping("/modifyReply.do")
 	public String modifyReply(ReplyVO reply) {
-		// 수정한 댓글 내용, comment_id, user_id 넘어감
 		replyService.modifyReply(reply);
 		return "movieComment.do";
 	}
@@ -50,7 +50,11 @@ public class ReplyController {
 		replyService.insertReReply(reply);
 		return "movieComment.do";
 	}
-	
+	@RequestMapping("/getReReplyList.do")
+	public String getReReplyList(Model model, CurReplyVO reReplyList) {
+		model.addAttribute("reReplyLists", replyService.getReReplyList(reReplyList));
+		return "movieComment.do";
+	}
 }
 
 

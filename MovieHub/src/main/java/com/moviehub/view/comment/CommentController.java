@@ -64,7 +64,7 @@ public class CommentController {
 	}
 	@RequestMapping(value="/movieComment.do", method = RequestMethod.GET)
 	public String movieCommentView(HttpSession session, Model model, MovieVO movie, CommentVO comment, 
-			CurCommentVO curComment, CurReplyVO curReply, CurReplyVO replyList, CurReplyVO reReplyList) {
+			CurCommentVO curComment, CurReplyVO curReply, CurReplyVO replyList) {
 		model.addAttribute("movie", movieService.getMovie(movie));
 		int movie_id = movieService.getMovie(movie).getMovie_id();
 		curComment.setMovie_id(movie_id);
@@ -81,11 +81,7 @@ public class CommentController {
 		replyList.setMovie_id(movie_id);
 		model.addAttribute("replyCnt", replyService.getReplyList(replyList).size());
 		model.addAttribute("replyLists", replyService.getReplyList(replyList));
-		
-		// 대댓글 리스트
-		reReplyList.setComment_id(curComment.getComment_id());
-		reReplyList.setMovie_id(movie_id);
-		model.addAttribute("reReplyLists", replyService.getReReplyList(reReplyList));
+
 		return "movieComment.jsp";
 	}
 }
