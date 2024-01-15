@@ -1,5 +1,6 @@
 package com.moviehub.biz.reply.Impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +37,10 @@ public class ReplyServiceImpl implements ReplyService {
 		return replyDAO.getReplyList(replyList);
 	}
 	@Override
-	public List<CurReplyVO> getReReplyList(CurReplyVO reReplyList) {
-		return replyDAO.getReReplyList(reReplyList);
+	public List<CurReplyVO> getReReplyListByReplyId(int reply_id) {
+		List<CurReplyVO> resultList = new ArrayList<>();
+		resultList = replyDAO.getReReplyListByReplyId(reply_id);
+		return resultList;
 	}
 	
 }

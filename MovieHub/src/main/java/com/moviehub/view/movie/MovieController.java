@@ -19,6 +19,7 @@ import com.moviehub.biz.movie.MovieVO;
 import com.moviehub.biz.movie.impl.MovieService;
 import com.moviehub.biz.rating.RatingVO;
 import com.moviehub.biz.rating.impl.RatingService;
+import com.moviehub.biz.reply.CurReplyVO;
 import com.moviehub.biz.user.LoginUserVO;
 import com.moviehub.biz.user.UserVO;
 

@@ -10,7 +10,7 @@ public interface ReplyService {
 	void insertReReply(ReplyVO reply);
 	CurReplyVO getCurReply(CurReplyVO curReply);
 	List<CurReplyVO> getReplyList(CurReplyVO replyList);
-	List<CurReplyVO> getReReplyList(CurReplyVO reReplyList);
+	List<CurReplyVO> getReReplyListByReplyId(int reply_id);
 	void deleteReply(CurReplyVO curReply);
 	void modifyReply(ReplyVO reply);
 }

@@ -32,7 +32,7 @@ public class ReplyDAO {
 	public List<CurReplyVO> getReplyList(CurReplyVO replyList){
 		return sqlSessionTemplate.selectList("reply.getReplyList", replyList);
 	}
-	public List<CurReplyVO> getReReplyList(CurReplyVO reReplyList) {
-		return sqlSessionTemplate.selectList("reply.getReReplyList", reReplyList);
+	public List<CurReplyVO> getReReplyListByReplyId(int reply_id) {
+		return sqlSessionTemplate.selectList("reply.getReReplyListByReplyId", reply_id);
 	}
 }

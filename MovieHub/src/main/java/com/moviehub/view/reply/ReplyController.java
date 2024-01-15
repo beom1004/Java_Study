@@ -50,11 +50,6 @@ public class ReplyController {
 		replyService.insertReReply(reply);
 		return "movieComment.do";
 	}
-	@RequestMapping("/getReReplyList.do")
-	public String getReReplyList(Model model, CurReplyVO reReplyList) {
-		model.addAttribute("reReplyLists", replyService.getReReplyList(reReplyList));
-		return "movieComment.do";
-	}
 }
 
 

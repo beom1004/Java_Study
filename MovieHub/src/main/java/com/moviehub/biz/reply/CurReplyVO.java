@@ -14,7 +14,7 @@ public class CurReplyVO {
 	private int comment_id;
 	private String user_id;
 	private int movie_id;
-	
+
 	public String getProfile_img() {
 		return profile_img;
 	}
@@ -80,5 +80,21 @@ public class CurReplyVO {
 	}
 	public void setMovie_id(int movie_id) {
 		this.movie_id = movie_id;
+	}
+	@Override
+	public String toString() {
+	    return "CurReplyVO{" +
+	            "profile_img='" + profile_img + '\'' +
+	            ", nickname='" + nickname + '\'' +
+	            ", reply_id=" + reply_id +
+	            ", content='" + content + '\'' +
+	            ", reply_cnt=" + reply_cnt +
+	            ", write_time=" + write_time +
+	            ", modify_time=" + modify_time +
+	            ", re_reply_id=" + re_reply_id +
+	            ", comment_id=" + comment_id +
+	            ", user_id='" + user_id + '\'' +
+	            ", movie_id=" + movie_id +
+	            '}';
 	}
 }

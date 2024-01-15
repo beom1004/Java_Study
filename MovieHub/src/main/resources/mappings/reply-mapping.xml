@@ -46,7 +46,7 @@
             order by write_time desc;
 		]]>
 	</select>
-	<select id="getReReplyList" resultType="curReply">
+	<select id="getReReplyListByReplyId" resultType="curReply">
 		<![CDATA[
 			select a.nickname, b.profile_img, c.reply_id, c.content,
 			c.write_time, c.modify_time, c.re_reply_id, c.comment_id, c.user_id, c.movie_id

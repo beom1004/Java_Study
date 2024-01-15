@@ -1,6 +1,9 @@
 package com.moviehub.view.comment;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -64,7 +67,7 @@ public class CommentController {
 	}
 	@RequestMapping(value="/movieComment.do", method = RequestMethod.GET)
 	public String movieCommentView(HttpSession session, Model model, MovieVO movie, CommentVO comment, 
-			CurCommentVO curComment, CurReplyVO curReply, CurReplyVO replyList) {
+			CurCommentVO curComment, CurReplyVO curReply, CurReplyVO replyList, ArrayList<CurReplyVO> reReplyList) {
 		model.addAttribute("movie", movieService.getMovie(movie));
 		int movie_id = movieService.getMovie(movie).getMovie_id();
 		curComment.setMovie_id(movie_id);
@@ -80,8 +83,16 @@ public class CommentController {
 		replyList.setComment_id(curComment.getComment_id());
 		replyList.setMovie_id(movie_id);
 		model.addAttribute("replyCnt", replyService.getReplyList(replyList).size());
-		model.addAttribute("replyLists", replyService.getReplyList(replyList));
+		
+		Map<Integer, List<CurReplyVO>> reReplyMap = new HashMap<>();
+		List<CurReplyVO> replyLists = replyService.getReplyList(replyList);
 
+		for (CurReplyVO reply : replyLists) {
+		    List<CurReplyVO> reReplyLists = replyService.getReReplyListByReplyId(reply.getReply_id());
+		    reReplyMap.put(reply.getReply_id(), reReplyLists);
+		}
+		model.addAttribute("replyList", replyLists);
+		model.addAttribute("reReplyMap", reReplyMap);
 		return "movieComment.jsp";
 	}
 }
