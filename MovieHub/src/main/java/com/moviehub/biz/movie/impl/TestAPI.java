@@ -10,6 +10,9 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.moviehub.biz.movie.MovieGenreVO;
+import com.moviehub.biz.movie.MovieVO;
+
 
 public class TestAPI {
 	public static void main(String[] args) {
@@ -57,11 +60,76 @@ public class TestAPI {
 	                	}
 	                }
 	                rs.add(genreId);
-	                System.out.println(genreIdList);
 	            }
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}
+		final String prefix_url = "https://image.tmdb.org/t/p/original";
+		JSONObject detailObject = null;
+		
+		for(int j=0; j < detailLists.size(); j++) {
+			try {
+				MovieVO movie = new MovieVO();
+				URI detailURI = new URI(detailLists.get(j));
+				URL detailURL = detailURI.toURL();
+				BufferedReader br = new BufferedReader(new InputStreamReader(detailURL.openStream(), "UTF-8"));
+				String brs = br.readLine();
+				
+				detailObject = new JSONObject(brs);
+				movie.setMovie_id(detailObject.getInt("id"));
+				movie.setTitle(detailObject.getString("title"));
+				movie.setBackdrop_path(prefix_url+detailObject.getString("backdrop_path"));
+				movie.setOriginal_title(detailObject.getString("original_title"));
+				movie.setRelease_year(Integer.parseInt(detailObject.getString("release_date").substring(0, 4)));
+				movie.setOriginal_language(detailObject.getString("original_language"));
+				movie.setPoster_path(prefix_url+detailObject.getString("poster_path"));
+				movie.setVote_count(detailObject.getInt("vote_count"));
+				movie.setTagline(detailObject.getString("tagline"));
+				movie.setOverview(detailObject.getString("overview"));
+				movie.setPopularity(detailObject.getDouble("popularity"));
+				movie.setGroupNum((j / 20) + 1);
+				
+				int runtime = detailObject.getInt("runtime");
+				int runtime_hour = runtime / 60;
+				int runtime_minute = runtime % 60;
+				
+				if(runtime_minute != 0) {
+					movie.setRuntime(runtime_hour+"시간 "+runtime_minute+"분");
+				}else {
+					movie.setRuntime(runtime_hour+"시간");
+				}
+				double num = detailObject.getDouble("vote_average") / 2;
+				movie.setVote_average(Math.floor(num * 10) / 10);
+				
+				JSONArray countryJSON = (JSONArray) detailObject.get("production_countries");
+				String country = "";
+
+				for(int k=0; k < countryJSON.length(); k++) {
+					JSONObject countryObject = (JSONObject) countryJSON.get(k);
+					country += countryObject.getString("iso_3166_1");
+					
+					if (k < countryJSON.length() - 1) {
+				        country += ", ";
+				    }
+				}
+				movie.setProduction_countries(country.trim());
+				
+				JSONArray genre_list = (JSONArray) detailObject.get("genres");
+
+				for(int k=0; k < genre_list.length(); k++) {
+					MovieGenreVO detailVO = new MovieGenreVO();
+					JSONObject genreObject = genre_list.getJSONObject(k);
+					
+					detailVO.setGenre_id(genreObject.getInt("id"));
+					detailVO.setGenre_name(String.valueOf(genreObject.get("name")));
+				}
+				System.out.println(genre_list.toString());
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			
 		}
 	}
 }

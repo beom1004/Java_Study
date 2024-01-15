@@ -15,12 +15,8 @@
 	</update>
 	<insert id="insertComment">
 		<![CDATA[
-			INSERT INTO comment(COMMENT, USER_ID, MOVIE_ID, REPLY_CNT) 
-			VALUES(#{comment}, #{user_id}, #{movie_id},
-			(SELECT COUNT(b.reply_id)
-			FROM comment a
-			LEFT JOIN reply b ON a.comment_id = b.comment_id
-			WHERE a.comment_id = #{comment_id}))
+			INSERT INTO comment(COMMENT, USER_ID, MOVIE_ID) 
+			VALUES(#{comment}, #{user_id}, #{movie_id})
 		]]>
 	</insert>
 	<update id="updateLike">
@@ -35,14 +31,15 @@
 	</select>
 	<select id="getCommentList" resultType="curComment">
 		<![CDATA[
-	        SELECT b.profile_img, a.nickname, c.comment_id, c.comment, c.write_time, c.modify_time, 
-	        c.views, c.user_id, c.movie_id, COALESCE(d.rating, 0.0) AS rating
+	        SELECT b.profile_img, a.nickname, c.comment_id, c.comment, MAX(c.write_time) AS write_time, MAX(c.modify_time) AS modify_time, 
+		        MAX(c.views) AS views, MAX(c.user_id) AS user_id, MAX(c.movie_id) AS movie_id, COALESCE(MAX(d.rating), 0.0) AS rating
 			FROM user a
 			JOIN user_detail b ON a.id = b.user_id
 			JOIN comment c ON c.user_id = a.id
-            LEFT JOIN rating d ON d.user_id = a.id
-			where c.movie_id = #{movie_id}
-			order by c.reply_cnt desc;
+			LEFT JOIN rating d ON d.user_id = a.id
+			WHERE c.movie_id = #{movie_id}
+			GROUP BY b.profile_img, a.nickname, c.comment_id, c.comment
+			ORDER BY MAX(c.reply_cnt) DESC;
 	    ]]>
 	</select>
 	<select id="getCurComment" resultType="curComment">

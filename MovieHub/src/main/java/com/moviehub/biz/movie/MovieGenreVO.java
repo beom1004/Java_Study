@@ -10,7 +10,6 @@ public class MovieGenreVO {
 	public void setGenre_id(int genre_id) {
 		this.genre_id = genre_id;
 	}
-	
 	public String getGenre_name() {
 		return genre_name;
 	}

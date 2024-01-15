@@ -2,14 +2,14 @@ package com.moviehub.biz.user.impl;
 
 import java.io.File;
 import java.io.IOException;
-
-import javax.servlet.http.HttpSession;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.moviehub.biz.user.LoginUserVO;
+import com.moviehub.biz.user.UserCommentVO;
 import com.moviehub.biz.user.UserDetailVO;
 import com.moviehub.biz.user.UserVO;
 
@@ -18,6 +18,30 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDAO userDAO;
 	
+	@Override
+	public List<UserCommentVO> getUserCommentList(UserCommentVO userComment) {
+		return userDAO.getUserCommentList(userComment);
+	}
+
+	@Override
+	public LoginUserVO getUserData(LoginUserVO user) {
+		return userDAO.getUserData(user);
+	}
+	
+	@Override
+	public Double getAvgRating(LoginUserVO user) {
+		List<String> list = userDAO.getAvgRating(user);
+		System.out.println(list); // [3.0]이 ... 반환되네?
+		Double db = 0.0;
+		for(int i=0; i<list.size(); i++) {
+			Double temp = Double.parseDouble(list.get(i));
+			db += temp;
+		}
+		// 별점을 전부 더한 db를 총 rating 개수로 나누고 소수점 첫째 자리까지만
+		db = Math.floor(db * 10) / (10 * list.size());
+		return db;
+	}
+
 	@Override
 	public void modifyUser(LoginUserVO user, LoginUserVO loginUser) {
 		String folder = "C:/Users/hello/git/MovieHub/MovieHub/src/main/webapp/static/images/profile/";

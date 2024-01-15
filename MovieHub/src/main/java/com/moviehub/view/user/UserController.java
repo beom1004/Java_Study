@@ -1,14 +1,21 @@
 package com.moviehub.view.user;
 
+import java.text.SimpleDateFormat;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.moviehub.biz.user.LoginUserVO;
+import com.moviehub.biz.user.UserCommentVO;
 import com.moviehub.biz.user.UserDetailVO;
 import com.moviehub.biz.user.UserVO;
 import com.moviehub.biz.user.impl.UserService;
@@ -19,8 +26,32 @@ public class UserController {
 	private UserService userService;
 	
 	@RequestMapping(value="/myProfile.do", method=RequestMethod.GET)
-	public String viewProfile() {
+	public String viewProfile(HttpSession session, Model model, LoginUserVO loginUser, LoginUserVO user) {
+		loginUser = (LoginUserVO) session.getAttribute("user");
+		user.setId(loginUser.getId());
+		user.setPassword(loginUser.getPassword());
+		model.addAttribute("userData", userService.getUserData(user));
+		model.addAttribute("avgRating", userService.getAvgRating(user));	
 		return "myPage.jsp";
+	}
+	@RequestMapping("/getUserComment.do")
+	@ResponseBody
+	public ResponseEntity<String> getUserComment(HttpSession session, LoginUserVO loginUser, UserCommentVO userComment) {
+		loginUser = (LoginUserVO) session.getAttribute("user");
+		userComment.setUser_id(loginUser.getId());
+		List<UserCommentVO> result = userService.getUserCommentList(userComment);
+		
+		ObjectMapper objectMapper = new ObjectMapper();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        objectMapper.setDateFormat(dateFormat);
+
+        try {
+            String formattedJson = objectMapper.writeValueAsString(result);
+            return ResponseEntity.ok().body(formattedJson);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body(null);
+        }
 	}
 	
 	@RequestMapping("/modifyUser.do")

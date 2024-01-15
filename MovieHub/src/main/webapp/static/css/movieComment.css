@@ -278,6 +278,9 @@ a:visited{
     cursor: pointer;
 }
 .reply_content {
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; 
     padding: 5px 0;
 }
 .reply_likes {

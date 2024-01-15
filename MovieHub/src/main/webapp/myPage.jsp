@@ -23,27 +23,27 @@
                     <div class="top">
                         <div>
                             <div class="my_profile_img">
-                                <img src="static/images/profile/${detail.profile_img }">
+                                <img src="static/images/profile/${user.profile_img }">
                             </div>
                             <div class="profile">
-                                <div class="nickname">nickname</div>
-                                <div class="email">email@google.com</div>
-                                <div class="info_comment">introduce comment</div>
+                                <div class="nickname">${user.nickname }</div>
+                                <div class="email">${user.email }</div>
+                                <div class="info_comment">${user.profile_msg }</div>
                             </div>
                         </div>
                         <button id="btn">프로필 수정</button>
                     </div>
                     <div class="middle">
                         <div class="rate_cnt">
-                            <div class="count">860</div>
+                            <div class="count">${userData.rating_count }</div>
                             <div class="cnt_tag">평가</div>
                         </div>
                         <div class="review_cnt">
-                            <div class="count">220</div>
+                            <div class="count">${userData.comment_count }</div>
                             <div class="cnt_tag">리뷰</div>
                         </div>
                         <div class="rate_avg">
-                            <div class="count">220</div>
+                            <div class="count">${avgRating }</div>
                             <div class="cnt_tag">평균 별점</div>
                         </div>
                     </div>
@@ -87,7 +87,6 @@
 	<jsp:include page="footer.jsp"/>
     <script src="static/js/header.js"></script>
     <script src="static/js/modal.js"></script>
-    <script src="static/js/jQuery.js"></script>
     <script src="static/js/myPage.js"></script>
 </body>
 </html>

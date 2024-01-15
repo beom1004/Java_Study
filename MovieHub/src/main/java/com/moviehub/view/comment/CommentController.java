@@ -1,10 +1,12 @@
 package com.moviehub.view.comment;
 
+import java.net.http.HttpRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,11 +51,16 @@ public class CommentController {
 		return "content.do";
 	}
 	@RequestMapping("/insertComment.do")
-	public String insertComment(HttpSession session, LoginUserVO user, CommentVO comment) {
-		user = (LoginUserVO) session.getAttribute("user");	
+	public String insertComment(HttpSession session, HttpServletRequest request, LoginUserVO user, CommentVO comment) {
+		user = (LoginUserVO) session.getAttribute("user");
 	    comment.setUser_id(user.getId());
 	    commentService.insertComment(comment);
-	    return "content.do";
+	    // 코멘트 입력 후 뒤로 가기
+	    String referer = request.getHeader("Referer");
+	    if (referer == null || referer.isEmpty()) {
+	        return "redirect:/content.do";
+	    }
+	    return "redirect:" + referer;
 	}
 	@RequestMapping(value="/review.do", method = RequestMethod.GET)
 	public String movieReview(Model model, MovieVO movie, CurCommentVO curComment) {

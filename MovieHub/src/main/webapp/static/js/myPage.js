@@ -1,3 +1,24 @@
+const btn = document.querySelector('#btn');
+btn.addEventListener('click', function(){
+	document.querySelector('.settingModal').classList.remove('setting_hide');
+})
+
+let userComments = [];
+document.addEventListener('DOMContentLoaded', function() {
+	let xhr = new XMLHttpRequest();
+    xhr.open('GET', './getUserComment.do', true);
+    xhr.setRequestHeader('Content-Type', 'application/json'); // 헤더 추가
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            userComments = JSON.parse(xhr.responseText);
+            console.log(userComments);
+            renderCalendar(userComments);
+        } else{
+            console.log('Error: ' + xhr.status);
+        }
+    };
+    xhr.send();
+});
 function isLeapYear(year) {
     return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
 }
@@ -73,7 +94,7 @@ function updateMonthList() {
         }
     }
 }
-function renderCalendar() {
+function renderCalendar(userComments) {
     const now = new Date();
     firstDay = new Date(year, month, 1);
     currentDay = 1;
@@ -116,43 +137,45 @@ function renderCalendar() {
     const remainingDays = totalDays - firstWeekDays;
     const ROW = Math.ceil(remainingDays / 7) + 1;
 
-    // 영화 포스터 url
-    const url_path = 'https://image.tmdb.org/t/p/original';
-    const poster_path = '/qVdrpBY920kKikUmPm89wig60Kd.jpg';
-    const imgSrc = `${url_path}${poster_path}`;
-
     for (let i = 0; i < ROW; i++) {
-        table += `<tr>`;
-        for (let j = 0; j < 7; j++) {
-            if (i == 0 && j < firstDay.getDay()) {
-                table += `<td></td>`;
-            } else if (currentDay <= totalDays) {
-                let cellStyle = '';
-                if (j == 0) {
-                    cellStyle = 'color: red;';
-                } else if (j == 6) {
-                    cellStyle = 'color: blue;';
-                }
-
-                // 영화 리뷰를 등록한 날짜에 맞춰서 td에 poster url 추가
-                if (currentDay == today && month == now.getMonth() && year == now.getFullYear()) {
-                    table += `<td>
-                        <div class="reviewedMovie">
-                            <div class="curDay" style="${cellStyle}">${currentDay++}</div>
-                            <div class="poster">
-                                <img src="${imgSrc}" alt="movie">
-                            </div>
-                        </div>
-                    </td>`;
-                } else {
-                    table += `<td style="${cellStyle}">${currentDay++}</td>`;
-                }
-            } else {
-                table += `<td></td>`;
+    table += `<tr>`;
+    for (let j = 0; j < 7; j++) {
+        if (i == 0 && j < firstDay.getDay()) {
+            table += `<td></td>`;
+        } else if (currentDay <= totalDays) {
+            let cellStyle = '';
+            if (j == 0) {
+                cellStyle = 'color: red;';
+            } else if (j == 6) {
+                cellStyle = 'color: blue;';
             }
+
+            const currentDate = `${year}-${(month + 1).toString().padStart(2, '0')}-${currentDay.toString().padStart(2, '0')}`;
+            const matchingComments = Array.isArray(userComments)
+                ? userComments.filter(comment => comment.write_time === currentDate)
+                : [];
+
+            table += `<td style="${cellStyle}">`;
+
+            if(matchingComments.length > 0) {
+                const commentPosterPath = matchingComments[0].poster_path;
+
+                table += `<div class="reviewedMovie">
+                    <div class="poster">
+                        <img src="${commentPosterPath}" alt="movie">
+                    </div>
+                </div>`;
+            } else {
+                table += `${currentDay}`;
+            }
+            table += `</td>`;
+            currentDay++;
+        } else {
+            table += `<td></td>`;
         }
-        table += `</tr>`;
     }
+    table += `</tr>`;
+}
     table += `</table>`;
     document.getElementById('calendar').innerHTML = table;
 }

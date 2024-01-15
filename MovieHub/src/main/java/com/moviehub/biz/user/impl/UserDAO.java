@@ -1,10 +1,13 @@
 package com.moviehub.biz.user.impl;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.moviehub.biz.user.LoginUserVO;
+import com.moviehub.biz.user.UserCommentVO;
 import com.moviehub.biz.user.UserDetailVO;
 import com.moviehub.biz.user.UserVO;
 
@@ -13,6 +16,15 @@ public class UserDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 
+	public List<UserCommentVO> getUserCommentList(UserCommentVO userComment) {
+		return sqlSessionTemplate.selectList("user.getUserComment", userComment);
+	}
+	public LoginUserVO getUserData(LoginUserVO user) {
+		return sqlSessionTemplate.selectOne("user.getUserData", user);
+	}
+	public List<String> getAvgRating(LoginUserVO user) {
+		return sqlSessionTemplate.selectList("user.getAvgRating", user);
+	}
 	public void registerUser(UserVO user, UserDetailVO detail) {
 		sqlSessionTemplate.insert("user.registerUser", user);
 		sqlSessionTemplate.insert("user.detailInsert", detail);

@@ -10,6 +10,8 @@ public class LoginUserVO {
 	private String profile_img;
 	private String profile_msg;
 	private MultipartFile file;
+	private int rating_count;
+	private int comment_count;
 	
 	public String getId() {
 		return id;
@@ -53,5 +55,16 @@ public class LoginUserVO {
 	public void setFile(MultipartFile file) {
 		this.file = file;
 	}
-	
+	public int getRating_count() {
+		return rating_count;
+	}
+	public void setRating_count(int rating_count) {
+		this.rating_count = rating_count;
+	}
+	public int getComment_count() {
+		return comment_count;
+	}
+	public void setComment_count(int comment_count) {
+		this.comment_count = comment_count;
+	}
 }

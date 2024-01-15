@@ -30,6 +30,7 @@
     align-items: center;
 }
 .my_profile_img > img{
+	border-radius: 50%;
     width: 100px;
     height: 100px;
 }
@@ -44,6 +45,9 @@
 .profile > div {
     color: white;
 }
+.nickname{
+	font-size: 1.2rem;
+}
 #btn {
     border: none;
     width: 120px;
@@ -56,7 +60,7 @@
 }
 .middle {
     display: flex;
-    margin: 100px 0;
+    margin: 80px 0;
     margin-bottom: 10px;
     justify-content: space-around;
     border-top: 1px solid rgb(192, 192, 192);
@@ -152,6 +156,9 @@ table {
     margin-right: 10px;
     margin-left: 6px;
     padding: 10px 0;
+}
+tbody > tr:not(:first-child) {
+	height: 100px;
 }
 th,
 td {
