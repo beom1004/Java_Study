@@ -33,6 +33,36 @@ public class TestAPI {
 		final int URL_SIZE = apiURL_list.size();
 		List<String> rs = new ArrayList<String>();
 		
+		// countries
+		String countryURL = "https://api.themoviedb.org/3/configuration/countries?api_key="+API_KEY+"&language=ko-KR";
+		try {
+			URI uri = new URI(countryURL);
+			URL url = uri.toURL();
+			BufferedReader bf = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
+			String result = bf.readLine();
+			List<String> isoNameList = new ArrayList<String>();
+			List<String> nativeNameList = new ArrayList<String>();
+			
+			JSONArray jsonArray = new JSONArray(result);
+			for(int i=0; i<jsonArray.length(); i++) {
+				JSONObject jsonObejct = jsonArray.getJSONObject(i);
+				try {
+					String isoItem = jsonObejct.getString("iso_3166_1");
+					isoNameList.add(isoItem);
+					String nativeNameItem = jsonObejct.getString("native_name");
+					nativeNameList.add(nativeNameItem);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			System.out.println(isoNameList);
+			System.out.println(nativeNameList);
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 		for(int i=0; i<URL_SIZE; i++) {
 			try {
 				URI uri = new URI(apiURL_list.get(i));
@@ -65,6 +95,8 @@ public class TestAPI {
 				e.printStackTrace();
 			}
 		}
+		
+		
 		final String prefix_url = "https://image.tmdb.org/t/p/original";
 		JSONObject detailObject = null;
 		
@@ -74,31 +106,9 @@ public class TestAPI {
 				URI detailURI = new URI(detailLists.get(j));
 				URL detailURL = detailURI.toURL();
 				BufferedReader br = new BufferedReader(new InputStreamReader(detailURL.openStream(), "UTF-8"));
-				String brs = br.readLine();
+				String str = br.readLine();
+				detailObject = new JSONObject(str);
 				
-				detailObject = new JSONObject(brs);
-				movie.setMovie_id(detailObject.getInt("id"));
-				movie.setTitle(detailObject.getString("title"));
-				movie.setBackdrop_path(prefix_url+detailObject.getString("backdrop_path"));
-				movie.setOriginal_title(detailObject.getString("original_title"));
-				movie.setRelease_year(Integer.parseInt(detailObject.getString("release_date").substring(0, 4)));
-				movie.setOriginal_language(detailObject.getString("original_language"));
-				movie.setPoster_path(prefix_url+detailObject.getString("poster_path"));
-				movie.setVote_count(detailObject.getInt("vote_count"));
-				movie.setTagline(detailObject.getString("tagline"));
-				movie.setOverview(detailObject.getString("overview"));
-				movie.setPopularity(detailObject.getDouble("popularity"));
-				movie.setGroupNum((j / 20) + 1);
-				
-				int runtime = detailObject.getInt("runtime");
-				int runtime_hour = runtime / 60;
-				int runtime_minute = runtime % 60;
-				
-				if(runtime_minute != 0) {
-					movie.setRuntime(runtime_hour+"시간 "+runtime_minute+"분");
-				}else {
-					movie.setRuntime(runtime_hour+"시간");
-				}
 				double num = detailObject.getDouble("vote_average") / 2;
 				movie.setVote_average(Math.floor(num * 10) / 10);
 				
@@ -124,7 +134,6 @@ public class TestAPI {
 					detailVO.setGenre_id(genreObject.getInt("id"));
 					detailVO.setGenre_name(String.valueOf(genreObject.get("name")));
 				}
-				System.out.println(genre_list.toString());
 				
 			}catch(Exception e) {
 				e.printStackTrace();
@@ -132,4 +141,5 @@ public class TestAPI {
 			
 		}
 	}
+
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.moviehub.biz.comment.CommentVO;
 import com.moviehub.biz.comment.CurCommentVO;
 import com.moviehub.biz.comment.impl.CommentService;
+import com.moviehub.biz.movie.MovieCountryVO;
 import com.moviehub.biz.movie.MovieVO;
 import com.moviehub.biz.movie.impl.MovieService;
 import com.moviehub.biz.rating.RatingVO;
@@ -42,7 +43,7 @@ public class MovieController {
 		return movieService.getSearchMovieTitle(searchKeyword);
 	}
 	@RequestMapping("/index.do")
-	public String getMovieList(Model model) {
+	public String getMovieList(Model model, MovieCountryVO country) {
 		model.addAttribute("boxofficeList", movieService.getMovieList("boxoffice"));
 	    model.addAttribute("netflixList", movieService.getMovieList("netflix"));
 	    model.addAttribute("watchaList", movieService.getMovieList("watcha"));

@@ -17,4 +17,3 @@ $('input[name=email]').on('keyup', function(){
 		}
 	});
 });
-

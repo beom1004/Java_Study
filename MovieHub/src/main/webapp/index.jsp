@@ -46,9 +46,10 @@
                     <div class="item_title">박스오피스(Now Playing)</div>
                     <ul class="contents">
                         <div class="lists">
-                        	<c:forEach var="movie" items="${boxofficeList }">
+                        	<c:forEach var="movie" items="${boxofficeList }" varStatus="loop">
                         		<li class="content">
 	                                <a class="image" href="content.do?movie_id=${movie.movie_id }">
+	                                	<div class="movieRating">${loop.index + 1 }</div>
 	                                    <div class="poster">
 	                                        <img src="${movie.poster_path }" alt="poster">
 	                                    </div>
@@ -78,9 +79,10 @@
                     <div class="item_title">Netflix top10</div>
                     <ul class="contents">
                         <div class="lists">
-                            <c:forEach var="movie" items="${netflixList }">
+                            <c:forEach var="movie" items="${netflixList }" varStatus="loop">
                         		<li class="content">
 	                                <a class="image" href="content.do?movie_id=${movie.movie_id }">
+	                                	<div class="movieRating">${loop.index + 1 }</div>
 	                                    <div class="poster">
 	                                        <img src="${movie.poster_path }" alt="poster">
 	                                    </div>
@@ -110,9 +112,10 @@
                     <div class="item_title">Watcha top10</div>
                     <ul class="contents">
                         <div class="lists">
-                            <c:forEach var="movie" items="${watchaList }">
+                            <c:forEach var="movie" items="${watchaList }" varStatus="loop">
                         		<li class="content">
 	                                <a class="image" href="content.do?movie_id=${movie.movie_id }">
+	                                	<div class="movieRating">${loop.index + 1 }</div>
 	                                    <div class="poster">
 	                                        <img src="${movie.poster_path }" alt="poster">
 	                                    </div>
@@ -144,7 +147,7 @@
     <jsp:include page="footer.jsp"/>
     <script src="static/js/header.js"></script>
     <script src="static/js/modal.js"></script>
-    <script src="static/js/jQuery.js"></script>
+    <script src="static/js/header_jQuery.js"></script>
     <script src="static/js/index.js"></script>
     <script src="static/js/indexSearch.js"></script>
 </body>

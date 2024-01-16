@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -12,6 +13,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.moviehub.biz.movie.MovieCountryVO;
 import com.moviehub.biz.movie.MovieGenreVO;
 import com.moviehub.biz.movie.MovieVO;
 
@@ -34,7 +36,6 @@ public class MovieServiceImpl implements MovieService {
 	public List<MovieVO> getMovieList(String type){
 		final String API_KEY = "729201bdf1f62b5e99c9816a70e5d445";
 		List<String> apiURL_list = new ArrayList<String>();
-		
 		List<Integer> movieIdLists = null;
 		
 		apiURL_list.add("https://api.themoviedb.org/3/movie/now_playing?api_key="
@@ -79,6 +80,34 @@ public class MovieServiceImpl implements MovieService {
 			returnList = getWatcha(movieDAO.getMovieList(), allMovieIdList);
 		}
 		return returnList;
+	}
+	public void getCountryList(String API_KEY){
+		String countryURL = "https://api.themoviedb.org/3/configuration/countries?api_key="+API_KEY+"&language=ko-KR";
+		try {
+			URI uri = new URI(countryURL);
+			URL url = uri.toURL();
+			BufferedReader bf = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
+			String result = bf.readLine();
+			
+			JSONArray jsonArray = new JSONArray(result);
+			for(int i=0; i<jsonArray.length(); i++) {
+				JSONObject jsonObejct = jsonArray.getJSONObject(i);
+				try {
+					String isoItem = jsonObejct.getString("iso_3166_1");
+					MovieCountryVO country = new MovieCountryVO();
+					country.setIso_3166_1(isoItem);
+					String nativeNameItem = jsonObejct.getString("native_name");
+					country.setNative_name(nativeNameItem);
+					movieDAO.insertCountry(country);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	public List<MovieVO> getNetflix(List<MovieVO> movieList, List<List<Integer>> allMovieIdList){
 		List<MovieVO> netflixList = new ArrayList<MovieVO>();
@@ -205,8 +234,7 @@ public class MovieServiceImpl implements MovieService {
 				}else {
 					movie.setRuntime(runtime_hour+"시간");
 				}
-				
-				
+
 				double num = detailObject.getDouble("vote_average") / 2;
 				movie.setVote_average(Math.floor(num * 10) / 10);
 				

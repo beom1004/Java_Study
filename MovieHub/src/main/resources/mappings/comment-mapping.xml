@@ -3,6 +3,9 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="comment">
+	<update id="updateReplyCnt">
+		UPDATE COMMENT SET reply_cnt=reply_cnt+1 WHERE COMMENT_ID=#{comment_id}
+	</update>
 	<delete id="deleteComment">
 		<![CDATA[
 			DELETE FROM COMMENT WHERE USER_ID=#{user_id} AND MOVIE_ID=#{movie_id}
@@ -31,25 +34,26 @@
 	</select>
 	<select id="getCommentList" resultType="curComment">
 		<![CDATA[
-	        SELECT b.profile_img, a.nickname, c.comment_id, c.comment, MAX(c.write_time) AS write_time, MAX(c.modify_time) AS modify_time, 
-		        MAX(c.views) AS views, MAX(c.user_id) AS user_id, MAX(c.movie_id) AS movie_id, COALESCE(MAX(d.rating), 0.0) AS rating
+			SELECT b.profile_img, a.nickname, c.comment_id, c.comment, c.reply_cnt,
+			       MAX(c.write_time) AS write_time, MAX(c.modify_time) AS modify_time,
+			       MAX(c.views) AS views, MAX(c.user_id) AS user_id, MAX(c.movie_id) AS movie_id,
+			       COALESCE(MAX(r.rating), 0.0) AS rating
 			FROM user a
 			JOIN user_detail b ON a.id = b.user_id
-			JOIN comment c ON c.user_id = a.id
-			LEFT JOIN rating d ON d.user_id = a.id
-			WHERE c.movie_id = #{movie_id}
-			GROUP BY b.profile_img, a.nickname, c.comment_id, c.comment
+			JOIN comment c ON c.user_id = a.id AND c.movie_id = #{movie_id}
+			LEFT JOIN rating r ON r.user_id = a.id AND r.movie_id = #{movie_id}
+			GROUP BY b.profile_img, a.nickname, c.comment_id, c.comment, c.reply_cnt
 			ORDER BY MAX(c.reply_cnt) DESC;
 	    ]]>
 	</select>
 	<select id="getCurComment" resultType="curComment">
 		<![CDATA[
 	        SELECT b.profile_img, a.nickname, c.comment_id, c.comment, c.write_time, c.modify_time,
-	        c.views, c.reply_cnt, c.user_id, c.movie_id, COALESCE(d.rating, 0.0) AS rating
+	        c.views, c.reply_cnt, c.user_id, c.movie_id, COALESCE(r.rating, 0.0) AS rating
 			FROM user a
 			JOIN user_detail b ON a.id = b.user_id
 			JOIN comment c ON c.user_id = a.id
-			LEFT JOIN rating d ON d.user_id = a.id
+			LEFT JOIN rating r ON r.user_id = a.id and r.movie_id=c.movie_id
 			where c.comment_id=#{comment_id} and c.movie_id=#{movie_id};
 	    ]]>
 	</select>

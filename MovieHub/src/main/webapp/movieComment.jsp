@@ -84,7 +84,9 @@
                                     </div>
                                 </div>
                                 <div class="poster_path">
-                                    <img src="${movie.poster_path }" alt="poster">
+                                	<a class="image" href="content.do?movie_id=${movie.movie_id }">
+                                    	<img src="${movie.poster_path }" alt="poster">
+                                    </a>
                                 </div>
                             </div>
                             <div class="review_content">
@@ -141,7 +143,7 @@
                     </div>
                     <div>
                         <c:if test="${curReply.write_time != null }">
-                            <div class="write_time"><fmt:formatDate value="${curReply.write_time}" pattern="yyyy년 MM월 dd일" /></div>
+                            <div class="write_time"><fmt:formatDate value="${curReply.write_time}" pattern="yyyy년 MM월 dd일 hh시 mm분" /></div>
                         </c:if>
                     </div>
                 </c:if>
@@ -163,7 +165,7 @@
 	                                	<div id="viewReply" class="viewReply">
 	                                		답글 보기
 	                                	</div>
-	                                	<div><fmt:formatDate value="${reply.write_time}" pattern="yyyy년 MM월 dd일" /></div>
+	                                	<div><fmt:formatDate value="${reply.write_time}" pattern="yyyy년 MM월 dd일 hh시 mm분" /></div>
 	                                </div>
 	                            </div>
 	                        </div>
@@ -194,7 +196,7 @@
 								            <div class="user_nickname">${reReply.nickname}</div>
 								            <div class="re_reply_content">
 								                <div>${reReply.content}</div>
-								                <div class="write_time"><fmt:formatDate value="${reReply.write_time}" pattern="yyyy년 MM월 dd일" /></div>
+								                <div class="write_time"><fmt:formatDate value="${reReply.write_time}" pattern="yyyy년 MM월 dd일 hh시 mm분" /></div>
 								            </div>
 								            <div id="reReplyRemove">삭제하기</div>
 								        </div>
@@ -211,7 +213,7 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="static/js/header.js"></script>
     <script src="static/js/modal.js"></script>
-    <script src="static/js/jQuery.js"></script>
+    <script src="static/js/header_jQuery.js"></script>
     <script src="static/js/movieComment.js"></script>
     <script src="static/js/reReply.js"></script>
 </body>

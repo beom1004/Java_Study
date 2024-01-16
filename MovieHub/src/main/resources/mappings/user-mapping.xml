@@ -5,10 +5,11 @@
 <mapper namespace="user">
 	<select id="getUserComment" resultType="userComment">
 		<![CDATA[
-			select a.user_id, a.movie_id, b.title, b.poster_path, a.write_time
-				from comment a
-				join movie b on a.movie_id=b.movie_id
-				where a.user_id=#{user_id};
+			select a.user_id, a.movie_id, b.title, b.poster_path, 
+			date_format(a.write_time, '%Y-%m-%d') as write_time
+			from comment a
+			join movie b on a.movie_id=b.movie_id
+			where a.user_id=#{user_id};
 		]]>
 	</select>
 	<select id="getUserData" resultType="loginUser">

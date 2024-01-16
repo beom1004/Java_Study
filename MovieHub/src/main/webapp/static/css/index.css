@@ -154,6 +154,19 @@ section {
 .content:hover {
     cursor: pointer;
 }
+.image{
+	position: relative;
+}
+.movieRating{
+    position: absolute;
+	left: 5px;
+    top: 5px;
+    width: 20px;
+    background-color: rgb(0,0,0, 0.7);
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+}
 .poster {
     border-radius: 7px;
     background-color: #ccc;

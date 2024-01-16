@@ -3,6 +3,11 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="movieDAO">
+	<select id="getCountryList" resultType="country">
+		<![CDATA[
+			SELECT * FROM COUNTRIES
+		]]>	
+	</select>
 	<insert id="insertComment">
 		<![CDATA[
 			INSERT INTO COMMENT(movie_id) VALUES(#{movie_id})
@@ -22,6 +27,12 @@
 		<![CDATA[
 			INSERT IGNORE INTO GENRE(genre_id, genre_name)
 			VALUES(#{genre_id}, #{genre_name})
+		]]>
+	</insert>
+	<insert id="insertCountry">
+		<![CDATA[
+			INSERT IGNORE INTO COUNTRIES(ISO_3166_1, NATIVE_NAME)
+			VALUES(#{iso_3166_1}, #{native_name})
 		]]>
 	</insert>
 	<select id="getMovie" resultType="movie">

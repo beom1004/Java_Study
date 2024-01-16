@@ -33,7 +33,7 @@
         </div>
         <div class="profile_menu profile_hide">
             <div class="menu_top">
-                <div class="nickname">${user.nickname }</div>
+                <div class="userNickname">${user.nickname }</div>
                 <div class="profile_link"><a href="myProfile.do">프로필 보기</a></div>
             </div>
             <div class="menu_bottom">

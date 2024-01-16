@@ -1,12 +1,10 @@
 package com.moviehub.biz.user;
 
-import java.util.Date;
-
 public class UserCommentVO {
 	private String user_id;
 	private int movie_id;
 	private String poster_path;
-	private Date write_time;
+	private String write_time;
 	
 	public String getUser_id() {
 		return user_id;
@@ -26,10 +24,10 @@ public class UserCommentVO {
 	public void setPoster_path(String poster_path) {
 		this.poster_path = poster_path;
 	}
-	public Date getWrite_time() {
+	public String getWrite_time() {
 		return write_time;
 	}
-	public void setWrite_time(Date write_time) {
+	public void setWrite_time(String write_time) {
 		this.write_time = write_time;
 	}
 }

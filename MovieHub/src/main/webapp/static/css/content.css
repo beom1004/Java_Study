@@ -301,9 +301,9 @@ section {
 }
 .review_list {
     display: flex;
-    justify-content: center;
     overflow: hidden;
     width: 100%;
+    justify-content: center;
 }
 .review_list > .review_item {
     display: flex;
@@ -317,7 +317,7 @@ section {
     padding: 10px;
     margin: 10px;
 }
-.review_item:hover {
+.review_content:hover {
     cursor: pointer;
 }
 .review_item > .review_header {
@@ -359,6 +359,8 @@ section {
     padding: 20px;
     height: 100%;
     width: 100%;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
 }
 .review_item > .review {
     display: flex;

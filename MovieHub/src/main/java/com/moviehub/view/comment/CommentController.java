@@ -1,6 +1,5 @@
 package com.moviehub.view.comment;
 
-import java.net.http.HttpRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -55,12 +54,8 @@ public class CommentController {
 		user = (LoginUserVO) session.getAttribute("user");
 	    comment.setUser_id(user.getId());
 	    commentService.insertComment(comment);
-	    // 코멘트 입력 후 뒤로 가기
-	    String referer = request.getHeader("Referer");
-	    if (referer == null || referer.isEmpty()) {
-	        return "redirect:/content.do";
-	    }
-	    return "redirect:" + referer;
+
+	    return "content.do";
 	}
 	@RequestMapping(value="/review.do", method = RequestMethod.GET)
 	public String movieReview(Model model, MovieVO movie, CurCommentVO curComment) {

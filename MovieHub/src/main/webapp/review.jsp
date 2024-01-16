@@ -23,23 +23,22 @@
         <div class="wrap">
             <div class="wrap_inner">
                 <aside class="left_side">
-                    <div id="movieTitle"><span>|</span> 서울의 봄</div>
+                    <div id="movieTitle"><span>|</span> ${movie.title }</div>
                     <div class="askBox">
                         <i class="bi bi-search"></i>
-                        <input type="text" name="search_input" class="search_input" placeholder="검색할 내용을 입력하세요">
+                        <input type="text" name="search_input" class="search_input" placeholder="제목, 닉네임, 내용으로 검색하세요">
                         <input type="submit" class="search_botton" value="검색">
                     </div>
                     <div class="order_div">
                         <div class="orderName">
                             <div>정렬</div>
                         </div>
-                        <!-- option에 name값 주고 체크된 정렬 기준으로 5개씩 페이징 -->
                         <div class="selectBox">
-                            <select class="orderBy">
-                                <option>조회수 순</option>
-                                <option>댓글 순</option>
-                                <option>최신 순</option>
-                            </select>
+                            <ul class="optionList">
+                                <li class="optionItem">댓글 순</li>
+                                <li class="optionItem">최신 순</li>
+                                <li class="optionItem">조회 순</li>
+                            </ul>
                         </div>
                     </div>
                 </aside>
@@ -116,7 +115,7 @@
 	<jsp:include page="footer.jsp"/>
     <script src="static/js/header.js"></script>
     <script src="static/js/modal.js"></script>
-    <script src="static/js/jQuery.js"></script>
+    <script src="static/js/header_jQuery.js"></script>
     <script src="static/js/content.js"></script>
 </body>
 </html>

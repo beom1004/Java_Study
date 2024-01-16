@@ -55,7 +55,7 @@ function prevMonth() {
     } else {
         month--;
     }
-    renderCalendar();
+    renderCalendar(userComments);
     updateMonthList();
 }
 function nextMonth() {
@@ -65,7 +65,7 @@ function nextMonth() {
     } else {
         month++;
     }
-    renderCalendar();
+    renderCalendar(userComments);
     updateMonthList();
 }
 function goToday() {
@@ -74,7 +74,7 @@ function goToday() {
     month = now.getMonth();
     today = now.getDate();
 
-    renderCalendar();
+    renderCalendar(userComments);
     updateMonthList();
 }
 document.querySelector('.today').addEventListener('click', function () {
@@ -161,7 +161,7 @@ function renderCalendar(userComments) {
                 const commentPosterPath = matchingComments[0].poster_path;
 
                 table += `<div class="reviewedMovie">
-                    <div class="poster">
+                    <div class="commentPoster">
                         <img src="${commentPosterPath}" alt="movie">
                     </div>
                 </div>`;

@@ -185,35 +185,37 @@
                     		아직 등록된 코멘트가 없습니다.
                     	</c:if>
                     	<c:if test="${commentCnt != 0 }">
-	                        <c:forEach var="commentList" items="${commentLists }">
-		                        <div class="review_item">
-		                            <div class="review_header">
-		                                <div class="pic_div">
-		                                    <div id="user_pic">
-		                                        <img src="static/images/profile/${commentList.profile_img }" alt="pic">
-		                                    </div>
-		                                    <div id="nickname">${commentList.nickname }</div>
-		                                </div>
-		                                <div class="star_div">
-		                                    <div id="user_star">
-		                                        <span>★</span>
-		                                        <span>${commentList.rating }</span>
-		                                    </div>
-		                                </div>
-		                            </div>
-		                            <div class="review_content">
-		                                <div id="movie_comment"><a href="movieComment.do?comment_id=${commentList.comment_id }&movie_id=${movie.movie_id }">${commentList.comment }</a></div>
-		                            </div>
-		                            <div class="review">
-		                                <div>
-		                                	<i class="bi bi-chat-fill"></i>
-		                                	<span>${commentList.reply_cnt }</span>
-		                                </div>
-		                            </div>
-		                            <div class="reply_btn">
-		                            	댓글 달기
-		                            </div>
-		                        </div>
+	                        <c:forEach var="commentList" items="${commentLists }" varStatus="loop">
+	                        	<c:if test="${loop.index < 4}">
+			                        <div class="review_item">
+			                            <div class="review_header">
+			                                <div class="pic_div">
+			                                    <div id="user_pic">
+			                                        <img src="static/images/profile/${commentList.profile_img }" alt="pic">
+			                                    </div>
+			                                    <div id="nickname">${commentList.nickname }</div>
+			                                </div>
+			                                <div class="star_div">
+			                                    <div id="user_star">
+			                                        <span>★</span>
+			                                        <span>${commentList.rating }</span>
+			                                    </div>
+			                                </div>
+			                            </div>
+			                            <div class="review_content">
+			                                <div id="movie_comment"><a href="movieComment.do?comment_id=${commentList.comment_id }&movie_id=${movie.movie_id }">${commentList.comment }</a></div>
+			                            </div>
+			                            <div class="review">
+			                                <div>
+			                                	<i class="bi bi-chat-fill"></i>
+			                                	<span>${commentList.reply_cnt }</span>
+			                                </div>
+			                            </div>
+			                            <div class="reply_btn">
+			                            	댓글 달기
+			                            </div>
+			                        </div>
+			                    </c:if>
 	                        </c:forEach>
 	                    </c:if>
                     </div>	
@@ -226,7 +228,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
     <script src="static/js/header.js"></script>
     <script src="static/js/modal.js"></script>
-    <script src="static/js/jQuery.js"></script>
+    <script src="static/js/header_jQuery.js"></script>
     <script src="static/js/content.js"></script>
     <script src="static/js/rateYo.js"></script>
 </body>
