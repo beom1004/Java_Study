@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,7 +43,7 @@
                             <div class="cnt_tag">리뷰</div>
                         </div>
                         <div class="rate_avg">
-                            <div class="count">${avgRating }</div>
+                            <div class="count"><fmt:formatNumber value="${avgRating}" pattern="#,##0.0" /></div>
                             <div class="cnt_tag">평균 별점</div>
                         </div>
                     </div>

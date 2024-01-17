@@ -53,7 +53,7 @@
                     <textarea name="content" id="text_2">${curReply.content }</textarea>
                     <div>
                         <div class="textCnt">
-                            <span class="charCount_2">0</span>/10000
+                            <span class="charCount_2">${curReplyContentCnt }</span>/10000
                         </div>
                         <input type="submit" class="btn" class="replySave" value="수정">
                     </div>
@@ -119,8 +119,8 @@
                     </li>
                 </ul>
                 <c:if test="${user != null and user.id == curReply.user_id }">
-                	<div>내가 남긴 댓글</div>
                     <div class="reply_wrap" style="border: 1px solid #dedede;">
+                		<div>내가 남긴 댓글</div>
                     	<div>
 	                        <div class="img_wrap">
 	                            <div class="profile_img">
@@ -158,7 +158,7 @@
 	                            </div>
 	                            <div class="reply_wrap_right">
 	                                <div class="user_nickname">${reply.nickname }</div>
-	                                <div class="reply_content">
+	                                <div class="my_reply_content">
 	                                    ${reply.content }
 	                                </div>
 	                                <div class="reply_writeTime">

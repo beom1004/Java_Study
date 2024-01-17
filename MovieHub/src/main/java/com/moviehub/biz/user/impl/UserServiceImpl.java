@@ -31,15 +31,21 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Double getAvgRating(LoginUserVO user) {
 		List<String> list = userDAO.getAvgRating(user);
-		System.out.println(list); // [3.0]이 ... 반환되네?
-		Double db = 0.0;
-		for(int i=0; i<list.size(); i++) {
-			Double temp = Double.parseDouble(list.get(i));
-			db += temp;
+		System.out.println(list);
+		
+		if(list.isEmpty()) {
+			return 0.0;
 		}
-		// 별점을 전부 더한 db를 총 rating 개수로 나누고 소수점 첫째 자리까지만
-		db = Math.floor(db * 10) / (10 * list.size());
-		return db;
+		double totalRating = 0.0;
+	    for (String rating : list) {
+	        totalRating += Double.parseDouble(rating);
+	    }
+	    System.out.println("tot rating : "+totalRating);
+
+	    // 총 rating 개수로 나누고 소수점 첫째 자리까지 반올림
+	    double averageRating = Math.round((totalRating / list.size()) * 10.0) / 10.0;
+	    System.out.println("avg rating : "+averageRating);
+	    return averageRating;
 	}
 
 	@Override

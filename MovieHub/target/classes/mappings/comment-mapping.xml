@@ -22,11 +22,6 @@
 			VALUES(#{comment}, #{user_id}, #{movie_id})
 		]]>
 	</insert>
-	<update id="updateLike">
-		<![CDATA[
-			UPDATE COMMENT SET LIKE_CNT=#{like_cnt+1} WHERE USER_ID=#{user_id}
-		]]>
-	</update>
 	<select id="getComment" resultType="comment">
 		<![CDATA[
 	        SELECT * FROM COMMENT WHERE MOVIE_ID=#{movie_id} AND USER_ID=#{user_id}
@@ -43,7 +38,7 @@
 			JOIN comment c ON c.user_id = a.id AND c.movie_id = #{movie_id}
 			LEFT JOIN rating r ON r.user_id = a.id AND r.movie_id = #{movie_id}
 			GROUP BY b.profile_img, a.nickname, c.comment_id, c.comment, c.reply_cnt
-			ORDER BY MAX(c.reply_cnt) DESC;
+			ORDER BY MAX(c.reply_cnt) DESC, c.WRITE_TIME;
 	    ]]>
 	</select>
 	<select id="getCurComment" resultType="curComment">

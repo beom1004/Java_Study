@@ -3,11 +3,6 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="movieDAO">
-	<select id="getCountryList" resultType="country">
-		<![CDATA[
-			SELECT * FROM COUNTRIES
-		]]>	
-	</select>
 	<insert id="insertComment">
 		<![CDATA[
 			INSERT INTO COMMENT(movie_id) VALUES(#{movie_id})
@@ -15,39 +10,33 @@
 	</insert>
 	<insert id="insertMovie">
 		<![CDATA[
-			INSERT IGNORE INTO MOVIE(movie_id, title, backdrop_path, genre_ids, original_title,
-			release_year, production_countries, original_language, runtime, poster_path, vote_average, vote_count,
+			INSERT IGNORE INTO MOVIE_DUP(movie_id, title, backdrop_path, genre_ids, original_title,
+			release_year, original_language, runtime, poster_path, vote_average, vote_count,
 			tagline, overview, popularity, groupNum)
 			VALUES(#{movie_id}, #{title}, #{backdrop_path}, #{genre_ids}, #{original_title},
-			#{release_year}, #{production_countries}, #{original_language}, #{runtime}, #{poster_path}, #{vote_average}, 
+			#{release_year}, #{original_language}, #{runtime}, #{poster_path}, #{vote_average}, 
 			#{vote_count}, #{tagline}, #{overview}, #{popularity}, #{groupNum})
 		]]>
 	</insert>
+	<select id="getMovieList" resultType="movie">
+		<![CDATA[
+			SELECT * FROM MOVIE_DUP ORDER BY GROUPNUM, POPULARITY DESC
+		]]>	
+	</select>
 	<insert id="insertGenre">
 		<![CDATA[
 			INSERT IGNORE INTO GENRE(genre_id, genre_name)
 			VALUES(#{genre_id}, #{genre_name})
 		]]>
 	</insert>
-	<insert id="insertCountry">
-		<![CDATA[
-			INSERT IGNORE INTO COUNTRIES(ISO_3166_1, NATIVE_NAME)
-			VALUES(#{iso_3166_1}, #{native_name})
-		]]>
-	</insert>
 	<select id="getMovie" resultType="movie">
 		<![CDATA[
-			SELECT * FROM MOVIE WHERE movie_id=#{movie_id}
-		]]>	
-	</select>
-	<select id="getMovieList" resultType="movie">
-		<![CDATA[
-			SELECT * FROM MOVIE ORDER BY GROUPNUM, POPULARITY DESC
+			SELECT * FROM MOVIE_DUP WHERE movie_id=#{movie_id}
 		]]>	
 	</select>
 	<select id="getSearchMovieTitle" resultType="movie">
 		<![CDATA[
-			SELECT * FROM MOVIE WHERE TITLE LIKE CONCAT('%', #{searchKeyword}, '%') ORDER BY POPULARITY DESC
+			SELECT * FROM MOVIE_DUP WHERE TITLE LIKE CONCAT('%', #{searchKeyword}, '%') ORDER BY POPULARITY DESC
 		]]>	
 	</select>
 </mapper>

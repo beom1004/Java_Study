@@ -5,7 +5,6 @@ import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -13,7 +12,6 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.moviehub.biz.movie.MovieCountryVO;
 import com.moviehub.biz.movie.MovieGenreVO;
 import com.moviehub.biz.movie.MovieVO;
 
@@ -80,34 +78,6 @@ public class MovieServiceImpl implements MovieService {
 			returnList = getWatcha(movieDAO.getMovieList(), allMovieIdList);
 		}
 		return returnList;
-	}
-	public void getCountryList(String API_KEY){
-		String countryURL = "https://api.themoviedb.org/3/configuration/countries?api_key="+API_KEY+"&language=ko-KR";
-		try {
-			URI uri = new URI(countryURL);
-			URL url = uri.toURL();
-			BufferedReader bf = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
-			String result = bf.readLine();
-			
-			JSONArray jsonArray = new JSONArray(result);
-			for(int i=0; i<jsonArray.length(); i++) {
-				JSONObject jsonObejct = jsonArray.getJSONObject(i);
-				try {
-					String isoItem = jsonObejct.getString("iso_3166_1");
-					MovieCountryVO country = new MovieCountryVO();
-					country.setIso_3166_1(isoItem);
-					String nativeNameItem = jsonObejct.getString("native_name");
-					country.setNative_name(nativeNameItem);
-					movieDAO.insertCountry(country);
-					
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
 	}
 	public List<MovieVO> getNetflix(List<MovieVO> movieList, List<List<Integer>> allMovieIdList){
 		List<MovieVO> netflixList = new ArrayList<MovieVO>();
@@ -197,6 +167,7 @@ public class MovieServiceImpl implements MovieService {
 			}
 		}
 		getDetailMovie(rs, detailLists);
+		
 	}
 	public void getDetailMovie(List<String> genreId, List<String> detailLists) {
 		final String prefix_url = "https://image.tmdb.org/t/p/original";
@@ -237,21 +208,9 @@ public class MovieServiceImpl implements MovieService {
 
 				double num = detailObject.getDouble("vote_average") / 2;
 				movie.setVote_average(Math.floor(num * 10) / 10);
-				
-				JSONArray countryJSON = (JSONArray) detailObject.get("production_countries");
-				String country = "";
-
-				for(int k=0; k < countryJSON.length(); k++) {
-					JSONObject countryObject = (JSONObject) countryJSON.get(k);
-					country += countryObject.getString("iso_3166_1");
-					
-					if (k < countryJSON.length() - 1) {
-				        country += ", ";
-				    }
-				}
-				movie.setProduction_countries(country.trim());
 				movieDAO.insertMovie(movie);
-				
+
+				// 장르
 				JSONArray genre_list = (JSONArray) detailObject.get("genres");
 
 				for(int k=0; k < genre_list.length(); k++) {
@@ -266,8 +225,90 @@ public class MovieServiceImpl implements MovieService {
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-			
 		}
+	}
+	public List<MovieVO> getMovieList(){
+		final String API_KEY = "729201bdf1f62b5e99c9816a70e5d445";
+		List<String> genreIdList = genreIdList(API_KEY);
+		List<String> genreNameList = genreNameList(API_KEY);
+		List<MovieVO> allMovieList = movieDAO.getAllMovie();
+		
+		for(int i=0; i<allMovieList.size(); i++) {
+			MovieVO movie = allMovieList.get(i);
+			String genreIds = movie.getGenre_ids();
+			
+			String[] genreIdCodes = genreIds.split(", ");
+            List<String> genreNames = new ArrayList<>();
+            
+            for (String genreIdCode : genreIdCodes) {
+                int index = genreIdList.indexOf(genreIdCode);
+                if (index != -1 && index < genreNameList.size()) {
+                    String genreName = genreNameList.get(index);
+                    genreNames.add(genreName);
+                }
+            }
+            String matchedGenre = String.join(" · ", genreNames);
+            allMovieList.get(i).setGenre_ids(matchedGenre);
+		}
+		return allMovieList;
+	}
+	public List<String> genreIdList(String API_KEY){
+		String genreURL = "https://api.themoviedb.org/3/genre/movie/list?api_key="+API_KEY+"&language=ko-KR";
+		List<String> genreIdList = new ArrayList<String>();
+		
+		try {
+			URI uri = new URI(genreURL);
+			URL url = uri.toURL();
+			BufferedReader bf = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
+			String result = bf.readLine();
+			
+			JSONObject jsonObject = new JSONObject(result);
+            JSONArray jsonArray = jsonObject.getJSONArray("genres");
+            
+			for(int i=0; i<jsonArray.length(); i++) {
+				JSONObject jsonObejct = jsonArray.getJSONObject(i);
+				try {
+					String genreIdItem = String.valueOf(jsonObejct.getInt("id"));
+					genreIdList.add(genreIdItem);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return genreIdList;
+	}
+	public List<String> genreNameList(String API_KEY){
+		String genreURL = "https://api.themoviedb.org/3/genre/movie/list?api_key="+API_KEY+"&language=ko-KR";
+		List<String> genreNameList = new ArrayList<String>();
+		
+		try {
+			URI uri = new URI(genreURL);
+			URL url = uri.toURL();
+			BufferedReader bf = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
+			String result = bf.readLine();
+			
+			JSONObject jsonObject = new JSONObject(result);
+            JSONArray jsonArray = jsonObject.getJSONArray("genres");
+            
+			for(int i=0; i<jsonArray.length(); i++) {
+				JSONObject jsonObejct = jsonArray.getJSONObject(i);
+				try {
+					String genreNameItem = jsonObejct.getString("name");
+					genreNameList.add(genreNameItem);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return genreNameList;
 	}
 
 }

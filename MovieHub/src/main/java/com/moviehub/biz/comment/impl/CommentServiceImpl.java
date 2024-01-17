@@ -15,11 +15,6 @@ public class CommentServiceImpl implements CommentService {
 	private CommentDAO commentDAO;
 
 	@Override
-	public void updateLike(CurCommentVO curComment) {
-		commentDAO.updateLike(curComment);
-	}
-
-	@Override
 	public void modifyComment(CommentVO comment) {
 		commentDAO.modifyComment(comment);
 	}

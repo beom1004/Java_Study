@@ -8,7 +8,6 @@ public class UserDetailVO {
 	private String profile_id;
 	private String user_id;
 	private String profile_img;
-	private int img_check;
 	private String profile_msg;
 	private Date reg_date;
 	private MultipartFile file;
@@ -30,13 +29,6 @@ public class UserDetailVO {
 	}
 	public void setProfile_img(String profile_img) {
 		this.profile_img = profile_img;
-	}
-	
-	public int getImg_check() {
-		return img_check;
-	}
-	public void setImg_check(int img_check) {
-		this.img_check = img_check;
 	}
 	public MultipartFile getFile() {
 		return file;

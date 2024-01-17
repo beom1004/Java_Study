@@ -26,7 +26,7 @@
                 <div class="search_outer">
                     <div class="search_inner">
                         <div class="search_contents">
-                            <input type="text" id="searchKeyword" placeholder="영화, 유저를 검색해보세요">
+                            <input type="text" id="searchKeyword" placeholder="원하는 영화를 검색해보세요">
                             <button type="button" id="search_btn">Search</button>
                         </div>
                         <div class="search_wrap">
@@ -58,7 +58,7 @@
 	                                    <div class="title">${movie.title }</div>
 	                                    <div class="year">
 	                                        ${movie.release_year }&nbsp;<span class="middle_dot">·</span>&nbsp;
-	                                        <span class="production_countries">${movie.production_countries }</span>
+	                                        <span class="production_countries">${movie.original_language }</span>
 	                                    </div>
 	                                    <div class="vote_average">${movie.vote_count }명&nbsp;<span>★</span>${movie.vote_average }</div>
 	                                </div>
@@ -91,7 +91,7 @@
 	                                    <div class="title">${movie.title }</div>
 	                                    <div class="year">
 	                                        ${movie.release_year }&nbsp;<span class="middle_dot">·</span>&nbsp;
-	                                        <span class="production_countries">${movie.production_countries }</span>
+	                                        <span class="production_countries">${movie.original_language }</span>
 	                                    </div>
 	                                    <div class="vote_average">${movie.vote_count }명&nbsp;<span>★</span>${movie.vote_average }</div>
 	                                </div>
@@ -124,7 +124,7 @@
 	                                    <div class="title">${movie.title }</div>
 	                                    <div class="year">
 	                                        ${movie.release_year }&nbsp;<span class="middle_dot">·</span>&nbsp;
-	                                        <span class="production_countries">${movie.production_countries }</span>
+	                                        <span class="production_countries">${movie.original_language }</span>
 	                                    </div>
 	                                    <div class="vote_average">${movie.vote_count }명&nbsp;<span>★</span>${movie.vote_average }</div>
 	                                </div>

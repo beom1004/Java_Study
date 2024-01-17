@@ -106,7 +106,9 @@
                     	</div>
 	                    <div class="info_middle">
 	                        <div class="profile_img info_img">
-	                            <img src="static/images/profile/${user.profile_img }">
+	                        	<c:if test="${user != null }">
+	                        		<img src="static/images/profile/${user.profile_img }">
+	                        	</c:if>
 	                        </div>
 	                        <div class="info_btns">
 	                            <input type="file" name="file" class="form-control info_btn" accept=".jpg, .gif, .png">

@@ -7,7 +7,7 @@ let userComments = [];
 document.addEventListener('DOMContentLoaded', function() {
 	let xhr = new XMLHttpRequest();
     xhr.open('GET', './getUserComment.do', true);
-    xhr.setRequestHeader('Content-Type', 'application/json'); // 헤더 추가
+    xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             userComments = JSON.parse(xhr.responseText);
@@ -156,12 +156,14 @@ function renderCalendar(userComments) {
                 : [];
 
             table += `<td style="${cellStyle}">`;
+            const commentPosterCnt = matchingComments.length;
 
-            if(matchingComments.length > 0) {
+            if(commentPosterCnt > 0) {
                 const commentPosterPath = matchingComments[0].poster_path;
 
                 table += `<div class="reviewedMovie">
                     <div class="commentPoster">
+                    	<div class="commentPosterCnt">${commentPosterCnt}</div>
                         <img src="${commentPosterPath}" alt="movie">
                     </div>
                 </div>`;

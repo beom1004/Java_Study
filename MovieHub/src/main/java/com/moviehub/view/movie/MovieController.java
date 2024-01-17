@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.moviehub.biz.comment.CommentVO;
 import com.moviehub.biz.comment.CurCommentVO;
 import com.moviehub.biz.comment.impl.CommentService;
-import com.moviehub.biz.movie.MovieCountryVO;
 import com.moviehub.biz.movie.MovieVO;
 import com.moviehub.biz.movie.impl.MovieService;
 import com.moviehub.biz.rating.RatingVO;
@@ -42,8 +41,14 @@ public class MovieController {
 	public List<MovieVO> getSearchMovieTitle(@RequestParam String searchKeyword) {
 		return movieService.getSearchMovieTitle(searchKeyword);
 	}
+	@RequestMapping("/search.do")
+	public String goToSearch(Model model, @RequestParam String searchKeyword) {
+		model.addAttribute("searchKeyword", searchKeyword);
+		model.addAttribute("searchMovieList", movieService.getSearchMovieTitle(searchKeyword));
+		return "search.jsp";
+	}
 	@RequestMapping("/index.do")
-	public String getMovieList(Model model, MovieCountryVO country) {
+	public String getMovieList(Model model) {
 		model.addAttribute("boxofficeList", movieService.getMovieList("boxoffice"));
 	    model.addAttribute("netflixList", movieService.getMovieList("netflix"));
 	    model.addAttribute("watchaList", movieService.getMovieList("watcha"));

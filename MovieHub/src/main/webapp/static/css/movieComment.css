@@ -201,10 +201,11 @@ a:visited{
     display: none !important;
 }
 .replyLists {
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
     display: flex;
     flex-direction: column;
+    width: 1250px;
 }
 .replyList {
     display: flex;
@@ -214,9 +215,10 @@ a:visited{
 .reply_wrap {
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    width: 90%;
     padding: 20px 0;
     border-radius: 5px;
+    margin: 0 auto;
 }
 .re_reply_container{
 	width: 90%;
@@ -247,6 +249,7 @@ a:visited{
 }
 .reply_wrap > div:first-child {
     display: flex;
+    width: 75%;
 }
 .replyButtons {
     display: flex;
@@ -276,6 +279,10 @@ a:visited{
 }
 .user_nickname:hover {
     cursor: pointer;
+}
+.my_reply_content {
+    overflow: hidden;
+    padding: 5px 0;
 }
 .reply_content {
 	white-space: nowrap;

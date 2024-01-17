@@ -43,18 +43,11 @@ public class CommentController {
 		commentService.modifyComment(comment);
 		return "content.do";
 	}
-	@RequestMapping("/insertLike.do")
-	public String insertLike(@RequestParam String user_id, CurCommentVO curComment) {
-		curComment.setUser_id(user_id);
-		commentService.updateLike(curComment);
-		return "content.do";
-	}
 	@RequestMapping("/insertComment.do")
 	public String insertComment(HttpSession session, HttpServletRequest request, LoginUserVO user, CommentVO comment) {
 		user = (LoginUserVO) session.getAttribute("user");
 	    comment.setUser_id(user.getId());
 	    commentService.insertComment(comment);
-
 	    return "content.do";
 	}
 	@RequestMapping(value="/review.do", method = RequestMethod.GET)
@@ -80,7 +73,14 @@ public class CommentController {
 		if(user != null) {
 			curReply.setUser_id(user.getId());
 			curReply.setComment_id(curComment.getComment_id());
-			model.addAttribute("curReply", replyService.getCurReply(curReply));
+			
+			CurReplyVO curReplyResult = replyService.getCurReply(curReply);
+			model.addAttribute("curReply", curReplyResult);
+			if (curReplyResult != null && curReplyResult.getContent() == null) {
+			    System.out.println("reply null 발생");
+			} else if (curReplyResult != null) {
+			    model.addAttribute("curReplyContentCnt", curReplyResult.getContent().length());
+			}
 		}
 		replyList.setComment_id(curComment.getComment_id());
 		replyList.setMovie_id(movie_id);

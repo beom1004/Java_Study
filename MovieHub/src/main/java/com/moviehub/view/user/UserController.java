@@ -2,6 +2,7 @@ package com.moviehub.view.user;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,9 @@ public class UserController {
 		user.setId(loginUser.getId());
 		user.setPassword(loginUser.getPassword());
 		model.addAttribute("userData", userService.getUserData(user));
-		model.addAttribute("avgRating", userService.getAvgRating(user));	
+		
+		Double avgRating = userService.getAvgRating(user);
+		model.addAttribute("avgRating", (avgRating != null && !Double.isNaN(avgRating)) ? avgRating : 0.0);	
 		return "myPage.jsp";
 	}
 	@RequestMapping("/getUserComment.do")
@@ -75,13 +78,21 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/login.do", method=RequestMethod.POST)
-	public String login(HttpSession session, LoginUserVO user) {
+	public String login(HttpSession session, HttpServletRequest request, LoginUserVO user) {
 		user = userService.getUser(user);
 		
 		if(user != null) {
 			session.setAttribute("user", user);
+			
+			String referer = request.getHeader("Referer");
+			if (referer != null && !referer.isEmpty()) {
+                return "redirect:" + referer;
+            } else {
+                return "index.do";
+            }
+		}else {
+			return "index.do";
 		}
-		return "index.do";
 	}
 	
 	@RequestMapping("/logout.do")

@@ -72,11 +72,10 @@
                         <div class="spans_div">
                             <div id="release_date">${movie.release_year }&nbsp;<span class="middle_dot">·</span>&nbsp;</div>
                             <div class="genres">
-                                <div class="genre">genre1&nbsp;<span class="middle_slash">/</span>&nbsp;</div>
-                                <div class="genre">genre2</div>
+                                <div class="genre">${movie.genre_ids }</div>
                             </div>
-                            <div id="original_language">&nbsp;<span class="middle_dot">·</span>&nbsp;${original_language }
-                            </div>
+                            &nbsp;<span class="middle_dot">·</span>&nbsp;
+                            <div id="original_language">${movie.original_language }</div>
                         </div>
                         <div id="runtime">${movie.runtime }</div>
                     </div>

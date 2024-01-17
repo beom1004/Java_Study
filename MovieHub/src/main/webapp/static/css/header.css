@@ -82,7 +82,7 @@ a{
 .menu_top:hover {
     cursor: pointer;
 }
-.nickname {
+.userNickname {
     font-size: 1.2rem;
     font-weight: 700;
 }
