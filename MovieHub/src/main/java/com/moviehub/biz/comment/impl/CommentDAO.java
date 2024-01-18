@@ -13,7 +13,10 @@ import com.moviehub.biz.comment.CurCommentVO;
 public class CommentDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
-
+	
+	public List<CurCommentVO> sortComments(CurCommentVO comment){
+		return sqlSessionTemplate.selectList("comment.getSortComments", comment);	
+	}
 	public void modifyComment(CommentVO comment) {
 		sqlSessionTemplate.update("comment.modifyComment", comment);
 	}

@@ -5,6 +5,12 @@
 .header_inner {
     background-color: transparent;
 }
+#movie_comment{
+	height: 100%;
+	overflow: hidden;
+	max-height: 180px;
+	text-overflow: ellipsis;
+}
 #movie_comment a{
 	text-decoration: none;
 	color: black;
@@ -274,6 +280,8 @@ section {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    width: 90%;
+    margin: 0 auto;
 }
 #review_title {
     padding: 20px;
@@ -301,7 +309,9 @@ section {
 .review_list {
     display: flex;
     overflow: hidden;
-    width: 100%;
+    width: 90%;
+    margin: 0 auto;
+    padding-left: 20px;
 }
 .review_list > .review_item {
     display: flex;
@@ -354,11 +364,13 @@ section {
     padding: 5px;
 }
 .review_item > .review_content {
-    padding: 20px;
+    padding: 10px;
+    max-height: 170px;
     height: 100%;
     width: 100%;
     word-wrap: break-word;
     text-overflow: ellipsis;
+    overflow: hidden;
 }
 .review_item > .review {
     display: flex;

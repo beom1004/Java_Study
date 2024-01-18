@@ -34,31 +34,67 @@ public class CommentController {
 	private ReplyService replyService;
 	
 	@RequestMapping("/deleteComment.do")
-	public String deleteComment(@RequestParam String user_id, @RequestParam int movie_id, CommentVO comment) {
+	public String deleteComment(@RequestParam String user_id, @RequestParam int movie_id, CommentVO comment, HttpServletRequest request) {
 		commentService.deleteComment(comment);
-		return "content.do";
+		String referer = request.getHeader("Referer");
+		if (referer != null && !referer.isEmpty()) {
+            return "redirect:" + referer;
+        } else {
+            return "content.do";
+        }
 	}
 	@RequestMapping("/modifyComment.do")
-	public String modifyComment(@RequestParam String user_id, @RequestParam int movie_id, CommentVO comment) {
+	public String modifyComment(@RequestParam String user_id, @RequestParam int movie_id, CommentVO comment, HttpServletRequest request) {
 		commentService.modifyComment(comment);
-		return "content.do";
+		String referer = request.getHeader("Referer");
+		if (referer != null && !referer.isEmpty()) {
+            return "redirect:" + referer;
+        } else {
+            return "content.do";
+        }
 	}
 	@RequestMapping("/insertComment.do")
 	public String insertComment(HttpSession session, HttpServletRequest request, LoginUserVO user, CommentVO comment) {
 		user = (LoginUserVO) session.getAttribute("user");
 	    comment.setUser_id(user.getId());
 	    commentService.insertComment(comment);
-	    return "content.do";
+	    String referer = request.getHeader("Referer");
+	    if (referer != null && !referer.isEmpty()) {
+            return "redirect:" + referer;
+        } else {
+            return "content.do";
+        }
 	}
-	@RequestMapping(value="/review.do", method = RequestMethod.GET)
-	public String movieReview(Model model, MovieVO movie, CurCommentVO curComment) {
+	@RequestMapping(value="/comments.do", method = RequestMethod.GET)
+	public String movieReview(Model model, MovieVO movie, CurCommentVO curComment,
+			CurReplyVO replyList, ArrayList<CurReplyVO> reReplyList, @RequestParam String sortType) {
 		model.addAttribute("movie", movieService.getMovie(movie));
-		curComment.setMovie_id(movieService.getMovie(movie).getMovie_id());
+		int movie_id = movieService.getMovie(movie).getMovie_id();
+		curComment.setMovie_id(movie_id);
 		List<CurCommentVO> commentLists = commentService.getCommentList(curComment);
 		
+		// 페이징을 위한 전체 코멘트 개수
 		model.addAttribute("commentCnt", commentLists.size());
-		model.addAttribute("commentLists", commentLists);
-		return "review.jsp";
+		
+		// 대댓글 창
+		for (CurCommentVO comment : commentLists) {
+		    replyList.setComment_id(comment.getComment_id());
+
+		    List<CurReplyVO> replyLists = replyService.getReplyList(replyList);
+		    model.addAttribute("replyList_" + comment.getComment_id(), replyLists);
+		    System.out.println("replyList : "+replyLists);
+
+		    Map<Integer, List<CurReplyVO>> reReplyMap = new HashMap<>();
+		    for (CurReplyVO reply : replyLists) {
+		        List<CurReplyVO> reReplyLists = replyService.getReReplyListByReplyId(reply.getReply_id());
+		        reReplyMap.put(reply.getReply_id(), reReplyLists);
+		         
+		    }
+		    model.addAttribute("reReplyMap_" + comment.getComment_id(), reReplyMap);
+		    System.out.println("reReplyMap : "+reReplyMap);
+		}
+		model.addAttribute("commentLists", commentService.sortComments(curComment));
+		return "comments.jsp";
 	}
 	@RequestMapping(value="/movieComment.do", method = RequestMethod.GET)
 	public String movieCommentView(HttpSession session, Model model, MovieVO movie, CommentVO comment, 

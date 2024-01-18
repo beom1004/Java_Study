@@ -14,6 +14,7 @@ public class CurCommentVO {
 	private String user_id;
 	private int movie_id;
 	private String rating;
+	private String sortType;
 	
 	public int getComment_id() {
 		return comment_id;
@@ -80,5 +81,11 @@ public class CurCommentVO {
 	}
 	public void setRating(String rating) {
 		this.rating = rating;
+	}
+	public String getSortType() {
+		return sortType;
+	}
+	public void setSortType(String sortType) {
+		this.sortType = sortType;
 	}
 }

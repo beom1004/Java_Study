@@ -10,6 +10,7 @@ public interface CommentService {
 	CommentVO getComment(CommentVO comment);
 	CurCommentVO getCurComment(CurCommentVO curComment);
 	List<CurCommentVO> getCommentList(CurCommentVO curComment);
+	List<CurCommentVO> sortComments(CurCommentVO curComment);
 	void modifyComment(CommentVO comment);
 	void deleteComment(CommentVO comment);
 }

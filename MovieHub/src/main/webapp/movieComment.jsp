@@ -119,8 +119,8 @@
                     </li>
                 </ul>
                 <c:if test="${user != null and user.id == curReply.user_id }">
+                	<div class="myLeftReply">내가 남긴 댓글</div>
                     <div class="reply_wrap" style="border: 1px solid #dedede;">
-                		<div>내가 남긴 댓글</div>
                     	<div>
 	                        <div class="img_wrap">
 	                            <div class="profile_img">

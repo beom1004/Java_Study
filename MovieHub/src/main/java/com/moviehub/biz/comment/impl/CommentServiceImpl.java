@@ -43,5 +43,10 @@ public class CommentServiceImpl implements CommentService {
 	public CurCommentVO getCurComment(CurCommentVO curComment) {
 		return commentDAO.getCurComment(curComment);
 	}
+
+	@Override
+	public List<CurCommentVO> sortComments(CurCommentVO comment) {
+		return commentDAO.sortComments(comment);
+	}
 	
 }

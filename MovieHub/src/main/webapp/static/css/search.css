@@ -50,6 +50,7 @@ img {
 }
 .movie_info > .movie_title {
     font-size: 19px;
+    word-break: keep-all;
 }
 .movie_info > .movie_year {
     color: gray;
