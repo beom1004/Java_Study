@@ -8,9 +8,8 @@ function deleteComment(event){
 		window.location.href=url;
 	}
 }
-document.addEventListener("DOMContentLoaded", function() {
-	document.querySelector('#comment_remove').addEventListener("click", deleteComment);
-});
+// 자꾸 null뜨네
+//document.querySelector('#comment_remove').addEventListener("click", deleteComment);
 
 function loginRequire(){
 	alert('로그인 후 이용해주세요');
@@ -33,16 +32,30 @@ text_2.addEventListener('keyup', function () {
     charCount_2.textContent = charCount;
 });
 
+const text_3 = document.querySelector('#text_3');
+let charCount_3 = document.querySelector('.charCount_3');
+
+text_3.addEventListener('keyup', function () {
+    let charCount = text_3.value.length;
+
+    charCount_3.textContent = charCount;
+});
+
 function commentFunc(){
 	document.querySelector('.commentModal').classList.remove('comment_hide');
 }
+document.querySelector('.reply_btn').addEventListener('click', function () {
+    document.querySelector('.replyModal').classList.add('replyModal_hide');
+});
 document.querySelector('.comment_white-bg').addEventListener('click', function (event) {
     event.stopPropagation();
 });
 document.querySelector('.commentModify_white-bg').addEventListener('click', function (event) {
     event.stopPropagation();
 });
-
+document.querySelector('.replyModal_white-bg').addEventListener('click', function (event) {
+    event.stopPropagation();
+});
 document.querySelector('.comment_black-bg').addEventListener('click', function () {
     document.querySelector('.commentModal').classList.add('comment_hide');
 });
@@ -55,5 +68,9 @@ document.querySelector('.commentModify_black-bg').addEventListener('click', func
 document.querySelector('#commentModify_close').addEventListener('click', function () {
     document.querySelector('.commentModifyModal').classList.add('commentModify_hide');
 });
-
-
+document.querySelector('.replyModal_black-bg').addEventListener('click', function () {
+    document.querySelector('.replyModal').classList.add('replyModal_hide');
+});
+document.querySelector('#replyModal_close').addEventListener('click', function () {
+    document.querySelector('.replyModal').classList.add('replyModal_hide');
+});

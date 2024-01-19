@@ -71,29 +71,30 @@ public class CommentController {
 		model.addAttribute("movie", movieService.getMovie(movie));
 		int movie_id = movieService.getMovie(movie).getMovie_id();
 		curComment.setMovie_id(movie_id);
-		List<CurCommentVO> commentLists = commentService.getCommentList(curComment);
+		List<CurCommentVO> commentLists = commentService.sortComments(curComment);
 		
 		// 페이징을 위한 전체 코멘트 개수
 		model.addAttribute("commentCnt", commentLists.size());
+		model.addAttribute("commentLists", commentLists);
+		Map<Integer, List<CurReplyVO>> replyMap = new HashMap<>();
 		
 		// 대댓글 창
 		for (CurCommentVO comment : commentLists) {
 		    replyList.setComment_id(comment.getComment_id());
-
 		    List<CurReplyVO> replyLists = replyService.getReplyList(replyList);
-		    model.addAttribute("replyList_" + comment.getComment_id(), replyLists);
-		    System.out.println("replyList : "+replyLists);
+		    
+		    replyMap.put(comment.getComment_id(), replyLists);
+		    model.addAttribute("replyMap", replyMap);
 
-		    Map<Integer, List<CurReplyVO>> reReplyMap = new HashMap<>();
-		    for (CurReplyVO reply : replyLists) {
-		        List<CurReplyVO> reReplyLists = replyService.getReReplyListByReplyId(reply.getReply_id());
-		        reReplyMap.put(reply.getReply_id(), reReplyLists);
-		         
-		    }
-		    model.addAttribute("reReplyMap_" + comment.getComment_id(), reReplyMap);
-		    System.out.println("reReplyMap : "+reReplyMap);
+//		    Map<Integer, List<CurReplyVO>> reReplyMap = new HashMap<>();
+//		    for (CurReplyVO reply : replyLists) {
+//		        List<CurReplyVO> reReplyLists = replyService.getReReplyListByReplyId(reply.getReply_id());
+//		        reReplyMap.put(reply.getReply_id(), reReplyLists);
+//		         
+//		    }
+//		    model.addAttribute("reReplyMap_" + comment.getComment_id(), reReplyMap);
+//		    System.out.println("reReplyMap : "+reReplyMap);
 		}
-		model.addAttribute("commentLists", commentService.sortComments(curComment));
 		return "comments.jsp";
 	}
 	@RequestMapping(value="/movieComment.do", method = RequestMethod.GET)

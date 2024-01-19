@@ -24,9 +24,11 @@
                 	<c:forEach varStatus="loop" var="searchMovie" items="${searchMovieList }">
                 		<c:if test="${loop.index < 5}">
 	                		<div class="movie_list">
-	                        	<a class="image" href="content.do?movie_id=${searchMovie.movie_id }">
-	                                <img src="${searchMovie.poster_path }">
-	                            </a>
+	                			<div class="movie_image">
+	                				<a class="image" href="content.do?movie_id=${searchMovie.movie_id }">
+		                                <img src="${searchMovie.poster_path }">
+		                            </a>
+	                			</div>
 		                        <div class="movie_info">
 		                            <div class="movie_title">${searchMovie.title }</div>
 		                            <div class="movie_year">${searchMovie.release_year }&nbsp;<span class="middle_dot">·</span>&nbsp;${searchMovie.original_language }</div>

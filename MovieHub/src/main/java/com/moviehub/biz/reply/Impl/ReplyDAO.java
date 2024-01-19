@@ -20,6 +20,9 @@ public class ReplyDAO {
 	public void deleteReply(CurReplyVO curReply) {
 		sqlSessionTemplate.delete("reply.deleteReply", curReply);
 	}
+	public void deleteReReply(CurReplyVO curReply) {
+		sqlSessionTemplate.delete("reply.deleteReReply", curReply);
+	}
 	public void insertReply(ReplyVO reply) {
 		sqlSessionTemplate.update("comment.updateReplyCnt", reply);
 		sqlSessionTemplate.insert("reply.insertReply", reply);

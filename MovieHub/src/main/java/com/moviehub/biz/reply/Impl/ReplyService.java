@@ -12,5 +12,6 @@ public interface ReplyService {
 	List<CurReplyVO> getReplyList(CurReplyVO replyList);
 	List<CurReplyVO> getReReplyListByReplyId(int reply_id);
 	void deleteReply(CurReplyVO curReply);
+	void deleteReReply(CurReplyVO curReply);
 	void modifyReply(ReplyVO reply);
 }

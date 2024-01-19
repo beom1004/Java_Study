@@ -46,11 +46,6 @@ a:visited{
     color: red;
     cursor: pointer;
 }
-.replyModal,
-.replyModifyModal {
-    display: flex;
-    flex-direction: column;
-}
 .replyModal_white-bg > div:first-child,
 .replyModifyModal_white-bg > div:first-child {
     width: 100%;
@@ -312,7 +307,6 @@ a:visited{
     cursor: pointer;
 }
 .write_time {
-	width: 95%;
 	padding-top: 10px;
     text-align: right;
     color: #adadad;
@@ -359,6 +353,19 @@ a:visited{
 	width: 100%;
 	padding: 0 10px;
 }
-#reReplyRemove:hover{
+.reReplyBtns{
+	display: flex;
+}
+.reReplyBtns > div{
+	color: #adadad;
+}
+.reReplyBtns > div > a{
+	text-decoration: none;
+	color: #adadad;
+}
+.reReplyBtns > div > a:visited{
+	color: #adadad;
+}
+.reReplyBtns > div:hover{
 	cursor: pointer;
 }

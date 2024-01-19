@@ -20,6 +20,15 @@ function deleteReply(e){
 		window.location.href=url;
 	}
 }
+function deleteReReply(link){
+	if(confirm("정말 삭제하시겠습니까?")){
+		const url = link.getAttribute("href");
+		window.location.href=url;
+		return true;
+	}else{
+		return false;
+	}
+}
 const replyRemove = document.querySelector('#replyRemove');
 if (replyRemove) {
     replyRemove.addEventListener("click", deleteReply);
