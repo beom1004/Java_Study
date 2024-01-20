@@ -180,11 +180,17 @@
 	                            	</c:if>
 	                            	<!-- reReply의 re_reply_id가 비어있지 않으면 대댓글이 있는 거니까 답글 달기 창이 나오면 안됨 -->
 	                            	<c:forEach var="reReply" items="${reReplyMap[reply.reply_id]}">
-	                            		<c:if test="${reReply.re_reply_id == null }">
-		                            		<input type="text" name="content" placeholder="${reply.nickname }(으)로 답글 달기" required
-									           style="display: none">
-									        <input type="submit" name="reReplySave" value="게시" style="display: none">
-	                            		</c:if>
+	                            		<c:if test="${reply.user_id == user.id }">
+                            				<script>
+	                            				function hideReReplyBlock() {
+	                            				    let reReplyBlock = document.querySelector('.re_reply_block');
+	                            				    if (reReplyBlock) {
+	                            				        reReplyBlock.style.display = 'none';
+	                            				    }
+	                            				}
+	                            				hideReReplyBlock();
+	                            			</script>
+                            			</c:if>
 	                            	</c:forEach>
 	                            	<c:if test="${user != null }">
 	                            		<c:if test="${user.id != reply.user_id}">
@@ -211,10 +217,11 @@
 								            </div>
 								            <c:if test="${user.id == reReply.user_id }">
 									            <div class="reReplyBtns">
-									            	<div id="reReplyModify">수정</div>&nbsp;
+									            	<div id="reReplyModify">
+									            		수정
+									            	</div>&nbsp;
 									            	<div id="reReplyDelete">
-									            		<a href="deleteReReply.do?comment_id=${curComment.comment_id }&movie_id=${curReply.movie_id}&
-									            		user.id=${reReply.user_id }&re_reply_id=${reReply.re_reply_id}" onclick="return deleteReReply(this)">삭제</a>
+									            		<a href="deleteReReply.do?comment_id=${curComment.comment_id }&movie_id=${movie.movie_id}&re_reply_id=${reReply.re_reply_id}&reply_id=${reReply.reply_id}" onclick="return deleteReReply(this)">삭제</a>
 									            	</div>
 									            </div>
 									        </c:if>

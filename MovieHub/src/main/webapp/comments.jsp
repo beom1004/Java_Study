@@ -74,7 +74,9 @@
                                         </div>
                                         <div class="review_content">
                                             <div id="movie_comment">
-                                                ${commentList.comment }
+                                            	<a href="movieComment.do?comment_id=${commentList.comment_id }&movie_id=${movie.movie_id }">
+                                            		${commentList.comment }
+                                            	</a>
                                             </div>
                                         </div>
                                         <div class="likes">
@@ -95,9 +97,7 @@
 			                                                </div>
 			                                                <div class="reply_wrap_right">
 			                                                    <div class="user_nickname">${reply.nickname }</div>
-			                                                    <div class="my_reply_content">
-			                                                        ${reply.content }
-			                                                    </div>
+			                                                    <div class="my_reply_content">${reply.content }</div>
 			                                                    <div class="reply_writeTime">
 			                                                        <div id="viewReply" class="viewReply" data-commentId="${reply.reply_id}">
 			                                                            답글 보기

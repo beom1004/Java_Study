@@ -40,7 +40,7 @@
                         </div>
                         <div class="review_cnt">
                             <div class="count">${userData.comment_count }</div>
-                            <div class="cnt_tag">리뷰</div>
+                            <div class="cnt_tag">코멘트</div>
                         </div>
                         <div class="rate_avg">
                             <div class="count"><fmt:formatNumber value="${avgRating}" pattern="#,##0.0" /></div>

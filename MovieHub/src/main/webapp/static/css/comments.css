@@ -168,6 +168,16 @@ section {
 .review_content {
     padding: 5px;
 }
+#movie_comment > a{
+	text-decoration: none;
+	color: black;
+}
+#movie_comment > a:visited{
+	text-decoration: none;
+}
+#movie_comment:hover{
+	cursor: hover;
+}
 .review_header {
     display: flex;
     align-items: center;

@@ -253,7 +253,7 @@ a{
 	padding: 0;
 }
 .info_id_nickname{
-	display; flex;
+	display: flex;
 }
 .info_id_nickname > div > input{
 	width: 95%;

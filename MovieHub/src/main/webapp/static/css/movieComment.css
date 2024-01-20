@@ -307,7 +307,7 @@ a:visited{
     cursor: pointer;
 }
 .write_time {
-	padding-top: 10px;
+	padding: 10px 20px;
     text-align: right;
     color: #adadad;
 }
@@ -344,6 +344,9 @@ a:visited{
 .re_reply_section {
 	display: flex;
     padding: 10px 30px;
+    margin: 0 auto;
+    width: 90%;
+    justify-content: space-between;
 }
 .re_reply_content {
     display: flex;

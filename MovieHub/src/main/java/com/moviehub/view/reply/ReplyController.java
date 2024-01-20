@@ -30,9 +30,14 @@ public class ReplyController {
 		return "movieComment.do";
 	}
 	@RequestMapping("/deleteReReply.do")
-	public String deleteReReply(HttpSession session, LoginUserVO user, CurReplyVO curReply) {
+	public String deleteReReply(CurReplyVO curReply,@RequestParam int comment_id, @RequestParam int movie_id,
+			HttpSession session, LoginUserVO user,@RequestParam int re_reply_id, @RequestParam int reply_id) {
 		user = (LoginUserVO) session.getAttribute("user");
+		curReply.setComment_id(comment_id);
+		curReply.setMovie_id(movie_id);
 		curReply.setUser_id(user.getId());
+		curReply.setRe_reply_id(re_reply_id);
+		curReply.setReply_id(reply_id);
 		replyService.deleteReReply(curReply);
 		return "movieComment.do";
 	}

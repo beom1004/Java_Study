@@ -29,7 +29,7 @@
 	<delete id="deleteReReply">
 		<![CDATA[
 			DELETE FROM REPLY WHERE COMMENT_ID=#{comment_id} and USER_ID=#{user_id} 
-			and MOVIE_ID=#{movie_id} and re_reply_id=#{re_reply_id}
+			and MOVIE_ID=#{movie_id} and re_reply_id=#{re_reply_id} and reply_id=#{reply_id}
 		]]>
 	</delete>
 	<select id="getCurReply" resultType="curReply">
