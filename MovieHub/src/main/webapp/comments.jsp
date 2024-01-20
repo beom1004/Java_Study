@@ -78,20 +78,19 @@
                                             </div>
                                         </div>
                                         <div class="likes">
-                                            <div id="review_comment">
+                                            <div class="review_comment" data-commentId="${commentList.comment_id}">
                                                 <span>댓글</span>&nbsp; <span>${commentList.reply_cnt }</span>
                                             </div>
                                         </div>
-                                        <ul class="replyLists hide">
+                                        <ul class="replyLists hide" data-commentId="${commentList.comment_id}">
 	                                     <c:forEach var="replyList" items="${replyMap}">
                                      		<c:forEach var="reply" items="${replyList.value}">
-                                     			<c:if test="${reply.comment_id eq commentList.comment_id}"> <!-- 50이면 -->
+                                     			<c:if test="${reply.comment_id eq commentList.comment_id}">
                                      				<li class="replyList">
 			                                            <div class="replyList_wrap">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
 			                                                <div class="img_wrap">
 			                                                    <div class="profile_img">
-			                                                        <img src="static/images/profile/${reply.profile_img }"
-			                                                            alt="pic">
+			                                                        <img src="static/images/profile/${reply.profile_img }" alt="pic">
 			                                                    </div>
 			                                                </div>
 			                                                <div class="reply_wrap_right">
@@ -100,8 +99,8 @@
 			                                                        ${reply.content }
 			                                                    </div>
 			                                                    <div class="reply_writeTime">
-			                                                        <div id="viewReply" class="viewReply">
-			                                                            <!-- 답글 보기 -->
+			                                                        <div id="viewReply" class="viewReply" data-commentId="${reply.reply_id}">
+			                                                            답글 보기
 			                                                        </div>
 			                                                        <div>
 			                                                            <fmt:formatDate value="${reply.write_time}"
@@ -110,27 +109,26 @@
 			                                                    </div>
 			                                                </div>
 			                                            </div>
-		                                                <%-- <c:forEach var="nestedReplyList" items="${reply}">
-			                                                <c:forEach var="reReply" items="${nestedReplyList}">
-			                                                    <div class="re_reply_section">
-			                                                        <div class="profile_img">
-			                                                            <img src="static/images/profile/${reReply.profile_img}"
-			                                                                alt="pic">
-			                                                        </div>
-			                                                        <div>
-			                                                            <div class="user_nickname">${reReply.nickname}</div>
-			                                                            <div class="re_reply_content">
-			                                                                <div>${reReply.content}</div>
-			                                                                <div class="write_time">
-			                                                                    <fmt:formatDate value="${reReply.write_time}"
-			                                                                        pattern="yyyy년 MM월 dd일 hh시 mm분" />
-			                                                                </div>
-			                                                            </div>
-			                                                            <div id="reReplyRemove">삭제하기</div>
-			                                                        </div>
-			                                                    </div>
-			                                                </c:forEach>
-			                                            </c:forEach> --%>
+			                                            <!-- 대댓글 -->
+			                                            <c:forEach var="reReply" items="${reReplyMaps[commentList.comment_id][reply.reply_id]}" >
+	                                                		<div class="re_reply_section re_reply_hide" data-commentId="${reply.reply_id}">
+		                                                        <div class="profile_img">
+		                                                            <img src="static/images/profile/${reReply.profile_img}"
+		                                                                alt="pic">
+		                                                        </div>
+		                                                        <div>
+		                                                            <div class="user_nickname">${reReply.nickname}</div>
+		                                                            <div class="re_reply_content">
+		                                                                <div>${reReply.content}</div>
+		                                                                <div class="write_time">
+		                                                                    <fmt:formatDate value="${reReply.write_time}"
+		                                                                        pattern="yyyy년 MM월 dd일 hh시 mm분" />
+		                                                                </div>
+		                                                            </div>
+		                                                            <div id="reReplyRemove">삭제하기</div>
+		                                                        </div>
+		                                                    </div>
+			                                            </c:forEach>
 			                                        </li>
                                      			</c:if>	
                                      		</c:forEach>

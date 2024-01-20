@@ -5,7 +5,7 @@ li {
 ul > li > a {
     text-decoration: none;
 }
-#review_comment:hover{
+.review_comment:hover{
 	cursor: pointer;
 }
 .wrap {
@@ -109,10 +109,10 @@ ul > li > a {
     padding: 10px;
     border-radius: 0;
 }
-.dropdown_content a > div:first-child {
+.dropdown_content a > div:nth-child(1) {
     border-radius: 10px 10px 0 0;
 }
-.dropdown_content a > div:last-child {
+.dropdown_content a > div:nth-child(3) {
     border-radius: 0 0 10px 10px;
 }
 .dropdown_content a > div:hover {
@@ -308,7 +308,7 @@ section {
     padding: 10px 0;
 }
 .re_reply_hide {
-    /* display: none !important; */
+    display: none !important;
 }
 .re_reply_block {
     border: 2px solid #ccc;
@@ -334,11 +334,14 @@ section {
 }
 .re_reply_section {
 	display: flex;
-    padding: 10px 30px;
+    padding: 10px 50px;
 }
 .re_reply_content {
     display: flex;
     justify-content: space-between;
+}
+.re_reply_content > div:nth-child(1){
+	width: 100%;
 }
 .re_reply_section > div:nth-child(2){
 	width: 100%;

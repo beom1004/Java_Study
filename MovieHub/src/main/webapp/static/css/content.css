@@ -57,9 +57,9 @@
     z-index: -3;
     position: absolute;
     max-width: 100%;
+    width: 100%;
     height: auto;
-    top: 0;
-    bottom: -40%;
+    top: -20%;
 }
 .movie_info > .movie_desc {
     position: absolute;
@@ -257,6 +257,7 @@ section {
     height: 100%;
     display: flex;
     flex-direction: column;
+    padding: 0 1%;
 }
 .storyline > #tagline {
     overflow: hidden;
@@ -264,6 +265,7 @@ section {
     height: 30px;
     padding: 30px 0;
     font-size: 1.2rem;
+    font-weight: 600;
 }
 .storyline > #overview {
     word-break: keep-all;
@@ -318,7 +320,7 @@ section {
     flex-direction: column;
     word-break: keep-all;
     width: 300px;
-    height: 320px;
+    height: 300px;
     background-color: #eeeeee;
     border-radius: 5px;
     list-style: none;
@@ -332,7 +334,7 @@ section {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    padding-bottom: 5px;
+    padding-bottom: 15px;
     border-bottom: 1px solid lightgray;
 }
 .pic_div {
@@ -364,8 +366,8 @@ section {
     padding: 5px;
 }
 .review_item > .review_content {
-    padding: 10px;
-    max-height: 170px;
+    padding: 20px 10px;
+    max-height: 160px;
     height: 100%;
     width: 100%;
     word-wrap: break-word;
@@ -384,34 +386,25 @@ section {
 	display: flex;
 	justify-content: space-between;
 }
-.reply_btn {
-	font-size: 1.2rem;
-	color: rgb(246, 78, 106);
-    padding: 10px;
-}
-.reply_btn:hover{
-	cursor: pointer;
-}
 /* modal */
 .commentModal,
-.commentModifyModal,
-.replyModal {
+.commentModifyModal{
     display: flex;
     flex-direction: column;
     z-index: 1;
 }
 .comment_black-bg,
-.commentModify_black-bg,
-.replyModal_black-bg {
+.commentModify_black-bg{
     width: 100%;
     height: 100%;
     position: fixed;
+    top: 0;
+    left: 0;
     background: rgba(0, 0, 0, 0.5);
     padding: 30px;
 }
 .comment_white-bg,
-.commentModify_white-bg,
-.replyModal_white-bg {
+.commentModify_white-bg{
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -422,20 +415,18 @@ section {
 }
 
 .comment_hide,
-.commentModify_hide,
-.replyModal_hide {
+.commentModify_hide{
     display: none !important;
 }
 
 .comment_white-bg > div:first-child,
-.commentModify_white-bg > div:first-child {
+.commentModify_white-bg > div:first-child{
     width: 100%;
     display: flex;
     justify-content: space-between;
 }
 .comment_white-bg > div:last-child > form > textarea,
-.commentModify_white-bg > div:last-child > form > textarea,
-.replyModal_white-bg > div:last-child > form > textarea {
+.commentModify_white-bg > div:last-child > form > textarea{
     border: none;
     resize: none;
     padding: 10px;
@@ -444,27 +435,23 @@ section {
     outline: none;
 }
 .comment_white-bg > div:last-child > form > div,
-.commentModify_white-bg > div:last-child > form > div,
-.replyModal_white-bg > div:last-child > form > div {
+.commentModify_white-bg > div:last-child > form > div{
     width: 100%;
     display: flex;
     justify-content: space-between;
 }
-.commentSave,
-.replySave {
+.commentSave{
     border: none;
     background-color: rgb(246, 78, 106);
     color: white;
     padding: 10px 30px;
     border-radius: 5px;
 }
-.commentSave:hover,
-.replySave:hover {
+.commentSave:hover{
     cursor: pointer;
 }
 #comment_close:hover,
-#commentModify_close:hover,
-#replyModal_close:hover {
+#commentModify_close:hover{
     cursor: pointer;
     color: red;
 }

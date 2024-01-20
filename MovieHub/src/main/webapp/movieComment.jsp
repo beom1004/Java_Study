@@ -98,8 +98,7 @@
                                     <span>${replyCnt }</span>
                                 </div>
                             </div>
-                            <!-- 로그인한 유저와 현재 코멘트 아이디가 같으면 -->
-                            <c:if test="${user.id == curComment.user_id }">
+                            <c:if test="${user.id == curComment.user_id || user.id == curReply.user_id}">
 	                            <div class="block" style="display: none;">
 	                                <div class="reply_btn">
 	                                    <i class="bi bi-chat-fill"></i>
@@ -107,7 +106,7 @@
 	                                </div>
 	                            </div>
                             </c:if>
-                            <c:if test="${user.id != curComment.user_id }">
+                            <c:if test="${user.id != curComment.user_id && user.id != curReply.user_id }">
                             	<c:if test="${user != null }">
 		                            <div class="block">
 		                                <div class="reply_btn">

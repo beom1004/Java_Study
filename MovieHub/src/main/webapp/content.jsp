@@ -57,28 +57,6 @@
             </div>
         </div>
     </div>
-    <div class="replyModal replyModal_black-bg replyModal_hide">
-        <div class="replyModal_white-bg">
-            <div>
-                <div>댓글</div>
-                <div id="replyModal_close">X</div>
-            </div>
-            <div>
-                <form action="insertReply.do" method="get">
-                	<input type="hidden" name="comment_id" value="${curComment.comment_id }">
-                    <input type="hidden" name="user_id" value="${user.id }">
-                    <input type="hidden" name="movie_id" value="${movie.movie_id }">
-                    <textarea name="content" id="text_3"></textarea>
-                    <div>
-                        <div class="textCnt">
-                            <span class="charCount_3">0</span>/10000
-                        </div>
-                        <input type="submit" class="btn" class="replySave" value="저장">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
 	<div class="root">
         <div class="wrap">
             <div class="movie_info">
@@ -231,9 +209,6 @@
 			                                	<i class="bi bi-chat-fill"></i>
 			                                	<span>${commentList.reply_cnt }</span>
 			                                </div>
-			                            </div>
-			                            <div class="reply_btn">
-			                            	댓글 달기
 			                            </div>
 			                        </div>
 			                    </c:if>

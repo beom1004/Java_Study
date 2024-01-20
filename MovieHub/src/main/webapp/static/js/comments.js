@@ -1,19 +1,27 @@
-let reviewComment = document.querySelector('#review_comment');
-reviewComment.addEventListener('click', function() {
-    let replyLists = document.querySelector('.replyLists');
-    replyLists.classList.toggle('hide');
-});
-	
-const replyLists = document.querySelectorAll('.replyList');
-const replyButtons = document.querySelectorAll('.viewReply');
-
-replyButtons.forEach((button, index) => {
-    button.addEventListener('click', function() {
-        let replyList = replyLists[index];
-        let reReplyContainer = replyList.querySelector('.re_reply_container');
-        reReplyContainer.classList.toggle('re_reply_hide');
+// 댓글
+document.querySelectorAll('.review_comment').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+        let commentId = this.getAttribute('data-commentId');
+        let replyLists = document.querySelector('.replyLists[data-commentId="' + commentId + '"]');
+        
+        if (replyLists) {
+            replyLists.classList.toggle('hide');
+        }
     });
 });
+	
+// 대댓글 
+document.querySelectorAll('.viewReply').forEach(function (button) {
+    button.addEventListener('click', function () {
+        let replyId = this.getAttribute('data-commentId');
+        let reReplySections = document.querySelectorAll('.re_reply_section[data-commentId="' + replyId + '"]');
+        
+        reReplySections.forEach(function (reReplySection) {
+            reReplySection.classList.toggle('re_reply_hide');
+        });
+    });
+});
+
 
 // dropdown
 let isMenuOpen = false;

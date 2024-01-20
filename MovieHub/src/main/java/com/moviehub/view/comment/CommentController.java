@@ -77,24 +77,26 @@ public class CommentController {
 		model.addAttribute("commentCnt", commentLists.size());
 		model.addAttribute("commentLists", commentLists);
 		Map<Integer, List<CurReplyVO>> replyMap = new HashMap<>();
+		Map<Integer, Map<Integer, List<CurReplyVO>>> reReplyMaps = new HashMap<>();
 		
-		// 대댓글 창
+		// 댓글
 		for (CurCommentVO comment : commentLists) {
 		    replyList.setComment_id(comment.getComment_id());
 		    List<CurReplyVO> replyLists = replyService.getReplyList(replyList);
 		    
 		    replyMap.put(comment.getComment_id(), replyLists);
 		    model.addAttribute("replyMap", replyMap);
-
-//		    Map<Integer, List<CurReplyVO>> reReplyMap = new HashMap<>();
-//		    for (CurReplyVO reply : replyLists) {
-//		        List<CurReplyVO> reReplyLists = replyService.getReReplyListByReplyId(reply.getReply_id());
-//		        reReplyMap.put(reply.getReply_id(), reReplyLists);
-//		         
-//		    }
-//		    model.addAttribute("reReplyMap_" + comment.getComment_id(), reReplyMap);
-//		    System.out.println("reReplyMap : "+reReplyMap);
+		    
+		    // 대댓글
+		    Map<Integer, List<CurReplyVO>> reReplyMap = new HashMap<>();
+		    for (CurReplyVO reply : replyLists) {
+		        List<CurReplyVO> reReplyLists = replyService.getReReplyListByReplyId(reply.getReply_id());
+		        
+		        reReplyMap.put(reply.getReply_id(), reReplyLists);
+		    }
+		    reReplyMaps.put(comment.getComment_id(), reReplyMap);
 		}
+		model.addAttribute("reReplyMaps", reReplyMaps);
 		return "comments.jsp";
 	}
 	@RequestMapping(value="/movieComment.do", method = RequestMethod.GET)
