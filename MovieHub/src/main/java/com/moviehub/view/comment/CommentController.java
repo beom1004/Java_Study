@@ -33,6 +33,10 @@ public class CommentController {
 	@Autowired
 	private ReplyService replyService;
 	
+	@RequestMapping("/myComment.do")
+	public String myComment(Model model) {
+		return "myComment.jsp";
+	}
 	@RequestMapping("/deleteComment.do")
 	public String deleteComment(@RequestParam String user_id, @RequestParam int movie_id, CommentVO comment, HttpServletRequest request) {
 		commentService.deleteComment(comment);

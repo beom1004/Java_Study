@@ -5,7 +5,7 @@
 <mapper namespace="comment">
 	<select id="getSortComments" resultType="curComment">
 		<![CDATA[
-	        SELECT b.profile_img, a.nickname, c.comment_id, c.comment, c.write_time, c.modify_time,
+	        SELECT b.profile_img, a.nickname, c.comment_id, c.comment, c.write_time,
 	        c.views, c.reply_cnt, c.user_id, c.movie_id, COALESCE(r.rating, 0.0) AS rating
 			FROM user a
 			JOIN user_detail b ON a.id = b.user_id
@@ -42,9 +42,8 @@
 	<select id="getCommentList" resultType="curComment">
 		<![CDATA[
 			SELECT b.profile_img, a.nickname, c.comment_id, c.comment, c.reply_cnt,
-			       MAX(c.write_time) AS write_time, MAX(c.modify_time) AS modify_time,
-			       MAX(c.views) AS views, MAX(c.user_id) AS user_id, MAX(c.movie_id) AS movie_id,
-			       COALESCE(MAX(r.rating), 0.0) AS rating
+			       MAX(c.write_time) AS write_time, MAX(c.views) AS views, MAX(c.user_id) AS user_id, 
+			       MAX(c.movie_id) AS movie_id, COALESCE(MAX(r.rating), 0.0) AS rating
 			FROM user a
 			JOIN user_detail b ON a.id = b.user_id
 			JOIN comment c ON c.user_id = a.id AND c.movie_id = #{movie_id}
@@ -55,7 +54,7 @@
 	</select>
 	<select id="getCurComment" resultType="curComment">
 		<![CDATA[
-	        SELECT b.profile_img, a.nickname, c.comment_id, c.comment, c.write_time, c.modify_time,
+	        SELECT b.profile_img, a.nickname, c.comment_id, c.comment, c.write_time,
 	        c.views, c.reply_cnt, c.user_id, c.movie_id, COALESCE(r.rating, 0.0) AS rating
 			FROM user a
 			JOIN user_detail b ON a.id = b.user_id

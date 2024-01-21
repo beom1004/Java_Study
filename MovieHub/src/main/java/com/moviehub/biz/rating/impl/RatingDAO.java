@@ -1,9 +1,13 @@
 package com.moviehub.biz.rating.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.moviehub.biz.rating.MyRatingVO;
 import com.moviehub.biz.rating.RatingVO;
 
 @Repository
@@ -11,6 +15,15 @@ public class RatingDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	
+	public List<MyRatingVO> getAllRating(MyRatingVO rating){
+		List<MyRatingVO> list = new ArrayList<MyRatingVO>();
+		if(rating.getSortType().equals("wordAsc")) {
+			list = sqlSessionTemplate.selectList("rating.ratingListByWordAsc", rating);
+		}else if(rating.getSortType().equals("ratingDesc")) {
+			list = sqlSessionTemplate.selectList("rating.ratingListByRatingDesc", rating);
+		}
+		return list;
+	}
 	public void insertStar(RatingVO rating) {
 		sqlSessionTemplate.insert("rating.insertStar", rating);
 	}

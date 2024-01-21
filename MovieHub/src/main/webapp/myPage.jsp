@@ -35,12 +35,16 @@
                     </div>
                     <div class="middle">
                         <div class="rate_cnt">
-                            <div class="count">${userData.rating_count }</div>
-                            <div class="cnt_tag">평가</div>
+                        	<a href="myRating.do?nickname=${user.nickname }&sortType=ratingDesc">
+	                            <div class="count">${userData.rating_count }</div>
+	                            <div class="cnt_tag">평가</div>
+                            </a>
                         </div>
                         <div class="review_cnt">
-                            <div class="count">${userData.comment_count }</div>
-                            <div class="cnt_tag">코멘트</div>
+                       		<a href="myComment.do?nickname=${user.nickname }&sortType=write_time">
+	                            <div class="count">${userData.comment_count }</div>
+	                            <div class="cnt_tag">코멘트</div>
+                            </a>
                         </div>
                         <div class="rate_avg">
                             <div class="count"><fmt:formatNumber value="${avgRating}" pattern="#,##0.0" /></div>

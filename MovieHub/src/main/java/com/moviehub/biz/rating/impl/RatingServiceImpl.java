@@ -1,14 +1,22 @@
 package com.moviehub.biz.rating.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.moviehub.biz.rating.MyRatingVO;
 import com.moviehub.biz.rating.RatingVO;
 
 @Service("rateService")
 public class RatingServiceImpl implements RatingService {
 	@Autowired
 	private RatingDAO ratingDAO;
+	
+	@Override
+	public List<MyRatingVO> getAllRating(MyRatingVO rating) {
+		return ratingDAO.getAllRating(rating);
+	}
 
 	@Override
 	public void insertStar(RatingVO rating) {

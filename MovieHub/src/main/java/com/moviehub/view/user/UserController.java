@@ -38,7 +38,9 @@ public class UserController {
 	@ResponseBody
 	public List<UserCommentVO> getUserComment(HttpSession session, LoginUserVO loginUser, UserCommentVO userComment) {
 		loginUser = (LoginUserVO) session.getAttribute("user");
-		userComment.setUser_id(loginUser.getId());
+		if(loginUser != null) {
+			userComment.setUser_id(loginUser.getId());
+		}
 		List<UserCommentVO> result = userService.getUserCommentList(userComment);
 
 		return result;

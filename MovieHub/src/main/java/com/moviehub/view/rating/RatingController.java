@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.moviehub.biz.rating.MyRatingVO;
 import com.moviehub.biz.rating.RatingVO;
 import com.moviehub.biz.rating.impl.RatingService;
 import com.moviehub.biz.user.LoginUserVO;
@@ -17,6 +18,17 @@ public class RatingController {
 	@Autowired
 	private RatingService ratingService;
 	
+	@RequestMapping("/myRating.do")
+	public String viewMyRating(HttpSession session, LoginUserVO user, Model model, MyRatingVO rating,
+			@RequestParam String sortType) {
+		user = (LoginUserVO) session.getAttribute("user");
+		rating.setUser_id(user.getId());
+		rating.setSortType(sortType);
+		model.addAttribute("ratingLists", ratingService.getAllRating(rating));
+		
+		return "myRating.jsp";
+		
+	}
 	@RequestMapping("/insertStar.do")
 	public String insertStar(HttpSession session, Model model, RatingVO rating, LoginUserVO user, @RequestParam int movie_id) {
 		user = (LoginUserVO) session.getAttribute("user");

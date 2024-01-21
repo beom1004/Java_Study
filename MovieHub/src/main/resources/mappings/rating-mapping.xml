@@ -3,6 +3,26 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="rating">
+	<select id="ratingListByWordAsc" resultType="myRating">
+		<![CDATA[
+			select m.poster_path, m.title, r.rating, m.movie_id
+			from movie_dup m
+			join rating r
+			on m.movie_id = r.movie_id
+			where r.user_id = #{user_id}
+			order by m.title;
+		]]>
+	</select>
+	<select id="ratingListByRatingDesc" resultType="myRating">
+		<![CDATA[
+			select m.poster_path, m.title, r.rating, m.movie_id
+			from movie_dup m
+			join rating r
+			on m.movie_id = r.movie_id
+			where r.user_id = #{user_id}
+			order by r.rating desc;
+		]]>
+	</select>
 	<insert id="insertStar">
 		<![CDATA[
 			INSERT IGNORE INTO RATING(RATING, USER_ID, MOVIE_ID)
