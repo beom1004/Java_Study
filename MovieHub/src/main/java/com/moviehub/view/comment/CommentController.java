@@ -77,12 +77,20 @@ public class CommentController {
 	}
 	@RequestMapping(value="/comments.do", method = RequestMethod.GET)
 	public String movieReview(Model model, MovieVO movie, CurCommentVO curComment,
-			CurReplyVO replyList, ArrayList<CurReplyVO> reReplyList, 
-			@RequestParam(name = "sortType", required = false) String sortType) {
+			CurReplyVO replyList, ArrayList<CurReplyVO> reReplyList,
+			@RequestParam(name = "sortType", required = false) String sortType,
+			@RequestParam(name = "searchKeyword", required = false) String searchKeyword) {
 		model.addAttribute("movie", movieService.getMovie(movie));
 		int movie_id = movieService.getMovie(movie).getMovie_id();
 		curComment.setMovie_id(movie_id);
-		curComment.setSortType(sortType);
+		
+		if(sortType == null && searchKeyword != null) {
+			curComment.setSearchKeyword(searchKeyword);
+		}else if(searchKeyword == null) {
+			curComment.setSortType(sortType);
+		}else if(sortType != null || sortType == null) {
+			curComment.setSortType(sortType);
+		}
 		List<CurCommentVO> commentLists = commentService.sortComments(curComment);
 		model.addAttribute("commentLists", commentLists);
 		
@@ -106,22 +114,6 @@ public class CommentController {
 		    reReplyMaps.put(comment.getComment_id(), reReplyMap);
 		}
 		model.addAttribute("reReplyMaps", reReplyMaps);
-		
-		// 페이징을 위한 전체 코멘트 개수
-		final int page = 10;
-		int totalComments = commentLists.size();
-		int totalPages = (int) Math.ceil((double) totalComments / page);
-		int curPage = 1;
-		
-		int startIdx = (curPage - 1) * page;
-		int endIdx = Math.min(curPage * page, totalComments);
-		List<CurCommentVO> commentsOnCurrentPage = commentLists.subList(startIdx, endIdx);
-		
-		model.addAttribute("commentCnt", totalComments);
-		model.addAttribute("page", page);
-		model.addAttribute("totalPages", totalPages);
-		model.addAttribute("curPage", curPage);
-		model.addAttribute("commentsOnCurrentPage", commentsOnCurrentPage);
 		return "comments.jsp";
 	}
 	@RequestMapping(value="/movieComment.do", method = RequestMethod.GET)

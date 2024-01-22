@@ -9,9 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${movie.title }(${movie.release_year })</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-        crossorigin="anonymous">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="styleSheet" href="static/css/styles/common.css">
@@ -30,7 +27,7 @@
                         <form action="comments.do" method="get">
                         	<i class="bi bi-search"></i>
                         	<input type="hidden" name="movie_id" value="${movie.movie_id }">
-                        	<input type="text" name="searchKeyword" class="searchKeyword" placeholder="제목, 닉네임, 내용으로 검색하세요">
+                        	<input type="text" name="searchKeyword" class="searchKeyword" placeholder="내용, 닉네임으로 검색하세요">
                         	<input type="submit" class="search_button" value="검색">
                         </form>
                     </div>
@@ -58,7 +55,7 @@
                     <div class="review_wrapper">
                         <ul class="reviewList">
                             <c:forEach var="commentList" items="${commentLists }">
-                                <li class="reviewItem">
+                                <li class="reviewItem showBox">
                                     <div class="item">
                                         <div class="review_header">
                                             <div class="pic_div">
@@ -144,27 +141,6 @@
                     </div>
                 </section>
             </div>
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <c:forEach var="page" begin="1" end="${totalPages }">
-                        <li class="page-item"><a class="page-link" href="?page=${page}">${page }</a></li>
-                    </c:forEach>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-                <div>
-                	승히님 안뇽 잘있오욥 ㅇ .< <br>
-                	- 현히 -
-                </div>
-            </nav>
         </div>
     </div>
     <jsp:include page="footer.jsp" />

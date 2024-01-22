@@ -1,5 +1,6 @@
 package com.moviehub.biz.comment.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -16,11 +17,17 @@ public class CommentDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	public List<CurCommentVO> getSortComments(CurCommentVO comment){
-		if(comment.getSortType() == null) {
-			return sqlSessionTemplate.selectList("comment.getSortCommentsDefault", comment);
-		}else {
-			return sqlSessionTemplate.selectList("comment.getSortComments", comment);
+		List<CurCommentVO> list = new ArrayList<CurCommentVO>();
+		
+		if (comment.getSearchKeyword() != null && comment.getSortType() == null) {
+	        list = sqlSessionTemplate.selectList("comment.getSearchComments", comment);
+	    } else if(comment.getSortType() == null){
+	    	list = sqlSessionTemplate.selectList("comment.getSortCommentsDefault", comment);
+	    }else if(comment.getSortType() != null){
+			list = sqlSessionTemplate.selectList("comment.getSortComments", comment);
 		}
+
+		return list;
 	}
 	public List<MyCommentVO> getMyCommentList(MyCommentVO comment) {
 		return sqlSessionTemplate.selectList("comment.getMyCommentList", comment);

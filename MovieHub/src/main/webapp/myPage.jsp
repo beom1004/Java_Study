@@ -26,7 +26,7 @@
                                 <img src="static/images/profile/${user.profile_img }">
                             </div>
                             <div class="profile">
-                                <div class="nickname">${user.nickname }</div>
+                                <div class="myNickname">${user.nickname }</div>
                                 <div class="email">${user.email }</div>
                                 <div class="info_comment">${user.profile_msg }</div>
                             </div>

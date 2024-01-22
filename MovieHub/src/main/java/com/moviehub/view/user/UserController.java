@@ -79,38 +79,13 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/login.do", method=RequestMethod.POST)
-	public String loginPost(HttpSession session, HttpServletRequest request, LoginUserVO user) {
+	public String loginPost(HttpSession session, LoginUserVO user) {
 		user = userService.getUser(user);
 		
 		if(user != null) {
 			session.setAttribute("user", user);
-			
-			String referer = request.getHeader("Referer");
-			if (referer != null && !referer.isEmpty()) {
-                return "redirect:" + referer;
-            } else {
-                return "index.do";
-            }
-		}else {
-			return "index.do";
 		}
-	}
-	@RequestMapping(value="/login.do", method=RequestMethod.GET)
-	public String loginGet(HttpSession session, HttpServletRequest request, LoginUserVO user) {
-		user = userService.getUser(user);
-		
-		if(user != null) {
-			session.setAttribute("user", user);
-			
-			String referer = request.getHeader("Referer");
-			if (referer != null && !referer.isEmpty()) {
-                return "redirect:" + referer;
-            } else {
-                return "index.do";
-            }
-		}else {
-			return "index.do";
-		}
+		return "index.do";
 	}
 	@RequestMapping("/logout.do")
 	public String logout(HttpSession session) {

@@ -39,6 +39,20 @@
             order by c.write_time desc;
 	    ]]>
 	</select>
+	<select id="getSearchComments" resultType="curComment">
+		<![CDATA[
+	        SELECT b.profile_img, a.nickname, c.comment_id, c.comment, c.write_time,
+		    c.views, c.reply_cnt, c.user_id, c.movie_id, COALESCE(r.rating, 0.0) AS rating
+		    FROM user a
+		    JOIN user_detail b ON a.id = b.user_id
+		    JOIN comment c ON c.user_id = a.id
+		    LEFT JOIN rating r ON r.user_id = a.id and r.movie_id=c.movie_id
+		    WHERE c.movie_id=#{movie_id}
+		    AND (LOWER(a.nickname) LIKE CONCAT('%', LOWER(#{searchKeyword}), '%') 
+		    OR LOWER(c.comment) LIKE CONCAT('%', LOWER(#{searchKeyword}), '%'))
+		    ORDER BY c.views DESC;
+	    ]]>
+	</select>
 	<update id="updateReplyCnt">
 		UPDATE COMMENT SET reply_cnt=reply_cnt+1 WHERE COMMENT_ID=#{comment_id}
 	</update>

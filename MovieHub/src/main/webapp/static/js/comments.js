@@ -1,3 +1,31 @@
+const showBoxes = document.querySelectorAll('.showBox');
+const screenH = window.innerHeight / 2;
+
+const isElementInViewport = (element) => {
+  const rect = element.getBoundingClientRect();
+  return rect.top < screenH && rect.bottom > 0;
+};
+
+const showElement = (element, index) => {
+  if (index < 4 || isElementInViewport(element)) {
+    element.classList.add('on');
+  }
+};
+
+const handleScroll = () => {
+  const scrollY = window.scrollY;
+  
+  showBoxes.forEach((box, index) => {
+    showElement(box, index);
+  });
+};
+window.addEventListener('scroll', handleScroll);
+
+showBoxes.forEach((box, index) => {
+  showElement(box, index);
+});
+
+
 // 댓글
 document.querySelectorAll('.review_comment').forEach(function (btn) {
     btn.addEventListener('click', function () {
