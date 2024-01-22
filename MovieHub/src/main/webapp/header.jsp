@@ -124,7 +124,7 @@
 	                            	<input type="text" name="id" value="${user.id }" readonly required>
 	                        	</div>
 	                            <div>
-	                        		<div class="nickname">닉네임</div>
+	                        		<div class="user_nickname">닉네임</div>
 	                            	<input type="text" name="nickname" value="${user.nickname }" required>
 	                        	</div>
 	                        </div>

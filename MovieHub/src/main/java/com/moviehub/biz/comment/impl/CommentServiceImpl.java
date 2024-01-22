@@ -7,12 +7,18 @@ import org.springframework.stereotype.Service;
 
 import com.moviehub.biz.comment.CommentVO;
 import com.moviehub.biz.comment.CurCommentVO;
+import com.moviehub.biz.comment.MyCommentVO;
 
 
 @Service("commentService")
 public class CommentServiceImpl implements CommentService {
 	@Autowired
 	private CommentDAO commentDAO;
+	
+	@Override
+	public List<MyCommentVO> getMyCommentList(MyCommentVO comment) {
+		return commentDAO.getMyCommentList(comment);
+	}
 
 	@Override
 	public void modifyComment(CommentVO comment) {
@@ -46,7 +52,7 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	public List<CurCommentVO> sortComments(CurCommentVO comment) {
-		return commentDAO.sortComments(comment);
+		return commentDAO.getSortComments(comment);
 	}
 	
 }

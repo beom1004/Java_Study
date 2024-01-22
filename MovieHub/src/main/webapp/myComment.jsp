@@ -11,7 +11,8 @@
     <link rel="styleSheet" href="static/css/header.css">
     <link rel="styleSheet" href="static/css/footer.css">
     <link rel="styleSheet" href="static/css/myComment.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body>
 	<jsp:include page="header.jsp" />
@@ -31,34 +32,42 @@
                                 </span>
                             </button>
                             <div class="dropdown_content" id="myDropdown">
-                                <a href="myComment.do?nickname=${user.nickname }}&sortType=write_time">
-                                    <div class="sortByWriteTime">작성 순</div>
+                                <a href="myComment.do?nickname=${user.nickname }&sortType=write_time">
+                                    <div class="sortByWriteTime">최신 작성 순</div>
                                 </a>
-                                <a href="myComment.do?nickname=${user.nickname }}&sortType=ratingDesc">
+                                <a href="myComment.do?nickname=${user.nickname }&sortType=rating">
                                     <div class="sortByRatingDesc">별점 높은 순</div>
                                 </a>
-                                <a href="myComment.do?nickname=${user.nickname }}&sortType=ratingAvg">
+                                <a href="myComment.do?nickname=${user.nickname }&sortType=reply_cnt">
                                     <div class="sortByRatingAvg">댓글 순</div>
                                 </a>
                             </div>
                         </div>
                         <div class="allMyCommentList">
-                            <div class="myRatingMovie">
-                                <div class="poster_wrap">
-                                    <div class="poster">
-                                        <img src="" alt="poster">
-                                    </div>
-                                </div>
-                                <div class="comment_tap">
-                                    <div class="title">미라큘러스: 레이디버그와 블랙캣, 더 무비</div>
-                                    <div class="release_year">2023</div>
-                                    <div class="ratingDesc">comment</div>
-                                    <div class="reply">
-                                    	<i class="bi bi-chat-fill"></i>&nbsp;
-                                    	<div class="replyCnt">0</div>
-                                    </div>
-                                </div>
-                            </div>
+                        	<c:forEach var="comment" items="${commentList }">
+                        		<div class="myRatingMovie">
+	                                <div class="poster_wrap">
+	                                	<div class="poster">
+		                                	<a href="content.do?movie_id=${comment.movie_id }">
+		                                    	<img src="${comment.poster_path }" alt="poster">
+		                                    </a>
+		                                </div>
+	                                </div>
+	                                <div class="comment_tap">
+	                                    <div class="title">${comment.title }</div>
+	                                    <div class="release_year">${comment.release_year }</div>
+	                                    <div class="comment">
+	                                    	<a href="movieComment.do?comment_id=${comment.comment_id }&movie_id=${comment.movie_id }">
+	                                    		${comment.comment }
+	                                    	</a>
+	                                    </div>
+	                                    <div class="reply">
+	                                    	<i class="bi bi-chat-fill"></i>&nbsp;
+	                                    	<span class="replyCnt">${comment.reply_cnt }</span>
+	                                    </div>
+	                                </div>
+	                            </div>
+                        	</c:forEach>
                         </div>
                     </div>
                 </div>

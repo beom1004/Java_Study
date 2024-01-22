@@ -49,7 +49,6 @@ public class UserController {
 	@RequestMapping("/modifyUser.do")
 	public String modifyUser(HttpSession session, LoginUserVO user, LoginUserVO loginUser) {
 		loginUser = (LoginUserVO) session.getAttribute("user");
-		// 업데이트 할 file, nickname, email, profile_msg를 담은 user, 세션 정보가 담긴 loginUser
 		userService.modifyUser(user, loginUser);
 		return "index.do";
 	}
@@ -80,7 +79,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/login.do", method=RequestMethod.POST)
-	public String login(HttpSession session, HttpServletRequest request, LoginUserVO user) {
+	public String loginPost(HttpSession session, HttpServletRequest request, LoginUserVO user) {
 		user = userService.getUser(user);
 		
 		if(user != null) {
@@ -96,7 +95,23 @@ public class UserController {
 			return "index.do";
 		}
 	}
-	
+	@RequestMapping(value="/login.do", method=RequestMethod.GET)
+	public String loginGet(HttpSession session, HttpServletRequest request, LoginUserVO user) {
+		user = userService.getUser(user);
+		
+		if(user != null) {
+			session.setAttribute("user", user);
+			
+			String referer = request.getHeader("Referer");
+			if (referer != null && !referer.isEmpty()) {
+                return "redirect:" + referer;
+            } else {
+                return "index.do";
+            }
+		}else {
+			return "index.do";
+		}
+	}
 	@RequestMapping("/logout.do")
 	public String logout(HttpSession session) {
 		session.invalidate();

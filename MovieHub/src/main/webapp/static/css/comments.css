@@ -38,13 +38,18 @@ ul > li > a {
     margin: 0 auto;
     padding: 15px 10px;
 }
+.askBox > form{
+	display: flex;
+	width: 100%;
+	justify-content: center;
+}
 .bi-search {
     position: absolute;
     left: 25px;
     top: 50%;
     transform: translateY(-50%);
 }
-.search_input {
+.searchKeyword {
     width: 100%;
     height: 45px;
     border: 1px solid #ccc;

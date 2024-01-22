@@ -8,14 +8,22 @@ import org.springframework.stereotype.Repository;
 
 import com.moviehub.biz.comment.CommentVO;
 import com.moviehub.biz.comment.CurCommentVO;
+import com.moviehub.biz.comment.MyCommentVO;
 
 @Repository
 public class CommentDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	
-	public List<CurCommentVO> sortComments(CurCommentVO comment){
-		return sqlSessionTemplate.selectList("comment.getSortComments", comment);	
+	public List<CurCommentVO> getSortComments(CurCommentVO comment){
+		if(comment.getSortType() == null) {
+			return sqlSessionTemplate.selectList("comment.getSortCommentsDefault", comment);
+		}else {
+			return sqlSessionTemplate.selectList("comment.getSortComments", comment);
+		}
+	}
+	public List<MyCommentVO> getMyCommentList(MyCommentVO comment) {
+		return sqlSessionTemplate.selectList("comment.getMyCommentList", comment);
 	}
 	public void modifyComment(CommentVO comment) {
 		sqlSessionTemplate.update("comment.modifyComment", comment);

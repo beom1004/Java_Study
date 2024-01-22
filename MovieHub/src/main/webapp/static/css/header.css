@@ -301,7 +301,7 @@ a{
 }
 .info_middle {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     padding: 10px;
     width: 400px;
 }
@@ -314,6 +314,9 @@ a{
 .info_img {
     width: 80px;
     height: 80px;
+}
+.form-control{
+	width: 220px;
 }
 .info_btns {
     display: flex;
@@ -354,7 +357,7 @@ a{
     height: 30px;
 }
 .info_bottom > div > textarea {
-    height: 100px;
+    height: 150px;
     resize: none;
 }
 .password_info {

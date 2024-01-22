@@ -3,6 +3,18 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="comment">
+	<select id="getMyCommentList" resultType="myComment">
+		<![CDATA[
+	        select m.poster_path, m.movie_id, m.title, m.release_year, c.comment, r.rating, c.write_time, c.reply_cnt
+			from movie_dup m
+			join comment c
+			on c.movie_id=m.movie_id
+			join rating r
+			on r.movie_id=m.movie_id
+			where c.user_id=#{user_id} and r.user_id=#{user_id}
+			order by ${sortType} desc;
+	    ]]>
+	</select>
 	<select id="getSortComments" resultType="curComment">
 		<![CDATA[
 	        SELECT b.profile_img, a.nickname, c.comment_id, c.comment, c.write_time,
@@ -13,6 +25,18 @@
 			LEFT JOIN rating r ON r.user_id = a.id and r.movie_id=c.movie_id
 			where c.movie_id=#{movie_id}
             order by ${sortType} desc;
+	    ]]>
+	</select>
+	<select id="getSortCommentsDefault" resultType="curComment">
+		<![CDATA[
+	        SELECT b.profile_img, a.nickname, c.comment_id, c.comment, c.write_time,
+	        c.views, c.reply_cnt, c.user_id, c.movie_id, COALESCE(r.rating, 0.0) AS rating
+			FROM user a
+			JOIN user_detail b ON a.id = b.user_id
+			JOIN comment c ON c.user_id = a.id
+			LEFT JOIN rating r ON r.user_id = a.id and r.movie_id=c.movie_id
+			where c.movie_id=#{movie_id}
+            order by c.write_time desc;
 	    ]]>
 	</select>
 	<update id="updateReplyCnt">

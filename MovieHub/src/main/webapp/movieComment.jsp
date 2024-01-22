@@ -122,30 +122,35 @@
                 <c:if test="${user != null and user.id == curReply.user_id }">
                 	<div class="myLeftReply">내가 남긴 댓글</div>
                     <div class="reply_wrap" style="border: 1px solid #dedede;">
-                    	<div>
-	                        <div class="img_wrap">
-	                            <div class="profile_img">
-	                                <img src="static/images/profile/${curReply.profile_img }" alt="pic">
-	                            </div>
-	                        </div>
-	                        <div class="reply_wrap_right">
-	                            <div class="user_nickname">${curReply.nickname }</div>
-	                            <div class="reply_content">
-	                                ${curReply.content }
-	                            </div>
+                    	<div class="reply_wrap_inner">
+	                    	<div>
+		                        <div class="img_wrap">
+		                            <div class="profile_img">
+		                                <img src="static/images/profile/${curReply.profile_img }" alt="pic">
+		                            </div>
+		                        </div>
+		                        <div class="reply_wrap_right">
+		                            <div class="user_nickname">${curReply.nickname }</div>
+		                            <div class="reply_content">
+		                                ${curReply.content }
+		                            </div>
+		                        </div>
+		                    </div>
+		                    <div class="replyButtons">
+		                    	<div>
+		                    		<div id="replyModify">수정</div>
+		                            <div id="replyRemove" onclick="deleteReply()">
+		                            	<a href="deleteReply.do?comment_id=${curComment.comment_id }&movie_id=${curReply.movie_id}">삭제</a>
+		                            </div>
+		                    	</div>
+	                            <div>
+			                        <c:if test="${curReply.write_time != null }">
+			                            <div class="write_time"><fmt:formatDate value="${curReply.write_time}" pattern="yyyy.MM.dd. HH:mm" /></div>
+			                        </c:if>
+			                    </div>
 	                        </div>
 	                    </div>
-	                    <div class="replyButtons">
-                            <div id="replyModify">수정</div>
-                            <div id="replyRemove" onclick="deleteReply()">
-                            	<a href="deleteReply.do?comment_id=${curComment.comment_id }&movie_id=${curReply.movie_id}">삭제</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <c:if test="${curReply.write_time != null }">
-                            <div class="write_time"><fmt:formatDate value="${curReply.write_time}" pattern="yyyy년 MM월 dd일 hh시 mm분" /></div>
-                        </c:if>
+                        
                     </div>
                 </c:if>
                 <ul class="replyLists">
@@ -166,7 +171,7 @@
 	                                	<div id="viewReply" class="viewReply">
 	                                		답글 보기
 	                                	</div>
-	                                	<div><fmt:formatDate value="${reply.write_time}" pattern="yyyy년 MM월 dd일 hh시 mm분" /></div>
+	                                	<div><fmt:formatDate value="${reply.write_time}" pattern="yyyy.MM.dd. HH:mm" /></div>
 	                                </div>
 	                            </div>
 	                        </div>
@@ -178,30 +183,14 @@
 		                                	<input type="submit" name="reReplySave" onclick="return loginRequire()" value="게시">
 		                            	</form>
 	                            	</c:if>
-	                            	<!-- reReply의 re_reply_id가 비어있지 않으면 대댓글이 있는 거니까 답글 달기 창이 나오면 안됨 -->
-	                            	<c:forEach var="reReply" items="${reReplyMap[reply.reply_id]}">
-	                            		<c:if test="${reply.user_id == user.id }">
-                            				<script>
-	                            				function hideReReplyBlock() {
-	                            				    let reReplyBlock = document.querySelector('.re_reply_block');
-	                            				    if (reReplyBlock) {
-	                            				        reReplyBlock.style.display = 'none';
-	                            				    }
-	                            				}
-	                            				hideReReplyBlock();
-	                            			</script>
-                            			</c:if>
-	                            	</c:forEach>
-	                            	<c:if test="${user != null }">
-	                            		<c:if test="${user.id != reply.user_id}">
-			                            	<form action="reReplyInsert.do" method="get">
-			                            		<input type="text" name="content" placeholder="${reply.nickname }(으)로 답글 달기" required>
-			                                	<input type="submit" name="reReplySave" value="게시">
-							                    <input type="hidden" name="reply_id" value="${reply.reply_id }">
-			                                	<input type="hidden" name="comment_id" value="${curComment.comment_id }">
-							                    <input type="hidden" name="movie_id" value="${movie.movie_id }">
-			                            	</form>
-			                            </c:if>
+	                            	<c:if test="${user != null}">
+	                            		<form action="reReplyInsert.do" method="get">
+		                            		<input type="text" name="content" placeholder="${reply.nickname }(으)로 답글 달기" required>
+		                                	<input type="submit" name="reReplySave" value="게시">
+						                    <input type="hidden" name="reply_id" value="${reply.reply_id }">
+		                                	<input type="hidden" name="comment_id" value="${curComment.comment_id }">
+						                    <input type="hidden" name="movie_id" value="${movie.movie_id }">
+		                            	</form>
 	                            	</c:if>
 	                            </div>
 	                            <c:forEach var="reReply" items="${reReplyMap[reply.reply_id]}">
@@ -213,13 +202,10 @@
 								            <div class="user_nickname">${reReply.nickname}</div>
 								            <div class="re_reply_content">
 								                <div>${reReply.content}</div>
-								                <div class="write_time"><fmt:formatDate value="${reReply.write_time}" pattern="yyyy년 MM월 dd일 hh시 mm분" /></div>
+								                <div class="write_time"><fmt:formatDate value="${reReply.write_time}" pattern="yyyy.MM.dd. HH:mm" /></div>
 								            </div>
 								            <c:if test="${user.id == reReply.user_id }">
 									            <div class="reReplyBtns">
-									            	<div id="reReplyModify">
-									            		수정
-									            	</div>&nbsp;
 									            	<div id="reReplyDelete">
 									            		<a href="deleteReReply.do?comment_id=${curComment.comment_id }&movie_id=${movie.movie_id}&re_reply_id=${reReply.re_reply_id}&reply_id=${reReply.reply_id}" onclick="return deleteReReply(this)">삭제</a>
 									            	</div>

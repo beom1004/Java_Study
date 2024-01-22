@@ -247,22 +247,38 @@ a:visited{
 }
 .reply_wrap > div:first-child {
     display: flex;
-    width: 75%;
+    width: 100%;
 }
 .replyButtons {
     display: flex;
+    width: 25%;
+    flex-direction: column;
     align-items: center;
     padding-right: 20px;
 }
-.replyButtons > div {
+.replyButtons > div:first-child{
+	display: flex;
+}
+.replyButtons > div:first-child > div {
     padding: 10px 30px;
     margin: 5px;
     color: white;
     background-color: rgb(246, 78, 106);
     border-radius: 5px;
 }
-.replyButtons > div:hover {
+.replyButtons > div:first-child > div:hover {
     cursor: pointer;
+}
+.replyButtons > div:last-child{
+	width: 100%;
+}
+.reply_wrap_inner{
+	display: flex;
+	width: 100%;
+}
+.reply_wrap_inner > div:first-child{
+	display: flex;
+	width: 100%;
 }
 .img_wrap {
     padding: 5px 10px;
@@ -293,21 +309,7 @@ a:visited{
     text-overflow: ellipsis; 
     padding: 5px 0;
 }
-.reply_likes {
-    display: flex;
-}
-.reply_like {
-    border-radius: 5px;
-    color: white;
-}
-.reply_thumb {
-    display: flex;
-}
-.reply_like:hover {
-    cursor: pointer;
-}
 .write_time {
-	padding: 10px 20px;
     text-align: right;
     color: #adadad;
 }
@@ -343,9 +345,9 @@ a:visited{
 }
 .re_reply_section {
 	display: flex;
-    padding: 10px 30px;
+    padding: 20px 30px;
     margin: 0 auto;
-    width: 90%;
+    width: 100%;
     justify-content: space-between;
 }
 .re_reply_content {

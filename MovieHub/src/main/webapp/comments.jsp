@@ -27,9 +27,12 @@
             <div class="wrap_inner">
                 <aside class="left_side">
                     <div class="askBox">
-                        <i class="bi bi-search"></i>
-                        <input type="text" name="search_input" class="search_input" placeholder="제목, 닉네임, 내용으로 검색하세요">
-                        <input type="submit" class="search_button" value="검색">
+                        <form action="comments.do" method="get">
+                        	<i class="bi bi-search"></i>
+                        	<input type="hidden" name="movie_id" value="${movie.movie_id }">
+                        	<input type="text" name="searchKeyword" class="searchKeyword" placeholder="제목, 닉네임, 내용으로 검색하세요">
+                        	<input type="submit" class="search_button" value="검색">
+                        </form>
                     </div>
                 </aside>
                 <section>
@@ -104,7 +107,7 @@
 			                                                        </div>
 			                                                        <div>
 			                                                            <fmt:formatDate value="${reply.write_time}"
-			                                                                pattern="yyyy년 MM월 dd일 hh시 mm분" />
+			                                                                pattern="yyyy.MM.dd. HH:mm" />
 			                                                        </div>
 			                                                    </div>
 			                                                </div>
@@ -122,7 +125,7 @@
 		                                                                <div>${reReply.content}</div>
 		                                                                <div class="write_time">
 		                                                                    <fmt:formatDate value="${reReply.write_time}"
-		                                                                        pattern="yyyy년 MM월 dd일 hh시 mm분" />
+		                                                                        pattern="yyyy.MM.dd. HH:mm" />
 		                                                                </div>
 		                                                            </div>
 		                                                            <div id="reReplyRemove">삭제하기</div>
@@ -148,8 +151,8 @@
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
-                    <c:forEach var="page" begin="1" end="${commentCnt }">
-                        <li class="page-item"><a class="page-link" href="#">${page }</a></li>
+                    <c:forEach var="page" begin="1" end="${totalPages }">
+                        <li class="page-item"><a class="page-link" href="?page=${page}">${page }</a></li>
                     </c:forEach>
                     <li class="page-item">
                         <a class="page-link" href="#" aria-label="Next">
@@ -157,6 +160,10 @@
                         </a>
                     </li>
                 </ul>
+                <div>
+                	승히님 안뇽 잘있오욥 ㅇ .< <br>
+                	- 현히 -
+                </div>
             </nav>
         </div>
     </div>

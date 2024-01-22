@@ -176,7 +176,7 @@
                             코멘트&nbsp;<span class="review_tot">${commentCnt }</span><span>+</span>
                         </div>
                         <div id="review_btn">
-                            <a href="comments.do?movie_id=${movie.movie_id }&sortType=reply_cnt">더보기</a>
+                            <a href="comments.do?movie_id=${movie.movie_id }">더보기</a>
                         </div>
                     </div>
                     <div class="review_list">

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.moviehub.biz.comment.CommentVO;
 import com.moviehub.biz.comment.CurCommentVO;
+import com.moviehub.biz.comment.MyCommentVO;
 import com.moviehub.biz.comment.impl.CommentService;
 import com.moviehub.biz.movie.MovieVO;
 import com.moviehub.biz.movie.impl.MovieService;
@@ -34,7 +35,12 @@ public class CommentController {
 	private ReplyService replyService;
 	
 	@RequestMapping("/myComment.do")
-	public String myComment(Model model) {
+	public String myComment(HttpSession session, LoginUserVO user, Model model, MyCommentVO comment,
+			@RequestParam String sortType) {
+		user = (LoginUserVO) session.getAttribute("user");
+		comment.setUser_id(user.getId());
+		comment.setSortType(sortType);
+		model.addAttribute("commentList", commentService.getMyCommentList(comment));
 		return "myComment.jsp";
 	}
 	@RequestMapping("/deleteComment.do")
@@ -71,18 +77,17 @@ public class CommentController {
 	}
 	@RequestMapping(value="/comments.do", method = RequestMethod.GET)
 	public String movieReview(Model model, MovieVO movie, CurCommentVO curComment,
-			CurReplyVO replyList, ArrayList<CurReplyVO> reReplyList, @RequestParam String sortType) {
+			CurReplyVO replyList, ArrayList<CurReplyVO> reReplyList, 
+			@RequestParam(name = "sortType", required = false) String sortType) {
 		model.addAttribute("movie", movieService.getMovie(movie));
 		int movie_id = movieService.getMovie(movie).getMovie_id();
 		curComment.setMovie_id(movie_id);
+		curComment.setSortType(sortType);
 		List<CurCommentVO> commentLists = commentService.sortComments(curComment);
-		
-		// 페이징을 위한 전체 코멘트 개수
-		model.addAttribute("commentCnt", commentLists.size());
 		model.addAttribute("commentLists", commentLists);
+		
 		Map<Integer, List<CurReplyVO>> replyMap = new HashMap<>();
 		Map<Integer, Map<Integer, List<CurReplyVO>>> reReplyMaps = new HashMap<>();
-		
 		// 댓글
 		for (CurCommentVO comment : commentLists) {
 		    replyList.setComment_id(comment.getComment_id());
@@ -101,6 +106,22 @@ public class CommentController {
 		    reReplyMaps.put(comment.getComment_id(), reReplyMap);
 		}
 		model.addAttribute("reReplyMaps", reReplyMaps);
+		
+		// 페이징을 위한 전체 코멘트 개수
+		final int page = 10;
+		int totalComments = commentLists.size();
+		int totalPages = (int) Math.ceil((double) totalComments / page);
+		int curPage = 1;
+		
+		int startIdx = (curPage - 1) * page;
+		int endIdx = Math.min(curPage * page, totalComments);
+		List<CurCommentVO> commentsOnCurrentPage = commentLists.subList(startIdx, endIdx);
+		
+		model.addAttribute("commentCnt", totalComments);
+		model.addAttribute("page", page);
+		model.addAttribute("totalPages", totalPages);
+		model.addAttribute("curPage", curPage);
+		model.addAttribute("commentsOnCurrentPage", commentsOnCurrentPage);
 		return "comments.jsp";
 	}
 	@RequestMapping(value="/movieComment.do", method = RequestMethod.GET)
