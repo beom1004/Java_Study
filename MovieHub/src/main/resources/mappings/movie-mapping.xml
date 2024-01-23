@@ -4,10 +4,23 @@
 
 <mapper namespace="movieDAO">
 	<select id="getAllMovieList" resultType="movie">
-		<![CDATA[
-			SELECT * FROM MOVIE_DUP ORDER BY POPULARITY DESC
-		]]>	
-	</select>
+    <![CDATA[
+        SELECT * FROM MOVIE_DUP
+    ]]>
+    <where>
+        <if test="searchCondition != null">
+            <choose>
+                <when test="searchCondition.equalsIgnoreCase('제목')">
+                    AND TITLE LIKE CONCAT('%', #{searchKeyword}, '%')
+                </when>
+                <when test="searchCondition.equalsIgnoreCase('영화코드')">
+                    AND MOVIE_ID = #{searchKeyword}
+                </when>
+            </choose>
+        </if>
+    </where>
+    ORDER BY POPULARITY DESC
+</select>
 	<insert id="insertComment">
 		<![CDATA[
 			INSERT INTO COMMENT(movie_id) VALUES(#{movie_id})

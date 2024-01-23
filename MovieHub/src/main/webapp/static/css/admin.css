@@ -129,7 +129,7 @@ i {
     align-items: center;
     justify-content: space-evenly;
 }
-.admin_logou > a{
+.admin_logout > a{
 	width: 100%;
 	display: flex;
 	justify-content: center;
@@ -150,7 +150,7 @@ i {
     padding-bottom: 1%;
     margin: 0 auto;
 }
-.searchForm {
+.searchKeyword {
     width: 300px;
 }
 .searchBtn {
@@ -163,6 +163,12 @@ i {
 }
 .searchBtn:hover {
     cursor: pointer;
+}
+.users_tab,
+.ratings_tab,
+.comments_tab,
+.replys_tab{
+	margin: 5% 0;
 }
 .wrap_right_inner {
     background-color: white;
@@ -195,12 +201,51 @@ td {
     justify-content: space-around;
 }
 .number {
-    width: 20%;
+    width: 10%;
 }
-.id,
-.nickname {
-    width: 80%;
+/* 영화 탭 */
+.movies_title{
+	width: 30%;
 }
+.movies_class{
+	width: 10%;
+}
+/* 유저 탭 */
+.users_id{
+	width: 30%;
+}
+.users_nickname{
+	width: 35%;
+}
+.users_email{
+	width: 80%;
+}
+.users_date{
+	width: 40%;
+}
+/* 코멘트 탭 */
+.comments_number{
+	width: 20%;
+}
+.comments_code{
+	width: 20%;
+}
+.comments_content{
+	width: 40%;
+	overflow: hidden;
+	word-wrap: break-word;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+/* 댓글 탭 */
+.replys_content{
+	width: 40%;
+	overflow: hidden;
+	word-wrap: break-word;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
 .users_data {
     display: flex;
     align-items: center;

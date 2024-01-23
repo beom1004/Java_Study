@@ -14,7 +14,7 @@
 			join comment c
 			on c.movie_id=m.movie_id
 			left join rating r
-			on r.movie_id=m.movie_id
+			on r.movie_id=c.movie_id and r.user_id=#{user_id}
 			where c.user_id=#{user_id}
 			order by ${sortType} desc;
 	    ]]>

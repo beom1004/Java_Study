@@ -2,6 +2,7 @@ package com.moviehub.view.user;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -110,7 +111,11 @@ public class UserController {
 	}
 	@RequestMapping("/admin.do")
 	public String viewAdminPage(Model model, MovieVO movie, LoginUserVO user, RatingVO rating,
-			CommentVO comment, ReplyVO reply) {
+			CommentVO comment, ReplyVO reply,
+			@RequestParam(value = "searchCondition", defaultValue = "title", required = false) String condition,
+			@RequestParam(value = "searchKeyword", defaultValue = "", required = false) String keyword) {
+		movie.setSearchKeyword(keyword);
+		movie.setSearchCondition(condition);
 		model.addAttribute("movieList", movieService.getAllMovieList(movie));
 		model.addAttribute("userList", userService.getAllUserList(user));
 		model.addAttribute("ratingList", ratingService.getAllRatingList(rating));

@@ -213,7 +213,6 @@ section {
 }
 .my_comment_inner{
 	display: -webkit-box;
-    height: 120px;
     text-overflow: ellipsis;
     overflow: hidden;
     word-break: break-all;
