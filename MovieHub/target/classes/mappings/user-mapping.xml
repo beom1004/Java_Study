@@ -3,6 +3,13 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="user">
+	<select id="getAllUserList" resultType="loginUser">
+		SELECT a.id, a.nickname, a.email, a.auth, b.reg_date
+		FROM user a
+		JOIN user_detail b 
+		ON a.id = b.user_id
+		WHERE auth='user';
+	</select>
 	<select id="getUserComment" resultType="userComment">
 		<![CDATA[
 			select a.user_id, a.movie_id, b.title, b.poster_path, 

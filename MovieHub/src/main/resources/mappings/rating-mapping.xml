@@ -3,6 +3,11 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="rating">
+	<select id="getAllRatingList" resultType="rating">
+		<![CDATA[
+			SELECT * FROM RATING
+		]]>
+	</select>
 	<select id="ratingListByWordAsc" resultType="myRating">
 		<![CDATA[
 			select m.poster_path, m.title, r.rating, m.movie_id

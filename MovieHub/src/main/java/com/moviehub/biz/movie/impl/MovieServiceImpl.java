@@ -19,6 +19,11 @@ import com.moviehub.biz.movie.MovieVO;
 public class MovieServiceImpl implements MovieService {
 	@Autowired
 	private MovieDAO movieDAO;
+	
+	@Override
+	public List<MovieVO> getAllMovieList(MovieVO movie) {
+		return movieDAO.getAllMovieList(movie);
+	}
 
 	@Override
 	public MovieVO getMovie(MovieVO movie) {

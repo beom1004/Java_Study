@@ -14,6 +14,11 @@ public class RatingServiceImpl implements RatingService {
 	private RatingDAO ratingDAO;
 	
 	@Override
+	public List<RatingVO> getAllRatingList(RatingVO rating) {
+		return ratingDAO.getAllRatingList(rating);
+	}
+
+	@Override
 	public List<MyRatingVO> getAllRating(MyRatingVO rating) {
 		return ratingDAO.getAllRating(rating);
 	}

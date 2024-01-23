@@ -6,10 +6,15 @@
     background-color: transparent;
 }
 #movie_comment{
-	height: 100%;
-	overflow: hidden;
-	max-height: 180px;
-	text-overflow: ellipsis;
+	word-break: break-all;
+    word-wrap: break-word;
+    text-align: justify;
+    display: -webkit-box;
+    overflow: hidden;
+    height: 120px;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
 }
 #movie_comment a{
 	text-decoration: none;
@@ -205,6 +210,17 @@ section {
     padding: 20px;
     align-items: center;
     justify-content: space-between;
+}
+.my_comment_inner{
+	display: -webkit-box;
+    height: 120px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-break: break-all;
+    text-align: justify;
+    word-wrap: break-word;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
 }
 .my_comment > button{
 	border: 1px solid lightgray;

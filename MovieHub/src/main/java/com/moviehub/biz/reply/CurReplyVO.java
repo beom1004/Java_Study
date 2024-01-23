@@ -9,7 +9,6 @@ public class CurReplyVO {
 	private String content;
 	private int reply_cnt;
 	private Date write_time;
-	private Date modify_time;
 	private int re_reply_id;
 	private int comment_id;
 	private String user_id;
@@ -51,12 +50,6 @@ public class CurReplyVO {
 	public void setWrite_time(Date write_time) {
 		this.write_time = write_time;
 	}
-	public Date getModify_time() {
-		return modify_time;
-	}
-	public void setModify_time(Date modify_time) {
-		this.modify_time = modify_time;
-	}
 	public int getRe_reply_id() {
 		return re_reply_id;
 	}
@@ -90,7 +83,6 @@ public class CurReplyVO {
 	            ", content='" + content + '\'' +
 	            ", reply_cnt=" + reply_cnt +
 	            ", write_time=" + write_time +
-	            ", modify_time=" + modify_time +
 	            ", re_reply_id=" + re_reply_id +
 	            ", comment_id=" + comment_id +
 	            ", user_id='" + user_id + '\'' +

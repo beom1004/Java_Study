@@ -136,7 +136,9 @@
 	                                내가 남긴 코멘트
 	                            </div>
 	                            <div class="my_comment">
-	                                ${comment.comment }
+	                                <div class="my_comment_inner">
+	                                	${comment.comment }
+	                                </div>
 	                                <div class="comment_btns">
 	                                    <div id="comment_remove" onclick="deleteComment()">
 	                                    	<a href="deleteComment.do?user_id=${comment.user_id }&movie_id=${comment.movie_id}">삭제</a>

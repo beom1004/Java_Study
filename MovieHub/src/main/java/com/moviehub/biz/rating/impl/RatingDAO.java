@@ -15,6 +15,9 @@ public class RatingDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	
+	public List<RatingVO> getAllRatingList(RatingVO rating){
+		return sqlSessionTemplate.selectList("rating.getAllRatingList", rating);
+	}
 	public List<MyRatingVO> getAllRating(MyRatingVO rating){
 		List<MyRatingVO> list = new ArrayList<MyRatingVO>();
 		if(rating.getSortType().equals("wordAsc")) {

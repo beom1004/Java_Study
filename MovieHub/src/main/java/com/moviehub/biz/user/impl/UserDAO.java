@@ -16,6 +16,9 @@ public class UserDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 
+	public List<LoginUserVO> getAllUserList(LoginUserVO user){
+		return sqlSessionTemplate.selectList("user.getAllUserList", user);
+	}
 	public List<UserCommentVO> getUserCommentList(UserCommentVO userComment) {
 		return sqlSessionTemplate.selectList("user.getUserComment", userComment);
 	}

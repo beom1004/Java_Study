@@ -3,6 +3,11 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="movieDAO">
+	<select id="getAllMovieList" resultType="movie">
+		<![CDATA[
+			SELECT * FROM MOVIE_DUP ORDER BY POPULARITY DESC
+		]]>	
+	</select>
 	<insert id="insertComment">
 		<![CDATA[
 			INSERT INTO COMMENT(movie_id) VALUES(#{movie_id})

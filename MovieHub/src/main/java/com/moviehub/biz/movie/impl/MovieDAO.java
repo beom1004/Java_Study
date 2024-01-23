@@ -14,6 +14,9 @@ public class MovieDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	
+	public List<MovieVO> getAllMovieList(MovieVO movie) {
+		return sqlSessionTemplate.selectList("movieDAO.getAllMovieList", movie);
+	}
 	public void updateCountry(MovieVO allMovieList) {
 		sqlSessionTemplate.update("movieDAO.updateCountry", allMovieList);
 	}

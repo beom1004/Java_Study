@@ -8,6 +8,7 @@ import com.moviehub.biz.user.UserDetailVO;
 import com.moviehub.biz.user.UserVO;
 
 public interface UserService {
+	List<LoginUserVO> getAllUserList(LoginUserVO user);
 	void registerUser(UserVO vo, UserDetailVO detail);
 	String emailCheck(String email);
 	LoginUserVO getUser(LoginUserVO user);

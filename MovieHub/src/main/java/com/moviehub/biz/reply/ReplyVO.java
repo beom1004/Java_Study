@@ -7,7 +7,6 @@ public class ReplyVO {
 	private String content;
 	private int reply_cnt;
 	private Date write_time;
-	private Date modify_time;
 	private int re_reply_id;
 	private int comment_id;
 	private String user_id;
@@ -36,12 +35,6 @@ public class ReplyVO {
 	}
 	public void setWrite_time(Date write_time) {
 		this.write_time = write_time;
-	}
-	public Date getModify_time() {
-		return modify_time;
-	}
-	public void setModify_time(Date modify_time) {
-		this.modify_time = modify_time;
 	}
 	public int getComment_id() {
 		return comment_id;

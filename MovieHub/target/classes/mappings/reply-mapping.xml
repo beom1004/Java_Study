@@ -3,6 +3,9 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="reply">
+	<select id="getAllReplyList" resultType="reply">
+		select * from reply
+	</select>
 	<update id="modifyReply">
 		<![CDATA[
 			UPDATE reply SET CONTENT=#{content} WHERE COMMENT_ID=#{comment_id} and USER_ID=#{user_id}
@@ -35,7 +38,7 @@
 	<select id="getCurReply" resultType="curReply">
 		<![CDATA[
 			select a.nickname, b.profile_img, c.reply_id, c.content,
-			c.write_time, c.modify_time, c.re_reply_id, c.comment_id, c.user_id, c.movie_id
+			c.write_time, c.re_reply_id, c.comment_id, c.user_id, c.movie_id
 			from user a
 			join user_detail b on a.id=b.user_id
 			join reply c on c.user_id=a.id
@@ -45,7 +48,7 @@
 	<select id="getReplyList" resultType="curReply">
 		<![CDATA[
 			select a.nickname, b.profile_img, c.reply_id, c.content,
-			c.write_time, c.modify_time, c.re_reply_id, c.comment_id, c.user_id, c.movie_id
+			c.write_time, c.re_reply_id, c.comment_id, c.user_id, c.movie_id
 			from user a
 			join user_detail b on a.id=b.user_id
 			join reply c on c.user_id=a.id
@@ -56,7 +59,7 @@
 	<select id="getReReplyListByReplyId" resultType="curReply">
 		<![CDATA[
 			select a.nickname, b.profile_img, c.reply_id, c.content,
-			c.write_time, c.modify_time, c.re_reply_id, c.comment_id, c.user_id, c.movie_id
+			c.write_time, c.re_reply_id, c.comment_id, c.user_id, c.movie_id
 			from user a
 			join user_detail b on a.id=b.user_id
 			join reply c on c.user_id=a.id

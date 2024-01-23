@@ -10,6 +10,7 @@ public interface CommentService {
 	void insertComment(CommentVO comment);
 	CommentVO getComment(CommentVO comment);
 	CurCommentVO getCurComment(CurCommentVO curComment);
+	List<CommentVO> getAllCommentList(CommentVO comment);
 	List<CurCommentVO> getCommentList(CurCommentVO curComment);
 	List<CurCommentVO> sortComments(CurCommentVO curComment);
 	List<MyCommentVO> getMyCommentList(MyCommentVO comment);

@@ -10,4 +10,5 @@ public interface RatingService {
 	public void updateStar(RatingVO rating);
 	public RatingVO getRating(RatingVO rating);
 	public List<MyRatingVO> getAllRating(MyRatingVO rating);
+	public List<RatingVO> getAllRatingList(RatingVO rating);
 }

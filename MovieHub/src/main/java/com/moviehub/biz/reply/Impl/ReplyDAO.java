@@ -14,6 +14,9 @@ public class ReplyDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	
+	public List<ReplyVO> getAllReplyList(ReplyVO reply){
+		return sqlSessionTemplate.selectList("reply.getAllReplyList", reply);
+	}
 	public void modifyReply(ReplyVO reply) {
 		sqlSessionTemplate.update("reply.modifyReply", reply);
 	}

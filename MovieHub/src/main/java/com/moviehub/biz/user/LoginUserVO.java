@@ -1,5 +1,7 @@
 package com.moviehub.biz.user;
 
+import java.util.Date;
+
 import org.springframework.web.multipart.MultipartFile;
 
 public class LoginUserVO {
@@ -9,6 +11,8 @@ public class LoginUserVO {
 	private String email;
 	private String profile_img;
 	private String profile_msg;
+	private Date reg_date;
+	private String auth;
 	private MultipartFile file;
 	private int rating_count;
 	private int comment_count;
@@ -48,6 +52,18 @@ public class LoginUserVO {
 	}
 	public void setProfile_msg(String profile_msg) {
 		this.profile_msg = profile_msg;
+	}
+	public Date getReg_date() {
+		return reg_date;
+	}
+	public void setReg_date(Date reg_date) {
+		this.reg_date = reg_date;
+	}
+	public String getAuth() {
+		return auth;
+	}
+	public void setAuth(String auth) {
+		this.auth = auth;
 	}
 	public MultipartFile getFile() {
 		return file;

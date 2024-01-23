@@ -2,7 +2,6 @@ package com.moviehub.view.user;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +9,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.moviehub.biz.comment.CommentVO;
+import com.moviehub.biz.comment.impl.CommentService;
+import com.moviehub.biz.movie.MovieVO;
+import com.moviehub.biz.movie.impl.MovieService;
+import com.moviehub.biz.rating.RatingVO;
+import com.moviehub.biz.rating.impl.RatingService;
+import com.moviehub.biz.reply.ReplyVO;
+import com.moviehub.biz.reply.Impl.ReplyService;
 import com.moviehub.biz.user.LoginUserVO;
 import com.moviehub.biz.user.UserCommentVO;
 import com.moviehub.biz.user.UserDetailVO;
@@ -22,6 +30,14 @@ import com.moviehub.biz.user.impl.UserService;
 public class UserController {
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private MovieService movieService;
+	@Autowired
+	private CommentService commentService;
+	@Autowired
+	private RatingService ratingService;
+	@Autowired
+	private ReplyService replyService;
 	
 	@RequestMapping(value="/myProfile.do", method=RequestMethod.GET)
 	public String viewProfile(HttpSession session, Model model, LoginUserVO loginUser, LoginUserVO user) {
@@ -65,6 +81,7 @@ public class UserController {
 	public String registerUser(UserVO user, UserDetailVO detail) {
 		detail.setUser_id(user.getId());
 		userService.registerUser(user, detail);
+		
 		return "index.do";
 	}
 	
@@ -79,13 +96,27 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/login.do", method=RequestMethod.POST)
-	public String loginPost(HttpSession session, LoginUserVO user) {
+	public String loginPost(HttpSession session, LoginUserVO user, @RequestParam String id,
+			@RequestParam String password) {
 		user = userService.getUser(user);
 		
 		if(user != null) {
 			session.setAttribute("user", user);
+		}else if(id.equals("admin") && password.equals("dA82@mau!")) {
+			return "admin.do";
 		}
+
 		return "index.do";
+	}
+	@RequestMapping("/admin.do")
+	public String viewAdminPage(Model model, MovieVO movie, LoginUserVO user, RatingVO rating,
+			CommentVO comment, ReplyVO reply) {
+		model.addAttribute("movieList", movieService.getAllMovieList(movie));
+		model.addAttribute("userList", userService.getAllUserList(user));
+		model.addAttribute("ratingList", ratingService.getAllRatingList(rating));
+		model.addAttribute("commentList", commentService.getAllCommentList(comment));
+		model.addAttribute("replyList", replyService.getAllReplyList(reply));
+		return "admin.jsp";
 	}
 	@RequestMapping("/logout.do")
 	public String logout(HttpSession session) {

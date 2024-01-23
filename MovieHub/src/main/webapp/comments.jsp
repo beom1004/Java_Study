@@ -125,7 +125,9 @@
 		                                                                        pattern="yyyy.MM.dd. HH:mm" />
 		                                                                </div>
 		                                                            </div>
-		                                                            <div id="reReplyRemove">삭제하기</div>
+		                                                            <c:if test="${user != null }">
+		                                                            	<div id="reReplyRemove">삭제하기</div>
+		                                                            </c:if>
 		                                                        </div>
 		                                                    </div>
 			                                            </c:forEach>

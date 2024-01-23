@@ -29,6 +29,9 @@ public class CommentDAO {
 
 		return list;
 	}
+	public List<CommentVO> getAllCommentList(CommentVO comment) {
+		return sqlSessionTemplate.selectList("comment.getAllCommentList", comment);
+	}
 	public List<MyCommentVO> getMyCommentList(MyCommentVO comment) {
 		return sqlSessionTemplate.selectList("comment.getMyCommentList", comment);
 	}
