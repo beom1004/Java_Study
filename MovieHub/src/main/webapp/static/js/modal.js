@@ -23,14 +23,6 @@ document.querySelector('.settings').addEventListener('click', function () {
     document.querySelector('.settingModal').classList.remove('setting_hide');
 });
 
-document.querySelector('#login_close').addEventListener('click', function () {
-    document.querySelector('.loginModal').classList.add('login_hide');
-});
-
-document.querySelector('#register_close').addEventListener('click', function () {
-    document.querySelector('.registerModal').classList.add('register_hide');
-});
-
 document.querySelector('#setting_close').addEventListener('click', function () {
     document.querySelector('.settingModal').classList.add('setting_hide');
 });

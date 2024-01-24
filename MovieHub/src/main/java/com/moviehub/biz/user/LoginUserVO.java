@@ -16,6 +16,8 @@ public class LoginUserVO {
 	private MultipartFile file;
 	private int rating_count;
 	private int comment_count;
+	private String searchCondition;
+	private String searchKeyword;
 	
 	public String getId() {
 		return id;
@@ -82,5 +84,17 @@ public class LoginUserVO {
 	}
 	public void setComment_count(int comment_count) {
 		this.comment_count = comment_count;
+	}
+	public String getSearchCondition() {
+		return searchCondition;
+	}
+	public void setSearchCondition(String searchCondition) {
+		this.searchCondition = searchCondition;
+	}
+	public String getSearchKeyword() {
+		return searchKeyword;
+	}
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
 	}
 }

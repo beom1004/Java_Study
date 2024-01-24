@@ -19,6 +19,20 @@ public class UserServiceImpl implements UserService {
 	private UserDAO userDAO;
 	
 	@Override
+	public int idCheck(String id) {
+		return userDAO.idCheck(id);
+	}
+	
+	@Override
+	public LoginUserVO loginCheck(LoginUserVO user) {
+		return userDAO.loginCheck(user);
+	}
+	@Override
+	public int emailCheck(String email) {
+		return userDAO.emailCheck(email);
+	}
+	
+	@Override
 	public List<LoginUserVO> getAllUserList(LoginUserVO user) {
 		return userDAO.getAllUserList(user);
 	}
@@ -78,10 +92,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void registerUser(UserVO user, UserDetailVO detail) {
 		userDAO.registerUser(user, detail);
-	}
-	@Override
-	public String emailCheck(String email) {
-		return userDAO.emailCheck(email);
 	}
 
 	@Override

@@ -147,7 +147,7 @@
     <jsp:include page="footer.jsp"/>
     <script src="static/js/header.js"></script>
     <script src="static/js/modal.js"></script>
-    <script src="static/js/header_jQuery.js"></script>
+    <script src="static/js/modal_inval.js"></script>
     <script src="static/js/index.js"></script>
     <script src="static/js/indexSearch.js"></script>
 </body>

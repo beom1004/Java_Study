@@ -66,6 +66,6 @@
 	<jsp:include page="footer.jsp"/>
     <script src="static/js/header.js"></script>
     <script src="static/js/modal.js"></script>
-    <script src="static/js/header_jQuery.js"></script>
+    <script src="static/js/modal_inval.js"></script>
 </body>
 </html>

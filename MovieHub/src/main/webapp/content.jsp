@@ -226,7 +226,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
     <script src="static/js/header.js"></script>
     <script src="static/js/modal.js"></script>
-    <script src="static/js/header_jQuery.js"></script>
+    <script src="static/js/modal_inval.js"></script>
     <script src="static/js/content.js"></script>
     <script src="static/js/rateYo.js"></script>
 </body>

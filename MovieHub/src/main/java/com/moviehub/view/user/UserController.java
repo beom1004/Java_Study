@@ -2,12 +2,12 @@ package com.moviehub.view.user;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -79,44 +79,60 @@ public class UserController {
 	}
 
 	@RequestMapping(value="/register.do", method=RequestMethod.POST)
-	public String registerUser(UserVO user, UserDetailVO detail) {
+	public String registerUser(@RequestBody UserVO user, UserDetailVO detail) {
 		detail.setUser_id(user.getId());
 		userService.registerUser(user, detail);
-		
 		return "index.do";
 	}
 	
-	@RequestMapping("/emailCheck.do")
-	@ResponseBody // ajax 요청에 담긴 값을 java 객체로 변환시켜 인스턴스(boolean)에 저장
-	public boolean emailCheck(String email) {	
-		String check = null;
-		check = userService.emailCheck(email);
+	@RequestMapping("/idCheck.do")
+	@ResponseBody
+	public String idCheck(@RequestBody String id) {	
+		int check = userService.idCheck(id);
 		
-		if(check != null) return true;
-		return false;
+		if(check == 1) return "duplicated";
+		else return "available";
 	}
 	
-	@RequestMapping(value="/login.do", method=RequestMethod.POST)
-	public String loginPost(HttpSession session, LoginUserVO user, @RequestParam String id,
-			@RequestParam String password) {
-		user = userService.getUser(user);
+	@RequestMapping("/loginCheck.do")
+	@ResponseBody
+	public String loginCheck(@RequestBody LoginUserVO user, LoginUserVO login, HttpSession session) {
+		user.setId(user.getId());
+		user.setPassword(user.getPassword());
+		login = userService.loginCheck(user);
 		
-		if(user != null) {
-			session.setAttribute("user", user);
-		}else if(id.equals("admin") && password.equals("dA82@mau!")) {
+		if(login != null) {
+			session.setAttribute("user", login);
+			return "index.do";
+		}else if(user.getId().equals("admin") && user.getPassword().equals("dA82@mau!")) {
+			session.setAttribute("admin", login);
 			return "admin.do";
+		}else{
+			return "none";
 		}
-
-		return "index.do";
 	}
+	@RequestMapping("/emailCheck.do")
+	@ResponseBody
+	public String emailCheck(@RequestBody String email) {
+		int check = userService.emailCheck(email);
+		
+		if(check == 1) return "duplicated";
+		else return "available";
+	}
+
 	@RequestMapping("/admin.do")
 	public String viewAdminPage(Model model, MovieVO movie, LoginUserVO user, RatingVO rating,
 			CommentVO comment, ReplyVO reply,
+			@RequestParam(value = "tabName", defaultValue = "movies_tab") String tabName,
 			@RequestParam(value = "searchCondition", defaultValue = "title", required = false) String condition,
 			@RequestParam(value = "searchKeyword", defaultValue = "", required = false) String keyword) {
-		movie.setSearchKeyword(keyword);
-		movie.setSearchCondition(condition);
-		model.addAttribute("movieList", movieService.getAllMovieList(movie));
+		
+		if ("movies_tab".equals(tabName)) {
+	        movie.setSearchKeyword(keyword);
+	        movie.setSearchCondition(condition);
+	        model.addAttribute("movieList", movieService.getAllMovieList(movie));
+	        
+	    } 
 		model.addAttribute("userList", userService.getAllUserList(user));
 		model.addAttribute("ratingList", ratingService.getAllRatingList(rating));
 		model.addAttribute("commentList", commentService.getAllCommentList(comment));

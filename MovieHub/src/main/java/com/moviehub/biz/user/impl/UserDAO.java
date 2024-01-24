@@ -15,7 +15,16 @@ import com.moviehub.biz.user.UserVO;
 public class UserDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
-
+	
+	public int idCheck(String id) {
+		return sqlSessionTemplate.selectOne("user.idCheck", id);
+	}
+	public LoginUserVO loginCheck(LoginUserVO user) {
+		return sqlSessionTemplate.selectOne("user.loginCheck", user);
+	}
+	public int emailCheck(String email) {
+		return sqlSessionTemplate.selectOne("user.emailCheck", email);
+	}
 	public List<LoginUserVO> getAllUserList(LoginUserVO user){
 		return sqlSessionTemplate.selectList("user.getAllUserList", user);
 	}
@@ -31,9 +40,6 @@ public class UserDAO {
 	public void registerUser(UserVO user, UserDetailVO detail) {
 		sqlSessionTemplate.insert("user.registerUser", user);
 		sqlSessionTemplate.insert("user.detailInsert", detail);
-	}
-	public String emailCheck(String email) {
-		return sqlSessionTemplate.selectOne("user.emailCheck", email);
 	}
 	
 	public LoginUserVO getUser(LoginUserVO user) {

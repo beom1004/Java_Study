@@ -11,6 +11,8 @@ public class ReplyVO {
 	private int comment_id;
 	private String user_id;
 	private int movie_id;
+	private String searchCondition;
+	private String searchKeyword;
 	
 	public int getReply_id() {
 		return reply_id;
@@ -60,4 +62,17 @@ public class ReplyVO {
 	public void setMovie_id(int movie_id) {
 		this.movie_id = movie_id;
 	}
+	public String getSearchCondition() {
+		return searchCondition;
+	}
+	public void setSearchCondition(String searchCondition) {
+		this.searchCondition = searchCondition;
+	}
+	public String getSearchKeyword() {
+		return searchKeyword;
+	}
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
+	}
+	
 }

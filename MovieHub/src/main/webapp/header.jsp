@@ -51,17 +51,17 @@
         <div class="login_white-bg">
             <div class="logo">MovieHub</div>
             <div>로그인</div>
-            <form action="login.do" method="post">
+            <form name="loginForm" method="post">
                 <div>
-                    <input type="text" name="id" placeholder="아이디" required>
+                    <input type="text" name="id" id="loginId" placeholder="아이디" maxlength="15" required>
                 </div>
                 <div>
-                    <input type="password" name="password" placeholder="비밀번호" required>
+                    <input type="password" name="password" id="loginPw" placeholder="비밀번호" maxlength="40" required>
                 </div>
                 <div>
                     계정이 없으신가요?&nbsp;<span id="register_btn">회원가입</span>
                 </div>
-                <input type="submit" class="btn" id="login_close" value="로그인">
+                <input type="button" class="btn" id="login_close" value="로그인">
             </form>
         </div>
     </div>
@@ -69,21 +69,23 @@
         <div class="register_white-bg">
             <div class="logo">MovieHub</div>
             <div>회원가입</div>
-            <form id="registerForm" action="register.do" method="post">
+            <form id="registerForm">
                 <div>
-                    <input type="text" name="id" placeholder="아이디" required>
+                    <input type="text" name="id" id="regId" placeholder="아이디" required>
+                    <div id="idCheck"></div>
                 </div>
                 <div>
-                    <input type="password" name="password" placeholder="비밀번호" required>
+                    <input type="password" name="password" id="regPw" placeholder="비밀번호" required>
+                    <div id="pwCheck"></div>
                 </div>
                 <div>
-                    <input type="email" name="email" placeholder="이메일" required>
+                    <input type="email" name="email" id="regEmail" placeholder="이메일" required>
                     <div id="emailCheck"></div>
                 </div>
                 <div>
                     이미 계정이 있으신가요?&nbsp;<span id="login_btn">로그인</span>
                 </div>
-                <input type="submit" class="btn" id="register_close" value="회원가입">
+                <input type="button" class="btn" id="register_close" value="회원가입">
             </form>
         </div>
     </div>

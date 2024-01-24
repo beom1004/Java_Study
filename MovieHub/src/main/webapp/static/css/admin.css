@@ -61,6 +61,16 @@ a:visited {
     padding: 40px 10px;
     font-size: 1.3rem;
 }
+.icon > a{
+	text-decoration: none;
+	color: white;
+}
+.icon > a:hover{
+	cursor: pointer;
+}
+.icon > a:visited{
+	color: white;
+}
 .menu_inner {
     height: 100vh;
 }
@@ -164,12 +174,12 @@ i {
 .searchBtn:hover {
     cursor: pointer;
 }
-.users_tab,
+/* .users_tab,
 .ratings_tab,
 .comments_tab,
 .replys_tab{
 	margin: 5% 0;
-}
+} */
 .wrap_right_inner {
     background-color: white;
     border: 1px solid rgb(200, 200, 200);

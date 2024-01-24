@@ -225,7 +225,7 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="static/js/header.js"></script>
     <script src="static/js/modal.js"></script>
-    <script src="static/js/header_jQuery.js"></script>
+    <script src="static/js/modal_inval.js"></script>
     <script src="static/js/movieComment.js"></script>
     <script src="static/js/reReply.js"></script>
 </body>

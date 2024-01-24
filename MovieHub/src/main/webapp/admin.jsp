@@ -14,7 +14,9 @@
     <div class="root">
         <div class="wrap">
             <div class="menu_wrap">
-                <div class="icon">MovieHub</div>
+                <div class="icon">
+                	<a href="admin.do">MovieHub</a>
+                </div>
                 <div class="menu_inner">
                     <div class="admin_menu">
                     	<div class="movies" onclick="showTab('movies_tab')">
@@ -61,7 +63,7 @@
                 </div>
                 <div class="tab_content movies_tab">
                     <div class="search_wrap">
-                        <form action="admin.do" method="get">
+                        <form id="moviesForm" onsubmit="return submitForm('movies_tab')" method="get">
                             <select class="searchCondition" name="searchCondition">
                                 <option class="title">제목</option>
                                 <option class="movie_id">영화코드</option>
@@ -94,6 +96,16 @@
                     </div>
                 </div>
                 <div class="tab_content users_tab">
+                	<div class="search_wrap">
+                        <form id="usersForm" onsubmit="return submitForm('users_tab')" method="get">
+                            <select class="searchCondition" name="searchCondition">
+                                <option class="id">아이디</option>
+                                <option class="nickname">닉네임</option>
+                            </select>
+                            <input type="text" class="searchKeyword" name="searchKeyword">
+                            <input type="submit" class="searchBtn" value="검색">
+                        </form>
+                    </div>
                     <div class="wrap_right_inner">
                         <table class="users_wrap">
                             <tr class="users_header">
@@ -116,7 +128,7 @@
 	                                	<fmt:formatDate value="${user.reg_date }" pattern="yyyy.MM.dd. HH:mm" />
 	                                </td>
 	                                <td class="comments_content">
-	                                    <button class="userDeleteBtn">삭제</button>
+	                                    <button class="userDeleteBtn" onclick="userDeleteConfirm('${user.id }')">삭제</button>
 	                                </td>
                             	</tr>
                             </c:forEach>
@@ -124,6 +136,16 @@
                     </div>
                 </div>
                 <div class="tab_content ratings_tab">
+                	<div class="search_wrap">
+                        <form id="ratingsForm" onsubmit="return submitForm('ratings_tab')" method="get">
+                            <select class="searchCondition" name="searchCondition">
+                                <option class="movie_id">영화코드</option>
+                                <option class="id">아이디</option>
+                            </select>
+                            <input type="text" class="searchKeyword" name="searchKeyword">
+                            <input type="submit" class="searchBtn" value="검색">
+                        </form>
+                    </div>
                     <div class="wrap_right_inner">
                         <table class="users_wrap">
                             <tr class="users_header">
@@ -148,6 +170,17 @@
                     </div>
                 </div>
                 <div class="tab_content comments_tab">
+                	<div class="search_wrap">
+                        <form id="commentsForm" onsubmit="return submitForm('comments_tab')" method="get">
+                            <select class="searchCondition" name="searchCondition">
+                                <option class="movie_id">영화코드</option>
+                                <option class="id">아이디</option>
+                                <option class="comments">내용</option>
+                            </select>
+                            <input type="text" class="searchKeyword" name="searchKeyword">
+                            <input type="submit" class="searchBtn" value="검색">
+                        </form>
+                    </div>
                     <div class="wrap_right_inner">
                         <table class="users_wrap">
                             <tr class="users_header">
@@ -180,6 +213,17 @@
                     </div>
                 </div>
                 <div class="tab_content replys_tab">
+                	<div class="search_wrap">
+                        <form id="replysForm" onsubmit="return submitForm('replys_tab')" method="get">
+                            <select class="searchCondition" name="searchCondition">
+                                <option class="movie_id">영화코드</option>
+                                <option class="id">아이디</option>
+                                <option class="content">내용</option>
+                            </select>
+                            <input type="text" class="searchKeyword" name="searchKeyword">
+                            <input type="submit" class="searchBtn" value="검색">
+                        </form>
+                    </div>
                     <div class="wrap_right_inner">
                         <table class="users_wrap">
                             <tr class="users_header">

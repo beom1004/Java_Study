@@ -3,6 +3,17 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="user">
+	<select id="idCheck" resultType="int">
+		SELECT count(*) FROM USER WHERE ID = #{id}
+	</select>
+	<select id="loginCheck" resultType="loginUser">
+		select a.id, a.nickname, a.password, a.email, b.profile_img, b.profile_msg
+		from user a
+		join user_detail b on a.id=b.user_id where a.id=#{id} and a.password=#{password}
+	</select>
+	<select id="emailCheck" resultType="int">
+		SELECT count(*) FROM USER WHERE EMAIL = #{email}
+	</select>
 	<select id="getAllUserList" resultType="loginUser">
 		SELECT a.id, a.nickname, a.email, a.auth, b.reg_date
 		FROM user a
@@ -18,6 +29,7 @@
 			join movie b on a.movie_id=b.movie_id
 			where a.user_id=#{user_id};
 		]]>
+		
 	</select>
 	<select id="getUserData" resultType="loginUser">
 		<![CDATA[
@@ -75,10 +87,6 @@
 			PROFILE_MSG=#{profile_msg} WHERE USER_ID=#{user_id}
 		]]>
 	</update>
-	<select id="emailCheck" resultType="String">
-		SELECT EMAIL FROM USER WHERE EMAIL = #{email}
-	</select>
-	
 	<select id="getUser" resultType="loginUser">
 		<![CDATA[
 			select a.id, a.nickname, a.password, a.email, b.profile_img, b.profile_msg
