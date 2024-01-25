@@ -15,6 +15,9 @@ public class RatingDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	
+	public void deleteRating(RatingVO rating) {
+		sqlSessionTemplate.delete("rating.deleteRating", rating);
+	}
 	public List<RatingVO> getAllRatingList(RatingVO rating){
 		return sqlSessionTemplate.selectList("rating.getAllRatingList", rating);
 	}

@@ -14,6 +14,9 @@ public class ReplyDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	
+	public void deleteReplyByAdmin(ReplyVO reply) {
+		sqlSessionTemplate.delete("reply.deleteReplyByAdmin", reply);
+	}
 	public List<ReplyVO> getAllReplyList(ReplyVO reply){
 		return sqlSessionTemplate.selectList("reply.getAllReplyList", reply);
 	}

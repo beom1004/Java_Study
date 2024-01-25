@@ -15,6 +15,10 @@ public class ReplyServiceImpl implements ReplyService {
 	private ReplyDAO replyDAO;
 	
 	@Override
+	public void deleteReplyByAdmin(ReplyVO reply) {
+		replyDAO.deleteReplyByAdmin(reply);
+	}
+	@Override
 	public List<ReplyVO> getAllReplyList(ReplyVO reply) {
 		return replyDAO.getAllReplyList(reply);
 	}

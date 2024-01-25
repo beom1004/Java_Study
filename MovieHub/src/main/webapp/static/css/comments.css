@@ -246,6 +246,9 @@ section {
     flex-direction: column;
     padding: 0 10px;
 }
+.replyList:not(:last-child) {
+    border-bottom: 1px solid #eeeeee;
+}
 .reply_wrap {
     display: flex;
     justify-content: space-between;
@@ -259,6 +262,9 @@ section {
     width: 100%;
     padding: 20px 0;
     border-radius: 5px;
+}
+.viewReply{
+	color: gray;
 }
 .viewReply:hover{
 	cursor: pointer;

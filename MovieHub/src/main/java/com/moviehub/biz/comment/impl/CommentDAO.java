@@ -16,6 +16,9 @@ public class CommentDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	
+	public void deleteCommentByAdmin(CommentVO comment) {
+		sqlSessionTemplate.delete("comment.deleteCommentByAdmin", comment);
+	}
 	public List<CurCommentVO> getSortComments(CurCommentVO comment){
 		List<CurCommentVO> list = new ArrayList<CurCommentVO>();
 		

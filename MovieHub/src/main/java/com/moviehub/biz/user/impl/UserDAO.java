@@ -16,6 +16,9 @@ public class UserDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	
+	public void deleteUser(LoginUserVO user) {
+		sqlSessionTemplate.delete("user.deleteUser", user);
+	}
 	public int idCheck(String id) {
 		return sqlSessionTemplate.selectOne("user.idCheck", id);
 	}

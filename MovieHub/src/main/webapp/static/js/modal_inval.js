@@ -29,7 +29,7 @@ $('#login_close').click(function () {
 					$('#loginId').text('');
                 	$('#loginPw').text('');
                 	$('.loginModal').addClass('login_hide');
-				}else if(result == 'admin.do'){
+				}else if(result == 'admin_main.do'){
 					window.location.href = result;
 					$('#loginId').text('');
                 	$('#loginPw').text('');

@@ -15,5 +15,6 @@ public interface CommentService {
 	List<CurCommentVO> sortComments(CurCommentVO curComment);
 	List<MyCommentVO> getMyCommentList(MyCommentVO comment);
 	void modifyComment(CommentVO comment);
+	void deleteCommentByAdmin(CommentVO comment);
 	void deleteComment(CommentVO comment);
 }

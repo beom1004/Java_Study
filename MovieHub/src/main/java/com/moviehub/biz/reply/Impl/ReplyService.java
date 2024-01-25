@@ -6,6 +6,7 @@ import com.moviehub.biz.reply.CurReplyVO;
 import com.moviehub.biz.reply.ReplyVO;
 
 public interface ReplyService {
+	void deleteReplyByAdmin(ReplyVO reply);
 	void insertReply(ReplyVO reply);
 	void insertReReply(ReplyVO reply);
 	CurReplyVO getCurReply(CurReplyVO curReply);

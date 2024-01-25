@@ -127,17 +127,17 @@
 	                        	</div>
 	                            <div>
 	                        		<div class="user_nickname">닉네임</div>
-	                            	<input type="text" name="nickname" value="${user.nickname }" required>
+	                            	<input type="text" name="nickname" maxlength="15" value="${user.nickname }" required>
 	                        	</div>
 	                        </div>
 	                        <div class="info_email">
 	                            <div class="email">이메일 주소</div>
-	                            <input type="email" name="email" value="${user.email }" required>
+	                            <input type="email" name="email" maxlength="45" value="${user.email }" required>
 	                            <div class="emailCheck"></div>
 	                        </div>
 	                        <div class="info_intro">
 	                            <div class="introduce">자기소개</div>
-	                            <textarea name="profile_msg" placeholder="&nbsp;소개를 적어보세요.">${user.profile_msg }</textarea>
+	                            <textarea name="profile_msg" maxlength="300" placeholder="&nbsp;소개를 적어보세요.">${user.profile_msg }</textarea>
 	                        </div>
 	                    </div>
 	                    <div class="info_save">

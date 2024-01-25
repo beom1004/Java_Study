@@ -3,15 +3,30 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="rating">
+	<delete id="deleteRating">
+		delete from rating where rating_id=#{rating_id}
+	</delete>
 	<select id="getAllRatingList" resultType="rating">
 		<![CDATA[
 			SELECT * FROM RATING
 		]]>
+		<where>
+	        <if test="searchCondition != null">
+	            <choose>
+	                <when test="searchCondition.equalsIgnoreCase('영화코드')">
+	                    AND MOVIE_ID = #{searchKeyword}
+	                </when>
+	                <when test="searchCondition.equalsIgnoreCase('아이디')">
+	                    AND USER_ID LIKE CONCAT('%', #{searchKeyword}, '%')
+	                </when>
+	            </choose>
+	        </if>
+	    </where>
 	</select>
 	<select id="ratingListByWordAsc" resultType="myRating">
 		<![CDATA[
 			select m.poster_path, m.title, r.rating, m.movie_id
-			from movie_dup m
+			from movie m
 			join rating r
 			on m.movie_id = r.movie_id
 			where r.user_id = #{user_id}
@@ -21,7 +36,7 @@
 	<select id="ratingListByRatingDesc" resultType="myRating">
 		<![CDATA[
 			select m.poster_path, m.title, r.rating, m.movie_id
-			from movie_dup m
+			from movie m
 			join rating r
 			on m.movie_id = r.movie_id
 			where r.user_id = #{user_id}

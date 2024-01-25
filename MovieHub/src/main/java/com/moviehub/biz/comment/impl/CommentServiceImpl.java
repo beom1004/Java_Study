@@ -16,6 +16,11 @@ public class CommentServiceImpl implements CommentService {
 	private CommentDAO commentDAO;
 	
 	@Override
+	public void deleteCommentByAdmin(CommentVO comment) {
+		commentDAO.deleteCommentByAdmin(comment);
+	}
+
+	@Override
 	public List<CommentVO> getAllCommentList(CommentVO comment) {
 		return commentDAO.getAllCommentList(comment);
 	}

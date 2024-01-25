@@ -5,12 +5,28 @@
 <mapper namespace="comment">
 	<select id="getAllCommentList" resultType="comment">
 		select * from comment
+		<where>
+	        <if test="searchCondition != null">
+	            <choose>
+	                <when test="searchCondition.equalsIgnoreCase('영화코드')">
+	                    AND MOVIE_ID = #{searchKeyword}
+	                </when>
+	                <when test="searchCondition.equalsIgnoreCase('아이디')">
+	                    AND USER_ID LIKE CONCAT('%', #{searchKeyword}, '%')
+	                </when>
+	                <when test="searchCondition.equalsIgnoreCase('내용')">
+	                    AND COMMENT LIKE CONCAT('%', #{searchKeyword}, '%')
+	                </when>
+	            </choose>
+	        </if>
+	    </where>
 	</select>
+	
 	<select id="getMyCommentList" resultType="myComment">
 		<![CDATA[
 	        select m.poster_path, m.movie_id, m.title, m.release_year, c.comment, 
 	        r.rating, c.write_time, c.reply_cnt, c.comment_id
-			from movie_dup m
+			from movie m
 			join comment c
 			on c.movie_id=m.movie_id
 			left join rating r
@@ -60,6 +76,11 @@
 	<update id="updateReplyCnt">
 		UPDATE COMMENT SET reply_cnt=reply_cnt+1 WHERE COMMENT_ID=#{comment_id}
 	</update>
+	<delete id="deleteCommentByAdmin">
+		<![CDATA[
+			DELETE FROM COMMENT WHERE COMMENT_ID=#{comment_id}
+		]]>
+	</delete>
 	<delete id="deleteComment">
 		<![CDATA[
 			DELETE FROM COMMENT WHERE USER_ID=#{user_id} AND MOVIE_ID=#{movie_id}

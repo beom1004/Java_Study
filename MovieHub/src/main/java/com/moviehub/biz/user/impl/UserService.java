@@ -8,6 +8,7 @@ import com.moviehub.biz.user.UserDetailVO;
 import com.moviehub.biz.user.UserVO;
 
 public interface UserService {
+	void deleteUser(LoginUserVO user);
 	int idCheck(String id);
 	LoginUserVO loginCheck(LoginUserVO vo);
 	int emailCheck(String email);

@@ -174,12 +174,7 @@ i {
 .searchBtn:hover {
     cursor: pointer;
 }
-/* .users_tab,
-.ratings_tab,
-.comments_tab,
-.replys_tab{
-	margin: 5% 0;
-} */
+
 .wrap_right_inner {
     background-color: white;
     border: 1px solid rgb(200, 200, 200);
@@ -202,6 +197,9 @@ td {
     width: 100%;
 }
 .users_header {
+	position: sticky;
+    top: 0;
+    z-index: 1;
     border-collapse: separate;
     border-spacing: 10px;
     display: flex;

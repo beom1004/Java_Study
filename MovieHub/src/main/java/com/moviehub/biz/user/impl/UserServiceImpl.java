@@ -19,6 +19,15 @@ public class UserServiceImpl implements UserService {
 	private UserDAO userDAO;
 	
 	@Override
+	public void deleteUser(LoginUserVO user) {
+		userDAO.deleteUser(user);
+	}
+
+	public void setUserDAO(UserDAO userDAO) {
+		this.userDAO = userDAO;
+	}
+
+	@Override
 	public int idCheck(String id) {
 		return userDAO.idCheck(id);
 	}
