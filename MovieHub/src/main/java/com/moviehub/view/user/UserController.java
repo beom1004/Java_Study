@@ -87,7 +87,7 @@ public class UserController {
 		if(login != null) {
 			session.setAttribute("user", login);
 			return "index.do";
-		}else if(user.getId().equals("admin") && user.getPassword().equals("dA82@mau!")) {
+		}else if(user.getId().equals("admin") && user.getPassword().equals("admin1234")) {
 			session.setAttribute("admin", login);
 			return "admin_main.do";
 		}else{

@@ -1,11 +1,13 @@
 function modifyComment(){
 	document.querySelector('.commentModifyModal').classList.remove('commentModify_hide');
 }
-function deleteComment(event){
-	event.preventDefault();
-	if(confirm("정말 삭제하시겠습니까?")){
+function deleteComment(){
+	let confirmMsg = confirm("정말 삭제하시겠습니까?");
+	if(confirmMsg){
 		const url = document.querySelector("#comment_remove a").getAttribute("href");
 		window.location.href=url;
+	}else{
+		return false;
 	}
 }
 // 자꾸 null뜨네

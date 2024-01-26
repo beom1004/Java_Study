@@ -140,7 +140,7 @@
 	                                	${comment.comment }
 	                                </div>
 	                                <div class="comment_btns">
-	                                    <div id="comment_remove" onclick="deleteComment()">
+	                                    <div id="comment_remove" onclick="return deleteComment()">
 	                                    	<a href="deleteComment.do?user_id=${comment.user_id }&movie_id=${comment.movie_id}">삭제</a>
 	                                    </div>
 	                                    <div id="comment_modify" onclick="modifyComment()">수정</div>

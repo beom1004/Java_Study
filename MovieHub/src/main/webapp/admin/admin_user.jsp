@@ -29,7 +29,7 @@
                             <i class="bi bi-star-half"></i>평점 관리
                         </div>
                         <div class="comments" onclick="showCommentsTab()">
-                            <i class="bi bi-clipboard-check-fill"></i>리뷰 관리
+                            <i class="bi bi-clipboard-check-fill"></i>코멘트 관리
                         </div>
                         <div class="replys" onclick="showReplysTab()">
                             <i class="bi bi-wechat"></i>댓글 관리
