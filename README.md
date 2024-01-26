@@ -11,11 +11,6 @@
 왓챠피디아와 TMDB 사이트를 참고하여 UI와 기능을 구현했고 추가로 SoloLearn 사이트도 참고했습니다.
 
 ---
-기술 스택
----
- <img src="https://img.shields.io/badge/Spring-6DB33F?style=flat&logo=Spring&logoColor=white"/>
-
----
 구현 화면
 ---
 ![1](https://github.com/seungHee-cat/MovieHub/assets/141723511/63e36230-1221-4adf-af1e-3a22444ccaad)
