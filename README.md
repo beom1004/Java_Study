@@ -1,13 +1,19 @@
 # MovieHub
 ##### 목차
 1. 프로젝트 소개
-2. 구현 화면
+2. 기술 스택
+3. 구현 화면
 
 ---
 프로젝트 소개
 ---
 영화에 대한 평점을 기록하고 유저 간 소통할 수 있는 영화 커뮤니티 사이트 MovieHub 입니다
 왓챠피디아와 TMDB 사이트를 참고하여 UI와 기능을 구현했고 추가로 SoloLearn 사이트도 참고했습니다.
+
+---
+기술 스택
+---
+ <img src="https://img.shields.io/badge/Spring-6DB33F?style=flat&logo=Spring&logoColor=white"/>
 
 ---
 구현 화면
