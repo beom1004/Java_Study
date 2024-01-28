@@ -33,7 +33,15 @@ Backend
 
 구현 화면
 ---
-![1](https://github.com/seungHee-cat/MovieHub/assets/141723511/63e36230-1221-4adf-af1e-3a22444ccaad)
-![2](https://github.com/seungHee-cat/MovieHub/assets/141723511/8c820e03-0b3b-407a-9491-b8c5b2239b9c)
-![3](https://github.com/seungHee-cat/MovieHub/assets/141723511/fd455b0c-881b-4451-8583-561937cf1586)
-![4](https://github.com/seungHee-cat/MovieHub/assets/141723511/48313ca5-f269-443b-8aa1-5fc0ca0d1e19)
+![1_index](https://github.com/seungHee-cat/MovieHub/assets/141723511/1bbed283-8966-4f85-a29c-c28b41bcbb1c)
+![2_content](https://github.com/seungHee-cat/MovieHub/assets/141723511/f2ac4edf-351d-4f46-b916-e197ffaa087d)
+! [3_comments](https://github.com/seungHee-cat/MovieHub/assets/141723511/03ecf5ca-88bc-41a7-a1d1-d6ee14d20a4b)
+![4_search](https://github.com/seungHee-cat/MovieHub/assets/141723511/43b4957c-6cf5-4a92-9ca9-186a6a9a1fd0)
+![5_movieComment](https://github.com/seungHee-cat/MovieHub/assets/141723511/8e741752-0cb7-46e8-a300-ae1c9941b007)
+![6_myPage](https://github.com/seungHee-cat/MovieHub/assets/141723511/67ac7a47-692d-452b-a7c3-7c2925b
+![7_myRating](https://github.com/seungHee-cat/MovieHub/assets/141723511/4f2d4082-b338-4fe2-b9f2-078481121462)
+69b90)
+![8_myComment](https://github.com/seungHee-cat/MovieHub/assets/141723511/7bc72cd7-1b30-4e6a-9831-601d9e5268c8)
+![9_1 profile_modal](https://github.com/seungHee-cat/MovieHub/assets/141723511/eaf64f44-1a6b-4cab-8cb9-eab71c2fc75c)
+![10_1 admin_main](https://github.com/seungHee-cat/MovieHub/assets/141723511/7905e713-6324-4949-8f8f-ca9531ef66c9)
+
