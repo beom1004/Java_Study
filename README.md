@@ -35,19 +35,20 @@ Backend
 ---
 ![1_index](https://github.com/seungHee-cat/MovieHub/assets/141723511/1bbed283-8966-4f85-a29c-c28b41bcbb1c)
 메인 화면 입니다.   
-영화를 검색할 수 있고 박스오피스, 넷플릭스, 왓챠 TOP10 랭킹을 확인할 수 있습니다.
-   
+영화를 검색할 수 있고 박스오피스, 넷플릭스, 왓챠 TOP10 랭킹을 확인할 수 있습니다.   
 
 ![4_search](https://github.com/seungHee-cat/MovieHub/assets/141723511/43b4957c-6cf5-4a92-9ca9-186a6a9a1fd0)
 영화 검색 페이지 입니다.   
-"스파이"라고 검색했을 때 일부 일치하는 영화의 목록이 나타납니다.    또한 상세 줄거리가 제공되어 해당 영화의 내용을 한 눈에 볼 수 있습니다.   
+"스파이"라고 검색했을 때 일부 일치하는 영화의 목록이 나타납니다.   
+또한 상세 줄거리가 제공되어 해당 영화의 내용을 한 눈에 볼 수 있습니다.   
 
 ![2_content](https://github.com/seungHee-cat/MovieHub/assets/141723511/f2ac4edf-351d-4f46-b916-e197ffaa087d)
 예시로 작성한 아쿠아맨과 로스트킹덤 영화 상세페이지 입니다.   
-코멘트를 작성하고 수정/삭제가 가능하며 코멘트와 별개로 평가를 할 수 있습니다.    또한 이 영화에 남긴 유저들의 모든 코멘트를 확인할 수 있습니다.   
+코멘트를 작성하고 수정/삭제가 가능하며 코멘트와 별개로 평가를 할 수 있습니다.   
+또한 이 영화에 남긴 유저들의 모든 코멘트를 확인할 수 있습니다.   
 
 ![5_movieComment](https://github.com/seungHee-cat/MovieHub/assets/141723511/8e741752-0cb7-46e8-a300-ae1c9941b007)
-코멘트에 댓글/대댓글을 남기고 유저 간 소통할 수 있는 코멘트 상세 페이지 입니다.
+코멘트에 댓글/대댓글을 남기고 유저 간 소통할 수 있는 코멘트 상세 페이지 입니다.   
    
 ![3_comments](https://github.com/seungHee-cat/MovieHub/assets/141723511/03ecf5ca-88bc-41a7-a1d1-d6ee14d20a4b)
 모든 코멘트를 확인할 수 있는 전체 코멘트 페이지입니다.   
@@ -66,7 +67,7 @@ Backend
 내가 평가한 평점 리스트를 볼 수 있는 페이지입니다.   
 
 ![8_myComment](https://github.com/seungHee-cat/MovieHub/assets/141723511/7bc72cd7-1b30-4e6a-9831-601d9e5268c8)
-내가 작성한 코멘트 리스트를 볼 수 있는 페이지입니다.
+내가 작성한 코멘트 리스트를 볼 수 있는 페이지입니다.   
 
 ![10_1 admin_main](https://github.com/seungHee-cat/MovieHub/assets/141723511/7905e713-6324-4949-8f8f-ca9531ef66c9)
-심플하게 작성한 관리자 페이지입니다. 
+심플하게 작성한 관리자 페이지입니다.   
