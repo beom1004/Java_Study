@@ -4,7 +4,8 @@
 > 영화에 대한 평점을 기록하고 유저 간 소통할 수 있는 영화 커뮤니티 사이트 ***MovieHub*** 입니다.  
 > 왓챠피디아를 참고하여 UI를 구현했고 TMDB의 API를 활용했습니다.
 
-[MovieHub Notion](https://javanote.notion.site/MovieHub-6ab8cd9ceabb4ab8a7d5f23075efd4a3?pvs=4)  
+***Notion***   [MovieHub Notion](https://javanote.notion.site/MovieHub-6ab8cd9ceabb4ab8a7d5f23075efd4a3?pvs=4)  
+***Tistory***   [MovieHub Tistory](https://catbeom.tistory.com/67)
   
 <br/>    
 
