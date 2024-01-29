@@ -1,7 +1,7 @@
 ![header](https://capsule-render.vercel.app/api?type=rounded&color=gradient&height=200&section=header&text=MovieHub&fontSize=60)
 
 ## 프로젝트 소개
-> 영화에 대한 평점을 기록하고 유저 간 소통할 수 있는 영화 커뮤니티 사이트 MovieHub 입니다.
+> 영화에 대한 평점을 기록하고 유저 간 소통할 수 있는 영화 커뮤니티 사이트 MovieHub 입니다.  
 > 왓챠피디아를 참고하여 UI를 구현했고 TMDB의 API를 활용했습니다.
 
 ###
