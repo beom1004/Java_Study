@@ -58,7 +58,6 @@
 ## 주요 기능 구현 화면
 
 ![0 회원가입](https://github.com/seungHee-cat/MovieHub/assets/141723511/05fa1b35-c2a5-4716-89d6-98710ee35309)
-
 ![1 영화_검색](https://github.com/seungHee-cat/MovieHub/assets/141723511/6299e8d2-927b-4312-93e0-174b4e43580c)
 ![4 코멘트_댓글](https://github.com/seungHee-cat/MovieHub/assets/141723511/6a90cdfb-0fbd-416d-ae1d-0d1c6f0cc72f)
 ![5 코멘트_대댓글](https://github.com/seungHee-cat/MovieHub/assets/141723511/cb476445-ad97-4774-bcb2-99a7aefe842a)
