@@ -59,21 +59,22 @@
 
 ![0 회원가입](https://github.com/seungHee-cat/MovieHub/assets/141723511/05fa1b35-c2a5-4716-89d6-98710ee35309)
 AJAX를 통해 유효성 검사 후 회원가입 할 수 있는 회원가입 모달 창 입니다.
-
+<br/>
 ![1 영화_검색](https://github.com/seungHee-cat/MovieHub/assets/141723511/6299e8d2-927b-4312-93e0-174b4e43580c)
 AJAX를 이용해 일치하는 키워드의 영화를 검색할 수 있는 검색 기능입니다.
-
+<br/>
 ![4 코멘트_댓글](https://github.com/seungHee-cat/MovieHub/assets/141723511/6a90cdfb-0fbd-416d-ae1d-0d1c6f0cc72f)
 영화의 코멘트에 댓글 남길 수 있는 댓글창입니다.  
 자신의 댓글은 맨 상단에 고정되어 확인 가능하고 수정, 삭제가 가능합니다.
-
+<br/>
 ![5 코멘트_대댓글](https://github.com/seungHee-cat/MovieHub/assets/141723511/cb476445-ad97-4774-bcb2-99a7aefe842a)
 다른 사용자의 댓글에 의견을 남길 수 있는 대댓글 기능입니다.  
 한 댓글 당 여러개의 대댓글을 달 수 있습니다.
-
+<br/>
 ![7 관리자_페이지](https://github.com/seungHee-cat/MovieHub/assets/141723511/a0f84f4f-8914-4960-a7f9-35a91e637e81)
 기본적인 삭제 기능만 간단하게 구현한 관리자 페이지입니다.
-
+<br/>
+<br/>
 
 
 
