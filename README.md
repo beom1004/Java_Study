@@ -55,5 +55,9 @@
      - 캘린더 기능
 <br/>
 
-## 주요 기능
-
+## 주요 기능 구현 화면
+![0 회원가입](https://github.com/seungHee-cat/MovieHub/assets/141723511/0ddcc830-077a-462e-b261-4378283db18f)
+![1 영화_검색](https://github.com/seungHee-cat/MovieHub/assets/141723511/4945b4ca-9127-4938-b4ad-e7095959c4ca)
+![4 코멘트_댓글](https://github.com/seungHee-cat/MovieHub/assets/141723511/b4d28f0a-5fe4-4b03-b43c-5f1f7fe385a8)
+![5 코멘트_대댓글](https://github.com/seungHee-cat/MovieHub/assets/141723511/07c78472-25d2-4b36-ac68-cd15d4af7933)
+![7 관리자_페이지](https://github.com/seungHee-cat/MovieHub/assets/141723511/056b397f-e61e-463f-ab71-92ea7b1550c3)
