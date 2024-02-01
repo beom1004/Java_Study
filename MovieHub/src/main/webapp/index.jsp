@@ -58,7 +58,7 @@
 	                                    <div class="title">${movie.title }</div>
 	                                    <div class="year">
 	                                        ${movie.release_year }&nbsp;<span class="middle_dot">·</span>&nbsp;
-	                                        <span class="production_countries">${movie.original_language }</span>
+	                                        <span class="production_countries">${movie.production_countries }</span>
 	                                    </div>
 	                                    <div class="vote_average">${movie.vote_count }명&nbsp;<span>★</span>${movie.vote_average }</div>
 	                                </div>
@@ -91,7 +91,7 @@
 	                                    <div class="title">${movie.title }</div>
 	                                    <div class="year">
 	                                        ${movie.release_year }&nbsp;<span class="middle_dot">·</span>&nbsp;
-	                                        <span class="production_countries">${movie.original_language }</span>
+	                                        <span class="production_countries">${movie.production_countries }</span>
 	                                    </div>
 	                                    <div class="vote_average">${movie.vote_count }명&nbsp;<span>★</span>${movie.vote_average }</div>
 	                                </div>
@@ -124,7 +124,7 @@
 	                                    <div class="title">${movie.title }</div>
 	                                    <div class="year">
 	                                        ${movie.release_year }&nbsp;<span class="middle_dot">·</span>&nbsp;
-	                                        <span class="production_countries">${movie.original_language }</span>
+	                                        <span class="production_countries">${movie.production_countries }</span>
 	                                    </div>
 	                                    <div class="vote_average">${movie.vote_count }명&nbsp;<span>★</span>${movie.vote_average }</div>
 	                                </div>

@@ -75,7 +75,7 @@
                                 <div class="genre">${movie.genre_ids }</div>
                             </div>
                             &nbsp;<span class="middle_dot">·</span>&nbsp;
-                            <div id="original_language">${movie.original_language }</div>
+                            <div id="production_countries">${movie.production_countries }</div>
                         </div>
                         <div id="runtime">${movie.runtime }</div>
                     </div>

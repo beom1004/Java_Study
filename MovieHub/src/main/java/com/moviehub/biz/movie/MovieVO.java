@@ -7,7 +7,6 @@ public class MovieVO {
 	private String original_title;
 	private int release_year;
 	private String production_countries;
-	private String original_language;
 	private String runtime;
 	private String poster_path;
 	private double vote_average;
@@ -55,12 +54,6 @@ public class MovieVO {
 	}
 	public void setProduction_countries(String production_countries) {
 		this.production_countries = production_countries;
-	}
-	public String getOriginal_language() {
-		return original_language;
-	}
-	public void setOriginal_language(String original_language) {
-		this.original_language = original_language;
 	}
 	public String getRuntime() {
 		return runtime;
@@ -139,7 +132,6 @@ public class MovieVO {
             ", backdrop_path='" + backdrop_path + '\'' +
             ", original_title='" + original_title + '\'' +
             ", release_year='" + release_year + '\'' +
-            ", original_language='" + original_language + '\'' +
             ", runtime=" + runtime +
             ", poster_path='" + poster_path + '\'' +
             ", vote_average=" + vote_average +

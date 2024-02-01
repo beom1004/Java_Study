@@ -95,7 +95,6 @@ public class MovieServiceImpl implements MovieService {
 				movie.setBackdrop_path(prefix_url+detailObject.getString("backdrop_path"));
 				movie.setOriginal_title(detailObject.getString("original_title"));
 				movie.setRelease_year(Integer.parseInt(detailObject.getString("release_date").substring(0, 4)));
-				movie.setOriginal_language(detailObject.getString("original_language"));
 				movie.setPoster_path(prefix_url+detailObject.getString("poster_path"));
 				movie.setVote_count(detailObject.getInt("vote_count"));
 				movie.setTagline(detailObject.getString("tagline"));
