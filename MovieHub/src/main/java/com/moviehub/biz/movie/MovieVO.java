@@ -6,6 +6,7 @@ public class MovieVO {
 	private String backdrop_path;
 	private String original_title;
 	private int release_year;
+	private String production_countries;
 	private String original_language;
 	private String runtime;
 	private String poster_path;
@@ -48,6 +49,12 @@ public class MovieVO {
 	}
 	public void setRelease_year(int release_year) {
 		this.release_year = release_year;
+	}
+	public String getProduction_countries() {
+		return production_countries;
+	}
+	public void setProduction_countries(String production_countries) {
+		this.production_countries = production_countries;
 	}
 	public String getOriginal_language() {
 		return original_language;

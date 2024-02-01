@@ -28,11 +28,11 @@
 	</insert>
 	<insert id="insertMovie">
 		<![CDATA[
-			INSERT IGNORE INTO movie(movie_id, title, backdrop_path, genre_ids, original_title,
-			release_year, original_language, runtime, poster_path, vote_average, vote_count,
+			INSERT IGNORE INTO movie_dup(movie_id, title, backdrop_path, genre_ids, original_title,
+			release_year, production_countries, original_language, runtime, poster_path, vote_average, vote_count,
 			tagline, overview, popularity, groupNum)
 			VALUES(#{movie_id}, #{title}, #{backdrop_path}, #{genre_ids}, #{original_title},
-			#{release_year}, #{original_language}, #{runtime}, #{poster_path}, #{vote_average}, 
+			#{release_year}, #{production_countries}, #{original_language}, #{runtime}, #{poster_path}, #{vote_average}, 
 			#{vote_count}, #{tagline}, #{overview}, #{popularity}, #{groupNum})
 		]]>
 	</insert>
@@ -41,12 +41,6 @@
 			SELECT * FROM movie ORDER BY GROUPNUM, POPULARITY DESC
 		]]>	
 	</select>
-	<insert id="insertGenre">
-		<![CDATA[
-			INSERT IGNORE INTO GENRE(genre_id, genre_name)
-			VALUES(#{genre_id}, #{genre_name})
-		]]>
-	</insert>
 	<select id="getMovie" resultType="movie">
 		<![CDATA[
 			SELECT * FROM movie WHERE movie_id=#{movie_id}
