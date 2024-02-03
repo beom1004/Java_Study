@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -36,8 +37,9 @@ public class MovieServiceImpl implements MovieService {
 	@Override
 	public void saveMovie() {
 		final String API_KEY = "729201bdf1f62b5e99c9816a70e5d445";
-		List<String> apiURL_list = new ArrayList<String>();
-		List<Integer> movieIdLists = null;
+		List<String> apiURL_list = new ArrayList<>();
+	    List<Integer> movieIdLists = new ArrayList<>();
+	    List<String> detailLists = new ArrayList<>();
 		
 		apiURL_list.add("https://api.themoviedb.org/3/movie/now_playing?api_key="
 				+ API_KEY+"&language=ko-KR&page=1");
@@ -48,31 +50,31 @@ public class MovieServiceImpl implements MovieService {
 		apiURL_list.add("https://api.themoviedb.org/3/discover/movie?api_key="
 				+ API_KEY+"&language=ko-KR&page=1&sort_by=popularity.desc&watch_region=KR&with_watch_providers=97");
 		
-		List<String> detailLists = new ArrayList<String>();
-		final int URL_SIZE = apiURL_list.size();
+		StringBuilder detailStringBuilder = new StringBuilder();
 		
-		for(int i=0; i<URL_SIZE; i++) {
+		for(String apiURL : apiURL_list) {
 			try {
-				URI uri = new URI(apiURL_list.get(i));
+				URI uri = new URI(apiURL);
 				URL url = uri.toURL();
 				BufferedReader bf = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
 				String result = bf.readLine();
-				movieIdLists = new ArrayList<Integer>();
+				movieIdLists.clear();
 				
 				JSONObject jsonObject = new JSONObject(result);
 	            JSONArray list = jsonObject.getJSONArray("results");
 				
 				for(int j=0; j < list.length(); j++) {
 	                JSONObject contents = list.getJSONObject(j);
-	                int movid_id = contents.getInt("id");
-	                movieIdLists.add(movid_id);
-	                detailLists.add("https://api.themoviedb.org/3/movie/"+movieIdLists.get(j)+
-	                		"?api_key="+API_KEY+"&language=ko-KR");
+	                int movie_id = contents.getInt("id");
+	                movieIdLists.add(movie_id);
+	                detailStringBuilder.append("https://api.themoviedb.org/3/movie/").append(movieIdLists.get(j))
+	                		.append("?api_key=").append(API_KEY).append("&language=ko-KR").append("\n");
 	            }
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
+		detailLists.addAll(Arrays.asList(detailStringBuilder.toString().split("\n")));
 		getDetailMovie(detailLists);
 		
 	}
@@ -81,10 +83,10 @@ public class MovieServiceImpl implements MovieService {
 		final String prefix_url = "https://image.tmdb.org/t/p/original";
 		JSONObject detailObject = null;
 		
-		for(int j=0; j < detailLists.size(); j++) {
+		for(String detailURLString : detailLists) {
 			try {
 				MovieVO movie = new MovieVO();
-				URI detailURI = new URI(detailLists.get(j));
+				URI detailURI = new URI(detailURLString);
 				URL detailURL = detailURI.toURL();
 				BufferedReader br = new BufferedReader(new InputStreamReader(detailURL.openStream(), "UTF-8"));
 				String rs = br.readLine();
@@ -100,16 +102,16 @@ public class MovieServiceImpl implements MovieService {
 				movie.setTagline(detailObject.getString("tagline"));
 				movie.setOverview(detailObject.getString("overview"));
 				movie.setPopularity(detailObject.getDouble("popularity"));
-				movie.setGroupNum((j / 20) + 1);
+				movie.setGroupNum((detailLists.indexOf(detailURLString) / 20) + 1);
 				
 				int runtime = detailObject.getInt("runtime");
 				int runtime_hour = runtime / 60;
 				int runtime_minute = runtime % 60;
 				
-				if(runtime_minute != 0) {
-					movie.setRuntime(runtime_hour+"시간 "+runtime_minute+"분");
+				if(runtime_hour == 0) {
+					movie.setRuntime(runtime+"분");
 				}else {
-					movie.setRuntime(runtime_hour+"시간");
+					movie.setRuntime(runtime_hour+"시간 "+runtime_minute+"분");
 				}
 
 				double num = detailObject.getDouble("vote_average") / 2;
@@ -156,27 +158,28 @@ public class MovieServiceImpl implements MovieService {
 	@Override
 	public List<MovieVO> getMovieList(String type){
 		final String API_KEY = "729201bdf1f62b5e99c9816a70e5d445";
-		List<String> apiURL_list = new ArrayList<String>();
+		List<String> apiURLList = new ArrayList<>();
+		List<List<Integer>> allMovieIdList = new ArrayList<>();
 		List<Integer> movieIdLists = null;
 		
-		apiURL_list.add("https://api.themoviedb.org/3/movie/now_playing?api_key="
-				+ API_KEY+"&language=ko-KR&page=1");
-
-		apiURL_list.add("https://api.themoviedb.org/3/discover/movie?api_key="
-				+ API_KEY+"&language=ko-KR&page=1&sort_by=popularity.desc&watch_region=KR&with_watch_providers=8");
-
-		apiURL_list.add("https://api.themoviedb.org/3/discover/movie?api_key="
-				+ API_KEY+"&language=ko-KR&page=1&sort_by=popularity.desc&watch_region=KR&with_watch_providers=97");
+		StringBuilder boxOfficeURL = new StringBuilder("https://api.themoviedb.org/3/movie/now_playing?api_key="
+	            + API_KEY + "&language=ko-KR&page=1");
+	    StringBuilder netflixURL = new StringBuilder("https://api.themoviedb.org/3/discover/movie?api_key="
+	            + API_KEY + "&language=ko-KR&page=1&sort_by=popularity.desc&watch_region=KR&with_watch_providers=8");
+	    StringBuilder watchaURL = new StringBuilder("https://api.themoviedb.org/3/discover/movie?api_key="
+	            + API_KEY + "&language=ko-KR&page=1&sort_by=popularity.desc&watch_region=KR&with_watch_providers=97");
 		
-		final int URL_SIZE = apiURL_list.size();
-		List<List<Integer>> allMovieIdList = new ArrayList<List<Integer>>();
-		for(int i=0; i<URL_SIZE; i++) {
+	    apiURLList.add(boxOfficeURL.toString());
+	    apiURLList.add(netflixURL.toString());
+	    apiURLList.add(watchaURL.toString());
+	    
+		for(String apiURL : apiURLList) {
 			try {
-				URI uri = new URI(apiURL_list.get(i));
+				URI uri = new URI(apiURL);
 				URL url = uri.toURL();
 				BufferedReader bf = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
 				String result = bf.readLine();
-				movieIdLists = new ArrayList<Integer>();
+				movieIdLists = new ArrayList<>();
 				
 				JSONObject jsonObject = new JSONObject(result);
 	            JSONArray list = jsonObject.getJSONArray("results");
@@ -186,13 +189,14 @@ public class MovieServiceImpl implements MovieService {
 	                int movid_id = contents.getInt("id");
 	                movieIdLists.add(movid_id);
 	            }
+				allMovieIdList.add(movieIdLists);
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			allMovieIdList.add(movieIdLists);
 		}
 		
-		List<MovieVO> returnList = new ArrayList<MovieVO>();
+		List<MovieVO> returnList = new ArrayList<>();
 		if(type.equals("boxoffice")) {
 			returnList = getBoxOffice(movieDAO.getMovieList(), allMovieIdList);
 		}else if(type.equals("netflix")) {
