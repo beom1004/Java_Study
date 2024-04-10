@@ -4,12 +4,17 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.moviehub.biz.user.LoginUserVO;
@@ -22,6 +27,8 @@ import com.moviehub.biz.user.impl.UserService;
 public class UserController {
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private PasswordEncoder bCryptPasswordEncoder;
 
 	@RequestMapping(value="/myProfile.do", method=RequestMethod.GET)
 	public String viewProfile(HttpSession session, Model model, LoginUserVO loginUser, LoginUserVO user) {
@@ -64,6 +71,7 @@ public class UserController {
 	@RequestMapping(value="/register.do", method=RequestMethod.POST)
 	public String registerUser(@RequestBody UserVO user, UserDetailVO detail) {
 		detail.setUser_id(user.getId());
+		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		userService.registerUser(user, detail);
 		return "index.do";
 	}
@@ -101,6 +109,15 @@ public class UserController {
 		
 		if(check == 1) return "duplicated";
 		else return "available";
+	}
+	@RequestMapping("/login.do")
+	public String login(HttpSession session , UserVO user, @RequestParam String id, @RequestParam String password) {
+		user = userService.getUser(id);
+		if (user == null || !bCryptPasswordEncoder.matches(password, user.getPassword())) {
+            return "index.do";
+        }
+		session.setAttribute("user", user);
+		return "index.do";
 	}
 	@RequestMapping("/logout.do")
 	public String logout(HttpSession session) {

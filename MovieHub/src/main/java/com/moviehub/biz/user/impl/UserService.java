@@ -14,6 +14,7 @@ public interface UserService {
 	int emailCheck(String email);
 	List<LoginUserVO> getAllUserList(LoginUserVO user);
 	void registerUser(UserVO vo, UserDetailVO detail);
+	UserVO getUser(String id);
 	LoginUserVO getUser(LoginUserVO user);
 	UserDetailVO getDetail(UserDetailVO detail);
 	void widthdrawlUser(String id);

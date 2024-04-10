@@ -51,7 +51,7 @@
         <div class="login_white-bg">
             <div class="logo">MovieHub</div>
             <div>로그인</div>
-            <form name="loginForm" method="post">
+            <form action="login.do" name="loginForm" method="post">
                 <div>
                     <input type="text" name="id" id="loginId" placeholder="아이디" maxlength="15" required>
                 </div>
@@ -69,7 +69,7 @@
         <div class="register_white-bg">
             <div class="logo">MovieHub</div>
             <div>회원가입</div>
-            <form id="registerForm">
+            <form id="registerForm" action="register.do" method="post">
                 <div>
                     <input type="text" name="id" id="regId" placeholder="아이디" required>
                     <div id="idCheck"></div>

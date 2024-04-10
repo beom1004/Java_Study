@@ -103,6 +103,13 @@
 			PROFILE_MSG=#{profile_msg} WHERE USER_ID=#{user_id}
 		]]>
 	</update>
+	<select id="getUserById" resultType="User">
+		<![CDATA[
+			select a.id, a.nickname, a.password, a.email, b.profile_img, b.profile_msg
+			from user a
+			join user_detail b on a.id=b.user_id where a.id=#{id}
+		]]>
+	</select>
 	<select id="getUser" resultType="loginUser">
 		<![CDATA[
 			select a.id, a.nickname, a.password, a.email, b.profile_img, b.profile_msg

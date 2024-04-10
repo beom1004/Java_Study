@@ -102,6 +102,11 @@ public class UserServiceImpl implements UserService {
 	public void registerUser(UserVO user, UserDetailVO detail) {
 		userDAO.registerUser(user, detail);
 	}
+	
+	@Override
+	public UserVO getUser(String id) {
+		return userDAO.getUserById(id);
+	}
 
 	@Override
 	public LoginUserVO getUser(LoginUserVO user) {

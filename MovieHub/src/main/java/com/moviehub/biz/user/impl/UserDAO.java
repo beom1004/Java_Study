@@ -44,7 +44,9 @@ public class UserDAO {
 		sqlSessionTemplate.insert("user.registerUser", user);
 		sqlSessionTemplate.insert("user.detailInsert", detail);
 	}
-	
+	public UserVO getUserById(String id) {
+		return sqlSessionTemplate.selectOne("user.getUserById", id);
+	}
 	public LoginUserVO getUser(LoginUserVO user) {
 		return sqlSessionTemplate.selectOne("user.getUser", user);
 	}
