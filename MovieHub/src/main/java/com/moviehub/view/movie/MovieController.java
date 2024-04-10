@@ -55,7 +55,7 @@ public class MovieController {
 
 	    return "index.jsp";
 	}
-	
+//	shlee branch test
 	@RequestMapping(value="/content.do")
 	public String getContentView(HttpSession session, UserVO user, LoginUserVO loginUser, Model model, 
 			MovieVO movie, CommentVO comment, CommentVO commentList, CurCommentVO curComment, RatingVO rating) {
