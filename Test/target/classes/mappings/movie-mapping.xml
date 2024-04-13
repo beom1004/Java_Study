@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="movieDAO">
+	<select id="getAllMovieList" resultType="movie">
+    <![CDATA[
+        SELECT * FROM movie
+    ]]>
+    <where>
+        <if test="searchCondition != null">
+            <choose>
+                <when test="searchCondition.equalsIgnoreCase('제목')">
+                    AND TITLE LIKE CONCAT('%', #{searchKeyword}, '%')
+                </when>
+                <when test="searchCondition.equalsIgnoreCase('영화코드')">
+                    AND MOVIE_ID = #{searchKeyword}
+                </when>
+            </choose>
+        </if>
+    </where>
+    ORDER BY POPULARITY DESC
+</select>
+	<insert id="insertComment">
+		<![CDATA[
+			INSERT INTO COMMENT(movie_id) VALUES(#{movie_id})
+		]]>
+	</insert>
+	<insert id="insertMovie">
+		<![CDATA[
+			INSERT IGNORE INTO movie(movie_id, title, backdrop_path, genre_ids, original_title,
+			release_year, production_countries, runtime, poster_path, vote_average, vote_count,
+			tagline, overview, popularity, groupNum)
+			VALUES(#{movie_id}, #{title}, #{backdrop_path}, #{genre_ids}, #{original_title},
+			#{release_year}, #{production_countries}, #{runtime}, #{poster_path}, #{vote_average}, 
+			#{vote_count}, #{tagline}, #{overview}, #{popularity}, #{groupNum})
+		]]>
+	</insert>
+	<select id="getMovieList" resultType="movie">
+		<![CDATA[
+			SELECT * FROM movie ORDER BY GROUPNUM, POPULARITY DESC
+		]]>	
+	</select>
+	<select id="getMovie" resultType="movie">
+		<![CDATA[
+			SELECT * FROM movie WHERE movie_id=#{movie_id}
+		]]>	
+	</select>
+	<select id="getSearchMovieTitle" resultType="movie">
+		<![CDATA[
+			SELECT * FROM movie WHERE TITLE LIKE CONCAT('%', #{searchKeyword}, '%') ORDER BY POPULARITY DESC
+		]]>	
+	</select>
+</mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.moviehub.biz.movie.MovieVO" alias="movie"/>
+		<typeAlias type="com.moviehub.biz.user.UserVO" alias="user"/>
+		<typeAlias type="com.moviehub.biz.user.UserDetailVO" alias="detail"/>
+		<typeAlias type="com.moviehub.biz.user.LoginUserVO" alias="loginUser"/>
+		<typeAlias type="com.moviehub.biz.user.UserCommentVO" alias="userComment"/>
+		<typeAlias type="com.moviehub.biz.comment.CommentVO" alias="comment"/>
+		<typeAlias type="com.moviehub.biz.comment.CurCommentVO" alias="curComment"/>
+		<typeAlias type="com.moviehub.biz.comment.MyCommentVO" alias="myComment"/>
+		<typeAlias type="com.moviehub.biz.rating.RatingVO" alias="rating" />
+		<typeAlias type="com.moviehub.biz.rating.MyRatingVO" alias="myRating" />
+		<typeAlias type="com.moviehub.biz.reply.ReplyVO" alias="reply"/>
+		<typeAlias type="com.moviehub.biz.reply.CurReplyVO" alias="curReply"/>
+ 	</typeAliases>
+
+	<mappers>
+		<mapper resource="mappings/user-mapping.xml" />
+		<mapper resource="mappings/movie-mapping.xml" />
+		<mapper resource="mappings/comment-mapping.xml" />
+		<mapper resource="mappings/rating-mapping.xml" />
+		<mapper resource="mappings/reply-mapping.xml" />
+	</mappers>
+</configuration>
