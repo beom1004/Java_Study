@@ -3,7 +3,7 @@ package com.moviehub.biz.comment;
 import java.util.Date;
 
 public class CommentVO {
-	private int comment_id;
+	private String comment_id;
 	private String comment;
 	private Date write_time;
 	private int views;
@@ -13,10 +13,11 @@ public class CommentVO {
 	private String searchCondition;
 	private String searchKeyword;
 	
-	public int getComment_id() {
+	
+	public String getComment_id() {
 		return comment_id;
 	}
-	public void setComment_id(int comment_id) {
+	public void setComment_id(String comment_id) {
 		this.comment_id = comment_id;
 	}
 	public String getComment() {

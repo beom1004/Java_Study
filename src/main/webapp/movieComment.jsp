@@ -26,7 +26,7 @@
             <div>
                 <form action="insertReply.do" method="get">
                 	<input type="hidden" name="comment_id" value="${curComment.comment_id }">
-                    <input type="hidden" name="user_id" value="${user.id }">
+                    <input type="hidden" name="user_id" value="${user.user_id }">
                     <input type="hidden" name="movie_id" value="${movie.movie_id }">
                     <textarea name="content" id="text_1"></textarea>
                     <div>
@@ -48,7 +48,7 @@
             <div>
                 <form action="modifyReply.do" method="get">
                 	<input type="hidden" name="comment_id" value="${curComment.comment_id }">
-                	<input type="hidden" name="user_id" value="${user.id }">
+                	<input type="hidden" name="user_id" value="${user.user_id }">
                     <input type="hidden" name="movie_id" value="${movie.movie_id }">
                     <textarea name="content" id="text_2">${curReply.content }</textarea>
                     <div>
@@ -98,7 +98,7 @@
                                     <span>${replyCnt }</span>
                                 </div>
                             </div>
-                            <c:if test="${user.id == curComment.user_id || user.id == curReply.user_id}">
+                            <c:if test="${user.id == curComment.user_id || user.user_id == curReply.user_id}">
 	                            <div class="block" style="display: none;">
 	                                <div class="reply_btn">
 	                                    <i class="bi bi-chat-fill"></i>
@@ -106,7 +106,7 @@
 	                                </div>
 	                            </div>
                             </c:if>
-                            <c:if test="${user.id != curComment.user_id && user.id != curReply.user_id }">
+                            <c:if test="${user.id != curComment.user_id && user.user_id != curReply.user_id }">
                             	<c:if test="${user != null }">
 		                            <div class="block">
 		                                <div class="reply_btn">
@@ -119,7 +119,7 @@
                         </div>
                     </li>
                 </ul>
-                <c:if test="${user != null and user.id == curReply.user_id }">
+                <c:if test="${user != null and user.user_id == curReply.user_id }">
                 	<div class="myLeftReply">내가 남긴 댓글</div>
                     <div class="reply_wrap" style="border: 1px solid #dedede;">
                     	<div class="reply_wrap_inner">
@@ -204,7 +204,7 @@
 								                <div>${reReply.content}</div>
 								                <div class="write_time"><fmt:formatDate value="${reReply.write_time}" pattern="yyyy.MM.dd. HH:mm" /></div>
 								            </div>
-								            <c:if test="${user.id == reReply.user_id }">
+								            <c:if test="${user.user_id == reReply.user_id }">
 									            <div class="reReplyBtns">
 									            	<div id="reReplyDelete">
 									            		<a href="deleteReReply.do?comment_id=${curComment.comment_id }&movie_id=${movie.movie_id}&re_reply_id=${reReply.re_reply_id}&reply_id=${reReply.reply_id}" onclick="return deleteReReply(this)">삭제</a>

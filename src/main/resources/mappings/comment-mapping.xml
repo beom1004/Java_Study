@@ -64,10 +64,10 @@
 	        	, c.movie_id
 	        	, COALESCE(r.rating, 0.0) AS rating
 			FROM user a
-			JOIN user_detail b ON a.id = b.user_id
-			JOIN comment c ON c.user_id = a.id
+			JOIN user_detail b ON a.user_id = b.user_id
+			JOIN comment c ON c.user_id = a.user_id
 			LEFT JOIN rating r 
-			ON r.user_id = a.id and r.movie_id = c.movie_id
+			ON r.user_id = a.user_id and r.movie_id = c.movie_id
 			where c.movie_id = #{movie_id}
             order by ${sortType} desc;
 	    ]]>
@@ -89,10 +89,10 @@
 	        	, COALESCE(r.rating, 0.0) AS rating
 			FROM 
 				user a
-			JOIN user_detail b ON a.id = b.user_id
-			JOIN comment c ON c.user_id = a.id
+			JOIN user_detail b ON a.user_id = b.user_id
+			JOIN comment c ON c.user_id = a.user_id
 			LEFT JOIN rating r 
-			ON r.user_id = a.id and r.movie_id = c.movie_id
+			ON r.user_id = a.user_id and r.movie_id = c.movie_id
 			where c.movie_id = #{movie_id}
             order by c.write_time desc;
 	    ]]>
@@ -113,10 +113,10 @@
 	        	, c.movie_id
 	        	, COALESCE(r.rating, 0.0) AS rating
 		    FROM user a
-		    JOIN user_detail b ON a.id = b.user_id
-		    JOIN comment c ON c.user_id = a.id
+		    JOIN user_detail b ON a.user_id = b.user_id
+		    JOIN comment c ON c.user_id = a.user_id
 		    LEFT JOIN rating r 
-		    ON r.user_id = a.id and r.movie_id=c.movie_id
+		    ON r.user_id = a.user_id and r.movie_id=c.movie_id
 		    WHERE c.movie_id = #{movie_id}
 		    AND (LOWER(a.nickname) LIKE CONCAT('%', LOWER(#{searchKeyword}), '%') 
 		    OR LOWER(c.comment) LIKE CONCAT('%', LOWER(#{searchKeyword}), '%'))
@@ -168,11 +168,13 @@
 		<!-- insertComment -->
 		<![CDATA[
 			INSERT INTO comment(
-				COMMENT
+				COMMENT_ID
+				, COMMENT
 				, USER_ID
 				, MOVIE_ID
 			) VALUES(
-				#{comment}
+				#{comment_id}
+				, #{comment}
 				, #{user_id}
 				, #{movie_id}
 			)
@@ -205,9 +207,9 @@
 				, MAX(c.movie_id) AS movie_id
 				, COALESCE(MAX(r.rating), 0.0) AS rating
 			FROM user a
-			JOIN user_detail b ON a.id = b.user_id
-			JOIN comment c ON c.user_id = a.id AND c.movie_id = #{movie_id}
-			LEFT JOIN rating r ON r.user_id = a.id AND r.movie_id = #{movie_id}
+			JOIN user_detail b ON a.user_id = b.user_id
+			JOIN comment c ON c.user_id = a.user_id AND c.movie_id = #{movie_id}
+			LEFT JOIN rating r ON r.user_id = a.user_id AND r.movie_id = #{movie_id}
 			GROUP BY 
 				b.profile_img
 				, a.nickname
@@ -235,9 +237,9 @@
 	        	, c.movie_id
 	        	, COALESCE(r.rating, 0.0) AS rating
 			FROM user a
-			JOIN user_detail b ON a.id = b.user_id
-			JOIN comment c ON c.user_id = a.id
-			LEFT JOIN rating r ON r.user_id = a.id and r.movie_id = c.movie_id
+			JOIN user_detail b ON a.user_id = b.user_id
+			JOIN comment c ON c.user_id = a.user_id
+			LEFT JOIN rating r ON r.user_id = a.user_id and r.movie_id = c.movie_id
 			where c.comment_id = #{comment_id} and c.movie_id = #{movie_id};
 	    ]]>
 	</select>

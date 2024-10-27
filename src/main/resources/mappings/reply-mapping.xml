@@ -117,8 +117,8 @@
 				, c.user_id
 				, c.movie_id
 			from user a
-			join user_detail b on a.id = b.user_id
-			join reply c on c.user_id = a.id
+			join user_detail b on a.user_id = b.user_id
+			join reply c on c.user_id = a.user_id
 			where 
 				c.comment_id = #{comment_id} 
 				and c.user_id = #{user_id} 
@@ -140,8 +140,8 @@
 				, c.user_id
 				, c.movie_id
 			from user a
-			join user_detail b on a.id = b.user_id
-			join reply c on c.user_id = a.id
+			join user_detail b on a.user_id = b.user_id
+			join reply c on c.user_id = a.user_id
 			where 
 				c.comment_id = #{comment_id} 
 				and c.movie_id = #{movie_id} 
@@ -163,8 +163,8 @@
 				, c.user_id
 				, c.movie_id
 			from user a
-			join user_detail b on a.id = b.user_id
-			join reply c on c.user_id = a.id
+			join user_detail b on a.user_id = b.user_id
+			join reply c on c.user_id = a.user_id
 			where c.re_reply_id = #{reply_id}
             order by write_time desc;
 		]]>

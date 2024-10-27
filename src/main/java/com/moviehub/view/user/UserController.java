@@ -4,10 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,8 +29,8 @@ public class UserController {
 
 	@RequestMapping(value="/myProfile.do", method=RequestMethod.GET)
 	public String viewProfile(HttpSession session, Model model, LoginUserVO loginUser, LoginUserVO user) {
-		loginUser = (LoginUserVO) session.getAttribute("user");
-		user.setId(loginUser.getId());
+		loginUser = (LoginUserVO) session.getAttribute("user_id");
+		user.setUser_id(loginUser.getUser_id());
 		user.setPassword(loginUser.getPassword());
 		model.addAttribute("userData", userService.getUserData(user));
 		
@@ -44,9 +41,9 @@ public class UserController {
 	@RequestMapping("/getUserComment.do")
 	@ResponseBody
 	public List<UserCommentVO> getUserComment(HttpSession session, LoginUserVO loginUser, UserCommentVO userComment) {
-		loginUser = (LoginUserVO) session.getAttribute("user");
+		loginUser = (LoginUserVO) session.getAttribute("user_id");
 		if(loginUser != null) {
-			userComment.setUser_id(loginUser.getId());
+			userComment.setUser_id(loginUser.getUser_id());
 		}
 		List<UserCommentVO> result = userService.getUserCommentList(userComment);
 
@@ -55,22 +52,22 @@ public class UserController {
 	
 	@RequestMapping("/modifyUser.do")
 	public String modifyUser(HttpSession session, LoginUserVO user, LoginUserVO loginUser) {
-		loginUser = (LoginUserVO) session.getAttribute("user");
+		loginUser = (LoginUserVO) session.getAttribute("user_id");
 		userService.modifyUser(user, loginUser);
 		return "index.do";
 	}
 	
 	@RequestMapping("/widthrawl.do")
 	public String withdrawlUser(HttpSession session, UserVO user) {
-		user = (UserVO) session.getAttribute("user");
-	    userService.widthdrawlUser(user.getId());
+		user = (UserVO) session.getAttribute("user_id");
+	    userService.widthdrawlUser(user.getUser_id());
 	    session.invalidate();
 		return "index.do";
 	}
 
 	@RequestMapping(value="/register.do", method=RequestMethod.POST)
 	public String registerUser(@RequestBody UserVO user, UserDetailVO detail) {
-		detail.setUser_id(user.getId());
+		detail.setUser_id(user.getUser_id());
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		userService.registerUser(user, detail);
 		return "index.do";
@@ -88,14 +85,14 @@ public class UserController {
 	@RequestMapping("/loginCheck.do")
 	@ResponseBody
 	public String loginCheck(@RequestBody LoginUserVO user, LoginUserVO login, HttpSession session) {
-		user.setId(user.getId());
+		user.setUser_id(user.getUser_id());
 		user.setPassword(user.getPassword());
 		login = userService.loginCheck(user);
 		
 		if(login != null) {
-			session.setAttribute("user", login);
+			session.setAttribute("user_id", login);
 			return "index.do";
-		}else if(user.getId().equals("admin") && user.getPassword().equals("admin1234")) {
+		}else if(user.getUser_id().equals("admin") && user.getPassword().equals("admin1234")) {
 			session.setAttribute("admin", login);
 			return "admin_main.do";
 		}else{
@@ -116,7 +113,7 @@ public class UserController {
 		if (user == null || !bCryptPasswordEncoder.matches(password, user.getPassword())) {
             return "index.do";
         }
-		session.setAttribute("user", user);
+		session.setAttribute("user_id", user);
 		return "index.do";
 	}
 	@RequestMapping("/logout.do")

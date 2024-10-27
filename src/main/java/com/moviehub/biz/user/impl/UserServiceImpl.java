@@ -78,7 +78,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void modifyUser(LoginUserVO user, LoginUserVO loginUser) {
-		String folder = "C:/Users/hello/git/MovieHub/MovieHub/src/main/webapp/static/images/profile/";
+		String folder = "C:/eclipse/MovieHub/src/main/webapp/static/images/profile";
 		MultipartFile uploadFile = user.getFile();
 		
 		// 업로드한 파일이 있으면

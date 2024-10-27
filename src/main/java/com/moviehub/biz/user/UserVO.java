@@ -1,20 +1,21 @@
 package com.moviehub.biz.user;
 
 public class UserVO {
-	private String id;
+	private String user_id;
 	private String nickname;
 	private String password;
 	private String email;
 	private String auth;
 
-	public String getId() {
-		return id;
+	
+	public String getUser_id() {
+		return user_id;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
-	
+
 	public String getNickname() {
 		return nickname;
 	}

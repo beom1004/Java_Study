@@ -53,7 +53,7 @@
             <div>로그인</div>
             <form action="login.do" name="loginForm" method="post">
                 <div>
-                    <input type="text" name="id" id="loginId" placeholder="아이디" maxlength="15" required>
+                    <input type="text" name="user_id" id="loginId" placeholder="아이디" maxlength="15" required>
                 </div>
                 <div>
                     <input type="password" name="password" id="loginPw" placeholder="비밀번호" maxlength="40" required>
@@ -71,7 +71,7 @@
             <div>회원가입</div>
             <form id="registerForm" action="register.do" method="post">
                 <div>
-                    <input type="text" name="id" id="regId" placeholder="아이디" required>
+                    <input type="text" name="user_id" id="regId" placeholder="아이디" required>
                     <div id="idCheck"></div>
                 </div>
                 <div>
@@ -123,7 +123,7 @@
 	                        <div class="info_id_nickname">
 	                        	<div>
 	                        		<div class="user_id">아이디</div>
-	                            	<input type="text" name="id" value="${user.id }" readonly required>
+	                            	<input type="text" name="user_id" value="${user.user_id }" readonly required>
 	                        	</div>
 	                            <div>
 	                        		<div class="user_nickname">닉네임</div>

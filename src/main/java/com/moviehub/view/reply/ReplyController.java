@@ -24,25 +24,25 @@ public class ReplyController {
 	}
 	@RequestMapping("/deleteReply.do")
 	public String deleteReply(HttpSession session, LoginUserVO user, CurReplyVO curReply) {
-		user = (LoginUserVO) session.getAttribute("user");
-		curReply.setUser_id(user.getId());
+		user = (LoginUserVO) session.getAttribute("user_id");
+		curReply.setUser_id(user.getUser_id());
 		replyService.deleteReply(curReply);
 		return "movieComment.do";
 	}
 	@RequestMapping("/deleteReReply.do")
-	public String deleteReReply(CurReplyVO curReply,@RequestParam int comment_id, @RequestParam int movie_id,
+	public String deleteReReply(CurReplyVO curReply,@RequestParam String comment_id, @RequestParam int movie_id,
 			HttpSession session, LoginUserVO user,@RequestParam int re_reply_id, @RequestParam int reply_id) {
-		user = (LoginUserVO) session.getAttribute("user");
+		user = (LoginUserVO) session.getAttribute("user_id");
 		curReply.setComment_id(comment_id);
 		curReply.setMovie_id(movie_id);
-		curReply.setUser_id(user.getId());
+		curReply.setUser_id(user.getUser_id());
 		curReply.setRe_reply_id(re_reply_id);
 		curReply.setReply_id(reply_id);
 		replyService.deleteReReply(curReply);
 		return "movieComment.do";
 	}
 	@RequestMapping("/insertReply.do")
-	public String insertReply(ReplyVO reply, @RequestParam String user_id, @RequestParam int movie_id, @RequestParam int comment_id) {
+	public String insertReply(ReplyVO reply, @RequestParam String user_id, @RequestParam int movie_id, @RequestParam String comment_id) {
 		reply.setComment_id(comment_id);
 		reply.setUser_id(user_id);
 		reply.setMovie_id(movie_id);
@@ -56,8 +56,8 @@ public class ReplyController {
 	}
 	@RequestMapping("/reReplyInsert.do")
 	public String insertReReply(HttpSession session, LoginUserVO user, ReplyVO reply) {
-		user = (LoginUserVO) session.getAttribute("user");
-		reply.setUser_id(user.getId());
+		user = (LoginUserVO) session.getAttribute("user_id");
+		reply.setUser_id(user.getUser_id());
 		replyService.insertReReply(reply);
 		return "movieComment.do";
 	}

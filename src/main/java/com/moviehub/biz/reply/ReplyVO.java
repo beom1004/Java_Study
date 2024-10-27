@@ -8,7 +8,7 @@ public class ReplyVO {
 	private int reply_cnt;
 	private Date write_time;
 	private int re_reply_id;
-	private int comment_id;
+	private String comment_id;
 	private String user_id;
 	private int movie_id;
 	private String searchCondition;
@@ -38,10 +38,11 @@ public class ReplyVO {
 	public void setWrite_time(Date write_time) {
 		this.write_time = write_time;
 	}
-	public int getComment_id() {
+	
+	public String getComment_id() {
 		return comment_id;
 	}
-	public void setComment_id(int comment_id) {
+	public void setComment_id(String comment_id) {
 		this.comment_id = comment_id;
 	}
 	public String getUser_id() {

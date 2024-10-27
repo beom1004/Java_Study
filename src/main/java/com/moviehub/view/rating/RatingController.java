@@ -23,8 +23,8 @@ public class RatingController {
 	@RequestMapping("/myRating.do")
 	public String viewMyRating(HttpSession session, LoginUserVO user, Model model, MyRatingVO rating,
 			@RequestParam String sortType) {
-		user = (LoginUserVO) session.getAttribute("user");
-		rating.setUser_id(user.getId());
+		user = (LoginUserVO) session.getAttribute("user_id");
+		rating.setUser_id(user.getUser_id());
 		rating.setSortType(sortType);
 		model.addAttribute("ratingLists", ratingService.getAllRating(rating));
 		
@@ -33,11 +33,11 @@ public class RatingController {
 	}
 	@RequestMapping("/insertStar.do")
 	public String insertStar(HttpSession session, Model model, RatingVO rating, LoginUserVO user, @RequestParam int movie_id) {
-		user = (LoginUserVO) session.getAttribute("user");
+		user = (LoginUserVO) session.getAttribute("user_id");
 		if(user != null) {
 			rating.setRating_id(UUID.randomUUID().toString());
 			
-			rating.setUser_id(user.getId());
+			rating.setUser_id(user.getUser_id());
 			rating.setMovie_id(movie_id);
 			ratingService.insertStar(rating);
 		}
@@ -46,9 +46,9 @@ public class RatingController {
 	
 	@RequestMapping("/updateStar.do")
 	public String updateStar(HttpSession session, Model model, RatingVO rating, LoginUserVO user, @RequestParam int movie_id) {
-		user = (LoginUserVO) session.getAttribute("user");
+		user = (LoginUserVO) session.getAttribute("user_id");
 		if(user != null) {
-			rating.setUser_id(user.getId());
+			rating.setUser_id(user.getUser_id());
 			rating.setMovie_id(movie_id);
 			ratingService.updateStar(rating);
 		}

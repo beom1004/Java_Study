@@ -10,7 +10,7 @@ public class CurReplyVO {
 	private int reply_cnt;
 	private Date write_time;
 	private int re_reply_id;
-	private int comment_id;
+	private String comment_id;
 	private String user_id;
 	private int movie_id;
 
@@ -56,10 +56,11 @@ public class CurReplyVO {
 	public void setRe_reply_id(int re_reply_id) {
 		this.re_reply_id = re_reply_id;
 	}
-	public int getComment_id() {
+	
+	public String getComment_id() {
 		return comment_id;
 	}
-	public void setComment_id(int comment_id) {
+	public void setComment_id(String comment_id) {
 		this.comment_id = comment_id;
 	}
 	public String getUser_id() {

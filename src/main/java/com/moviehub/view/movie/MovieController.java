@@ -61,11 +61,12 @@ public class MovieController {
 			MovieVO movie, CommentVO comment, CommentVO commentList, CurCommentVO curComment, RatingVO rating) {
 		MovieVO resMovie = movieService.getMovie(movie);
 		model.addAttribute("movie", resMovie);
+		
 		int movie_id = resMovie.getMovie_id();
-		loginUser = (LoginUserVO) session.getAttribute("user");
+		loginUser = (LoginUserVO) session.getAttribute("user_id");
 		
 		if(loginUser != null) {
-			String user_id = loginUser.getId();
+			String user_id = loginUser.getUser_id();
 
 		    comment.setUser_id(user_id);
 		    comment.setMovie_id(movie_id);

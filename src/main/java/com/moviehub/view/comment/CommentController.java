@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -37,8 +38,8 @@ public class CommentController {
 	@RequestMapping("/myComment.do")
 	public String myComment(HttpSession session, LoginUserVO user, Model model, MyCommentVO comment,
 			@RequestParam String sortType) {
-		user = (LoginUserVO) session.getAttribute("user");
-		comment.setUser_id(user.getId());
+		user = (LoginUserVO) session.getAttribute("user_id");
+		comment.setUser_id(user.getUser_id());
 		comment.setSortType(sortType);
 		model.addAttribute("commentList", commentService.getMyCommentList(comment));
 		return "myComment.jsp";
@@ -65,8 +66,10 @@ public class CommentController {
 	}
 	@RequestMapping("/insertComment.do")
 	public String insertComment(HttpSession session, HttpServletRequest request, LoginUserVO user, CommentVO comment) {
-		user = (LoginUserVO) session.getAttribute("user");
-	    comment.setUser_id(user.getId());
+		user = (LoginUserVO) session.getAttribute("user_id");
+	    comment.setUser_id(user.getUser_id());
+	    comment.setComment_id(UUID.randomUUID().toString());
+	    
 	    commentService.insertComment(comment);
 	    String referer = request.getHeader("Referer");
 	    if (referer != null && !referer.isEmpty()) {
@@ -94,8 +97,8 @@ public class CommentController {
 		List<CurCommentVO> commentLists = commentService.sortComments(curComment);
 		model.addAttribute("commentLists", commentLists);
 		
-		Map<Integer, List<CurReplyVO>> replyMap = new HashMap<>();
-		Map<Integer, Map<Integer, List<CurReplyVO>>> reReplyMaps = new HashMap<>();
+		Map<String, List<CurReplyVO>> replyMap = new HashMap<>();
+		Map<String, Map<Integer, List<CurReplyVO>>> reReplyMaps = new HashMap<>();
 		// 댓글
 		for (CurCommentVO comment : commentLists) {
 		    replyList.setComment_id(comment.getComment_id());
@@ -125,13 +128,14 @@ public class CommentController {
 		curComment = commentService.getCurComment(curComment);
 		model.addAttribute("curComment", curComment);
 		
-		LoginUserVO user = (LoginUserVO) session.getAttribute("user");
+		LoginUserVO user = (LoginUserVO) session.getAttribute("user_id");
 		if(user != null) {
-			curReply.setUser_id(user.getId());
+			curReply.setUser_id(user.getUser_id());
 			curReply.setComment_id(curComment.getComment_id());
 			
 			CurReplyVO curReplyResult = replyService.getCurReply(curReply);
 			model.addAttribute("curReply", curReplyResult);
+			
 			if (curReplyResult != null && curReplyResult.getContent() == null) {
 			    System.out.println("reply null 발생");
 			} else if (curReplyResult != null) {

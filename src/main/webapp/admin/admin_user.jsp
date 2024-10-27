@@ -86,7 +86,7 @@
                             <c:forEach var="user" items="${userList }" varStatus="status">
                             	<tr class="users_data">
 	                                <td class="number">${status.index + 1}</td>
-	                                <td class="users_id">${user.id }</td>
+	                                <td class="users_id">${user.user_id }</td>
 	                                <td class="users_nickname">${user.nickname }</td>
 	                                <td class="users_email">${user.email }</td>
 	                                <td class="comments_number">${user.auth }</td>
@@ -94,7 +94,7 @@
 	                                	<fmt:formatDate value="${user.reg_date }" pattern="yyyy.MM.dd." />
 	                                </td>
 	                                <td class="comments_content">
-	                                    <button class="userDeleteBtn" onclick="return deleteUserConfirm('${user.id }')">삭제</button>
+	                                    <button class="userDeleteBtn" onclick="return deleteUserConfirm('${user.user_id }')">삭제</button>
 	                                </td>
                             	</tr>
                             </c:forEach>

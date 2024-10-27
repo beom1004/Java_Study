@@ -8,10 +8,10 @@ $('#login_close').click(function () {
 		$('#loginPw').focus();
 		
 	}else{
-		const id = $('#loginId').val();
+		const user_id = $('#loginId').val();
 		const pw = $('#loginPw').val();
 		const user = {
-            "id": id,
+            "user_id": user_id,
             "password": pw
         };
 		$.ajax({
@@ -148,7 +148,7 @@ $('#register_close').click(function () {
         const pw = $('#regPw').val();
         const email = $('#regEmail').val();
         const user = {
-            "id": id,
+            "id": user_id,
             "password": pw,
             "email": email,
         };

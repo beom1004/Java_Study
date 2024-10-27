@@ -44,7 +44,7 @@
             </div>
             <div>
                 <form action="modifyComment.do" method="post">
-                	<input type="hidden" name="user_id" value="${user.id }">
+                	<input type="hidden" name="user_id" value="${user.user_id }">
                 	<input type="hidden" name="movie_id" value="${movie.movie_id }">
                     <textarea name="comment" id="text_2" >${comment.comment }</textarea>
                     <div>
