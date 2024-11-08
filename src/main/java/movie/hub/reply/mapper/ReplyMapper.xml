@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="movie.hub.reply.mapper.ReplyMapper">
+	<delete id="deleteReplyByAdmin">
+		<!-- deleteReplyByAdmin -->
+		<![CDATA[
+			delete from reply 
+			where reply_id = #{reply_id}
+		]]>
+	</delete>
+	<select id="getAllReplyList" resultType="reply">
+		<!-- getAllReplyList -->
+		<![CDATA[
+			select * 
+			from reply
+		]]>
+		<where>
+	        <if test="searchCondition != null">
+	            <choose>
+	                <when test="searchCondition.equalsIgnoreCase('영화코드')">
+	                    AND MOVIE_ID = #{searchKeyword}
+	                </when>
+	                <when test="searchCondition.equalsIgnoreCase('아이디')">
+	                    AND USER_ID LIKE CONCAT('%', #{searchKeyword}, '%')
+	                </when>
+	                <when test="searchCondition.equalsIgnoreCase('내용')">
+	                    AND CONTENT LIKE CONCAT('%', #{searchKeyword}, '%')
+	                </when>
+	            </choose>
+	        </if>
+	    </where>
+	</select>
+	
+	<update id="modifyReply">
+		<!-- modifyReply -->
+		<![CDATA[
+			UPDATE reply 
+			SET CONTENT = #{content} 
+			WHERE COMMENT_ID = #{comment_id} and USER_ID = #{user_id}
+		]]>
+	</update>
+
+	<insert id="insertReply">
+		<!-- insertReply -->
+		<![CDATA[
+			INSERT INTO REPLY(
+				CONTENT
+				, COMMENT_ID
+				, USER_ID
+				, MOVIE_ID
+			) VALUES(
+				#{content}
+				, #{comment_id}
+				, #{user_id}
+				, #{movie_id}
+			)
+		]]>
+	</insert>
+
+	<insert id="insertReReply">
+		<!-- insertReReply -->
+		<![CDATA[
+			INSERT INTO REPLY(
+				CONTENT
+				, RE_REPLY_ID
+				, COMMENT_ID
+				, USER_ID
+				, MOVIE_ID
+			) VALUES(
+				#{content}
+				, #{reply_id}
+				, #{comment_id}
+				, #{user_id}
+				, #{movie_id}
+			)
+		]]>
+	</insert>
+
+	<delete id="deleteReply">
+		<!-- deleteReply -->
+		<![CDATA[
+			DELETE FROM REPLY 
+			WHERE 
+				COMMENT_ID = #{comment_id} 
+				and USER_ID = #{user_id} 
+				and MOVIE_ID = #{movie_id}
+				and re_reply_id is null;
+		]]>	
+	</delete>
+
+	<delete id="deleteReReply">
+		<!-- deleteReReply -->
+		<![CDATA[
+			DELETE FROM REPLY 
+			WHERE 
+				COMMENT_ID = #{comment_id} 
+				and USER_ID = #{user_id} 
+				and MOVIE_ID = #{movie_id} 
+				and re_reply_id = #{re_reply_id} 
+				and reply_id = #{reply_id}
+		]]>
+	</delete>
+
+	<select id="getCurReply" resultType="curReply">
+		<!-- getCurReply -->
+		<![CDATA[
+			select 
+				a.nickname
+				, b.profile_img
+				, c.reply_id
+				, c.content
+				, c.write_time
+				, c.re_reply_id
+				, c.comment_id
+				, c.user_id
+				, c.movie_id
+			from user a
+			join user_detail b on a.user_id = b.user_id
+			join reply c on c.user_id = a.user_id
+			where 
+				c.comment_id = #{comment_id} 
+				and c.user_id = #{user_id} 
+				and c.re_reply_id IS NULL;
+		]]>
+	</select>
+
+	<select id="getReplyList" resultType="curReply">
+		<!-- getReplyList -->
+		<![CDATA[
+			select 
+				a.nickname
+				, b.profile_img
+				, c.reply_id
+				, c.content
+				, c.write_time
+				, c.re_reply_id
+				, c.comment_id
+				, c.user_id
+				, c.movie_id
+			from user a
+			join user_detail b on a.user_id = b.user_id
+			join reply c on c.user_id = a.user_id
+			where 
+				c.comment_id = #{comment_id} 
+				and c.movie_id = #{movie_id} 
+				and c.re_reply_id IS NULL
+            order by write_time desc;
+		]]>
+	</select>
+	
+	<select id="getReReplyListByReplyId" resultType="curReply">
+		<!-- getReReplyListByReplyId -->
+		<![CDATA[
+			select 
+				a.nickname
+				, b.profile_img
+				, c.reply_id, c.content
+				, c.write_time
+				, c.re_reply_id
+				, c.comment_id
+				, c.user_id
+				, c.movie_id
+			from user a
+			join user_detail b on a.user_id = b.user_id
+			join reply c on c.user_id = a.user_id
+			where c.re_reply_id = #{reply_id}
+            order by write_time desc;
+		]]>
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+

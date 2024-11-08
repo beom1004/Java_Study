@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+    <!-- 기본 빈 레이아웃 설정 -->
+	<definition name="base.none" template="/WEB-INF/static/layout/baseNoneLayout.jsp">
+		<put-attribute name="body" value="/WEB-INF/static/layout/body.jsp" />
+	</definition>
+
+</tiles-definitions>
